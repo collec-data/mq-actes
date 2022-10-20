@@ -22,7 +22,15 @@ build angular app:
   stage: build-angular
   script:
     - npm install
-    - ./node_modules/.bin/ng build --configuration=production --aot --project=opendata-refonte-marqueblanche
+    - | 
+      ./node_modules/.bin/ng build \
+      --configuration=production \
+      --aot \
+      --project=opendata-marqueblanche \
+      --base-href=./ \
+      --output-path=dist/out/marqueblanche-refonte 
+    # Si le deploy path de l'app change, changer l'output-path
+    # --output-path=dist/out
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:

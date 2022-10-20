@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "opendata-refonte-marqueblanche": {
+    "opendata-marqueblanche": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/opendata-refonte-marqueblanche",
+            "outputPath": "dist/opendata-marqueblanche",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,10 +70,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "opendata-refonte-marqueblanche:build:production"
+              "browserTarget": "opendata-marqueblanche:build:production"
             },
             "development": {
-              "browserTarget": "opendata-refonte-marqueblanche:build:development"
+              "browserTarget": "opendata-marqueblanche:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -81,7 +81,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "opendata-refonte-marqueblanche:build"
+            "browserTarget": "opendata-marqueblanche:build"
           }
         },
         "test": {
