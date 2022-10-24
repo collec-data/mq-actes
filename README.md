@@ -1,3 +1,9 @@
+## FAQ développeur
+
+### Je n'arrive pas à accéder à une iframe lors d'un test e2e
+
+Certains tests nécessitent que le navigateur n'applique pas les politiques de sécurité. Voir: [cross origin iframes](https://docs.cypress.io/guides/guides/web-security#Cross-origin-iframes)
+
 # OpendataRefonteMarqueblanche
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
