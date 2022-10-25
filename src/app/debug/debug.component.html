@@ -1,1 +1,15 @@
-<p>debug works!</p>
+<h1>Informations de debug</h1>
+
+<h2>Media queries</h2>
+
+<table>
+    <tr>
+        <th>Media query</th>
+        <th>Match</th>
+    </tr>
+
+    <tr *ngFor="let line of mediaQueriesState">
+        <td>{{line[0]}}</td>
+        <td>{{line[1]}}</td>
+    </tr>
+</table>
