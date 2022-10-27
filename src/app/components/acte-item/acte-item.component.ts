@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ViewModel } from 'src/app/models/acte.viewmodel';
 
 @Component({
@@ -6,17 +6,13 @@ import { ViewModel } from 'src/app/models/acte.viewmodel';
   templateUrl: './acte-item.component.html',
   styleUrls: ['./acte-item.component.sass']
 })
-export class ActeItemComponent implements OnInit {
+export class ActeItemComponent {
 
   @Input()
   acte: ViewModel.Acte | null = null
 
   @Input()
   collapsed: boolean = false
-
-  constructor() { }
-
-  ngOnInit(): void { }
 
   collapse() {
     this.collapsed = true;

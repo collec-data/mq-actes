@@ -49,7 +49,7 @@
 
         <div class="annexes">
 
-            <strong *ngIf="acte.annexes.length == 0">Aucune annexe liée au document</strong>
+            <strong *ngIf="acte.annexes.length === 0">Aucune annexe liée au document</strong>
 
             <strong *ngIf="acte.annexes.length > 0">
                 Annexes liées au document ({{acte.annexes.length}})

@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ViewModel } from 'src/app/models/acte.viewmodel';
 import { acte, actes } from '../../../models/acte.viewmodel.examples'
@@ -15,7 +15,7 @@ interface Node {
   templateUrl: './listedoc.component.html',
   styleUrls: ['./listedoc.component.sass']
 })
-export class ListedocComponent implements OnInit {
+export class ListedocComponent {
 
   _un_acte = acte()
   _des_actes = actes()
@@ -37,9 +37,9 @@ export class ListedocComponent implements OnInit {
 
   treeControl = new FlatTreeControl<Node>(node => node.level, node => node.expandable)
   treeFlattener = new MatTreeFlattener(
-    this._transformer, 
-    node => node.level, 
-    node => node.expandable, 
+    this._transformer,
+    node => node.level,
+    node => node.expandable,
     node => {
       // @ts-ignore
       return node.children
@@ -49,9 +49,6 @@ export class ListedocComponent implements OnInit {
 
   constructor() {
     this.dataSource.data = this._actes
-  }
-
-  ngOnInit(): void {
   }
 
   hasChild(_: number, node: Node) {
