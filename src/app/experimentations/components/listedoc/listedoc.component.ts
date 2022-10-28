@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
 import { ViewModel } from 'src/app/models/acte.viewmodel';
 import { acte, actes } from '../../../models/acte.viewmodel.examples'
+import { ActeItemComponent } from "../../../components/acte-item/acte-item.component";
+import { experimentationsModules } from "../../experimentations-modules";
 
 interface Node {
   expandable: boolean;
@@ -13,7 +15,12 @@ interface Node {
 @Component({
   selector: 'app-listedoc',
   templateUrl: './listedoc.component.html',
-  styleUrls: ['./listedoc.component.sass']
+  styleUrls: ['./listedoc.component.sass'],
+  standalone: true,
+  imports: [
+    ...experimentationsModules,
+    ActeItemComponent
+  ]
 })
 export class ListedocComponent {
 

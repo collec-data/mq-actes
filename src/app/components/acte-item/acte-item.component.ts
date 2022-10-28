@@ -1,10 +1,15 @@
 import { Component, Input } from '@angular/core';
 import { ViewModel } from 'src/app/models/acte.viewmodel';
+import { experimentationsModules } from "../../experimentations/experimentations-modules";
 
 @Component({
   selector: 'app-acte-item',
   templateUrl: './acte-item.component.html',
-  styleUrls: ['./acte-item.component.sass']
+  styleUrls: ['./acte-item.component.sass'],
+  standalone: true,
+  imports: [
+    ...experimentationsModules
+  ]
 })
 export class ActeItemComponent {
 

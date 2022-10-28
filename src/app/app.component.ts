@@ -1,12 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { CommonModule } from "@angular/common";
+import { DebugComponent } from "./components/debug/debug.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    DebugComponent,
+    RouterModule,
+  ]
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'opendata-marqueblanche';
@@ -14,10 +22,11 @@ export class AppComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject<boolean>();
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
-    
+
     this.route.queryParams
       .pipe(
         filter(params => params['debug']),
@@ -27,7 +36,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.destroy$.next(true);
-      this.destroy$.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 }

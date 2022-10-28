@@ -1,12 +1,27 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { AppModule } from './app/app.module';
+import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { environment } from './environments/environment';
+import { FakeSearchService, SEARCH_SERVICE_TOKEN } from "./app/search.service";
+import { AppComponent } from "./app/app.component";
+import { bootstrapApplication } from "@angular/platform-browser";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { routes } from "./app/app-routes";
+import { RouterModule } from "@angular/router";
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom([
+      RouterModule.forRoot(routes),
+      NoopAnimationsModule,
+    ]),
+
+    // TODO: remplacer par un vrai search service
+    {
+      provide: SEARCH_SERVICE_TOKEN,
+      useClass: FakeSearchService,
+    }
+  ]
+}).catch(err => console.error(err));

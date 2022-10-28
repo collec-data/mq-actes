@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MARQUE_BLANCHE_URL } from './app-routing.module';
+import { MARQUE_BLANCHE_URL } from './app-routes';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,7 @@ export class IFrameRedirectVersMarqueBlancheGuard implements CanLoad {
 
       if (this.inIFrame()) {
         let urltree = this.router.createUrlTree(
-          [ MARQUE_BLANCHE_URL ], 
+          [ MARQUE_BLANCHE_URL ],
           {
             queryParams: currentQueryParams,
             fragment: currentFragment,

@@ -1,11 +1,17 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, LayoutModule } from '@angular/cdk/layout';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: 'app-debug',
   templateUrl: './debug.component.html',
-  styleUrls: ['./debug.component.sass']
+  styleUrls: ['./debug.component.sass'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    LayoutModule,
+  ]
 })
 export class DebugComponent implements OnInit, OnDestroy {
 
