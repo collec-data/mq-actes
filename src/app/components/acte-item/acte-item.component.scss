@@ -1,0 +1,69 @@
+$couleur-primaire: #b4bbc5;
+
+$marge-gauche: 3em;
+$marge-bas: 1em;
+
+// utility
+.spacer {
+  flex-grow: 1;
+}
+
+//
+:host {
+  background-color: lightgray;
+  display: block;
+  border-radius: 2em;
+}
+
+// header
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: $marge-bas;
+}
+
+
+.header .summary .sous-titre {
+  font-weight: lighter;
+  color: gray;
+}
+
+// content
+.content {
+  display: block;
+  margin-bottom: $marge-bas;
+}
+
+.collapsed {
+  display: none;
+}
+
+// Marge à gauche pour chaque item
+.header > button {
+  min-width: $marge-gauche;
+  min-height: $marge-gauche; // Afin que le bouton soit rectangulaire
+}
+
+.content {
+  margin-left: $marge-gauche;
+}
+
+
+// annexes
+.annexes {
+  margin-left: $marge-gauche;
+  margin-right: 10em;
+}
+
+.annexe {
+  display: flex;
+  background-color: $couleur-primaire;
+  padding: .5em;
+  border-radius: 1em;
+  align-items: center;
+  margin-top: $marge-bas;
+}
+
+.annexe-actions .icon {
+  font-size: 1.3em;
+}

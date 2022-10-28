@@ -6,7 +6,7 @@ import { CommonModule } from "@angular/common";
 @Component({
   selector: 'app-debug',
   templateUrl: './debug.component.html',
-  styleUrls: ['./debug.component.sass'],
+  styleUrls: ['./debug.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

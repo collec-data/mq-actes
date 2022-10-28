@@ -15,7 +15,6 @@ interface Node {
 @Component({
   selector: 'app-listedoc',
   templateUrl: './listedoc.component.html',
-  styleUrls: ['./listedoc.component.sass'],
   standalone: true,
   imports: [
     ...experimentationsModules,

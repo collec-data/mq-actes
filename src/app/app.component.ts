@@ -8,7 +8,6 @@ import { DebugComponent } from "./components/debug/debug.component";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass'],
   standalone: true,
   imports: [
     CommonModule,

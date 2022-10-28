@@ -4,7 +4,6 @@ import { sharedModules } from "../../../shared/shared-modules";
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.sass'],
   standalone: true,
   imports: [
     ...sharedModules
