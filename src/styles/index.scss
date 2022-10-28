@@ -1,0 +1,21 @@
+@import "./spacing";
+
+.sub-section {
+  margin-bottom: 1rem;
+}
+
+.columns-sm {
+  column-width: 15rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}

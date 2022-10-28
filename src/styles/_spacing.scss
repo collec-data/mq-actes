@@ -1,0 +1,36 @@
+// dans ce fichier on génère les variantes pour les classes utilitaires d'espacement
+
+$props: (
+  "p": "padding",
+  "m": "margin",
+  "g": "gap",
+);
+$sides: (top, bottom, left, right);
+$sizes: (
+  "xs": "0.125rem",
+  "s": "0.25rem",
+  "m": "0.5rem",
+  "l": ".75rem",
+  "xl": "1rem",
+);
+
+@each $prefix, $prop in $props {
+  @each $size-prefix, $length in $sizes {
+    @each $side in $sides {
+      .#{$prefix}#{str-slice($side, 0, 1)}-#{$size-prefix} {
+        #{$prop}-#{$side}: #{$length} !important;
+      }
+    }
+    .#{$prefix}x-#{$size-prefix} {
+      left: #{$length} !important;
+      right: #{$length} !important;
+    }
+    .#{$prefix}y-#{$size-prefix} {
+      top: #{$length} !important;
+      bottom: #{$length} !important;
+    }
+    .#{$prefix}-#{$size-prefix} {
+      #{$prop}: #{$length} !important;
+    }
+  }
+}
