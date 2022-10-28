@@ -19,6 +19,7 @@ export function acte(): ViewModel.Acte {
         type: 'Document budgétaires et financiers',
         classification: '7.1 Finances locales/Divers',
         siren: '253514491',
+        url: 'void',
 
         annexes: _annexes,
     }
