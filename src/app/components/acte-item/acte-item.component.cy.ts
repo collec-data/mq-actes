@@ -1,4 +1,4 @@
-import { acte } from "src/app/models/acte.viewmodel.examples";
+import { acte } from "src/app/models/model.examples";
 import { sharedModules } from "src/app/shared/shared-modules";
 import { ActeItemComponent } from "./acte-item.component";
 

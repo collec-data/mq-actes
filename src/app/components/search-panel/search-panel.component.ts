@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ViewModel } from "../../models/acte.viewmodel";
+import { SearchParams } from "../../models/model";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
@@ -11,7 +11,6 @@ import {
   AdvancedSearchParamsDialogComponent
 } from "./advanced-search-params-dialog/advanced-search-params-dialog.component";
 import { SearchFilterListComponent } from "./search-filter-list/search-filter-list.component";
-import SearchParams = ViewModel.SearchParams;
 
 @Component({
   selector: 'app-search-panel',

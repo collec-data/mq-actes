@@ -1,13 +1,13 @@
-import { ViewModel } from "src/app/models/acte.viewmodel";
+import { Acte, Annexe } from "src/app/models/model";
 
-export function annexes(): Partial<ViewModel.Annexe>[] {
+export function annexes(): Partial<Annexe>[] {
   return [
     {objet: 'Délibération du 19.11 dm 11', url: 'void'},
     {objet: 'Délibération du 20.11 dm 11', url: 'void'},
   ];
 }
 
-export function acte(): ViewModel.Acte {
+export function acte(): Acte {
   const common = {
     hash: 'xxx',
     id: 'xxx',
@@ -33,7 +33,7 @@ export function acte(): ViewModel.Acte {
   };
 }
 
-export function actes(): ViewModel.Acte[] {
+export function actes(): Acte[] {
 
   return [
     acte(),

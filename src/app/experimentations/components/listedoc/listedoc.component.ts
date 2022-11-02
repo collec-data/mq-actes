@@ -1,14 +1,14 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
 import { MatTreeFlatDataSource, MatTreeFlattener } from '@angular/material/tree';
-import { ViewModel } from 'src/app/models/acte.viewmodel';
-import { acte, actes } from '../../../models/acte.viewmodel.examples'
+import { Acte } from 'src/app/models/model';
+import { acte, actes } from '../../../models/model.examples'
 import { ActeItemComponent } from "../../../components/acte-item/acte-item.component";
 import { experimentationsModules } from "../../experimentations-modules";
 
 interface Node {
   expandable: boolean;
-  acte: ViewModel.Acte;
+  acte: Acte;
   level: number;
 }
 
@@ -33,7 +33,7 @@ export class ListedocComponent {
       return acte;
     });
 
-  private _transformer = (acte: ViewModel.Acte, level: number) => {
+  private _transformer = (acte: Acte, level: number) => {
     return {
       expandable: level == 0,
       acte: acte,

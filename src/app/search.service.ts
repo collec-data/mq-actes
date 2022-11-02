@@ -1,11 +1,8 @@
 import { Injectable, InjectionToken } from '@angular/core';
 import { EMPTY, Observable, of } from 'rxjs';
-import { ViewModel } from './models/acte.viewmodel';
-import { actes } from './models/acte.viewmodel.examples';
+import { Acte, Page, SearchParams } from './models/model';
+import { actes } from './models/model.examples';
 import { delay } from 'rxjs/operators';
-import SearchParams = ViewModel.SearchParams;
-import Page = ViewModel.Page;
-import Acte = ViewModel.Acte;
 
 export interface SearchService {
   all(): Observable<Acte[]>;

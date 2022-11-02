@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ViewModel } from 'src/app/models/acte.viewmodel';
+import { Acte } from 'src/app/models/model';
 import { experimentationsModules } from "../../experimentations/experimentations-modules";
 
 @Component({
@@ -14,7 +14,7 @@ import { experimentationsModules } from "../../experimentations/experimentations
 export class ActeItemComponent {
 
   @Input()
-  acte: ViewModel.Acte | null = null
+  acte: Acte | null = null
 
   @Input()
   collapsed: boolean = false

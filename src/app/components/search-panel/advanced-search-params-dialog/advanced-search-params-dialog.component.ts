@@ -1,14 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { classifications, typesActes, ViewModel } from "../../../models/acte.viewmodel";
+import { classifications, typesActes, SearchParams } from "../../../models/model";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatCheckboxModule } from "@angular/material/checkbox";
-import SearchParams = ViewModel.SearchParams;
 
 @Component({
   standalone: true,
