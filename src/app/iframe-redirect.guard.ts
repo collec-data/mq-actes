@@ -8,28 +8,29 @@ import { MARQUE_BLANCHE_URL } from './app-routes';
 })
 export class IFrameRedirectVersMarqueBlancheGuard implements CanLoad {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+  }
 
   canLoad(
     route: Route,
     segments: UrlSegment[]): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      let currentQueryParams = this.router.getCurrentNavigation()?.extractedUrl.queryParams
-      let currentFragment = this.router.getCurrentNavigation()?.extractedUrl.fragment
-      currentFragment = (currentFragment == null) ? undefined : currentFragment
+    let currentQueryParams = this.router.getCurrentNavigation()?.extractedUrl.queryParams;
+    let currentFragment = this.router.getCurrentNavigation()?.extractedUrl.fragment;
+    currentFragment = (currentFragment == null) ? undefined : currentFragment;
 
-      if (this.inIFrame()) {
-        let urltree = this.router.createUrlTree(
-          [ MARQUE_BLANCHE_URL ],
-          {
-            queryParams: currentQueryParams,
-            fragment: currentFragment,
-          }
-        )
-        return urltree;
-      }
+    if (this.inIFrame()) {
+      let urltree = this.router.createUrlTree(
+        [MARQUE_BLANCHE_URL],
+        {
+          queryParams: currentQueryParams,
+          fragment: currentFragment,
+        }
+      );
+      return urltree;
+    }
 
-      return true;
+    return true;
   }
 
   inIFrame() {

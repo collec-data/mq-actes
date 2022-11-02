@@ -1,16 +1,16 @@
 <ng-container #container *ngIf="acte; else acteNull">
 
-    <div class="header">
+  <div class="header">
 
-        <button *ngIf="collapsed" mat-icon-button aria-label="Bouton pour étendre la sélection" (click)="uncollapse()">
-            <mat-icon>chevron_right</mat-icon>
-        </button>
+    <button *ngIf="collapsed" mat-icon-button aria-label="Bouton pour étendre la sélection" (click)="uncollapse()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
 
-        <button *ngIf="!collapsed" mat-icon-button aria-label="Bouton pour replier la sélection" (click)="collapse()">
-            <mat-icon>expand_more</mat-icon>
-        </button>
+    <button *ngIf="!collapsed" mat-icon-button aria-label="Bouton pour replier la sélection" (click)="collapse()">
+      <mat-icon>expand_more</mat-icon>
+    </button>
 
-        <span class="summary">
+    <span class="summary">
             <span class="titre">
                 {{acte.titre}}
             </span>
@@ -20,69 +20,69 @@
             </span>
         </span>
 
+    <span class="spacer"></span>
+
+    <div class="header-actions">
+      <button mat-icon-button #tooltip="matTooltip" matTooltip="Aperçu" matTooltipPosition="above"
+              aria-label="Bouton de visualisation" disabled>
+        <mat-icon class="icon">visibility</mat-icon>
+      </button>
+      <button mat-icon-button #tooltip="matTooltip" matTooltip="Copier le lien du document"
+              matTooltipPosition="above" aria-label="Bouton du lien" disabled>
+        <mat-icon class="icon">link</mat-icon>
+      </button>
+      <button mat-icon-button #tooltip="matTooltip" matTooltip="Télécharger" matTooltipPosition="above"
+              aria-label="Bouton de téléchargement" disabled>
+        <mat-icon class="icon">download</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="content" [ngClass]="{ 'collapsed': collapsed }">
+    <div>
+      <span><strong>Objet:</strong> {{acte.objet}}</span> <br>
+      <span><strong>Type de document:</strong> {{acte.type}}</span> <br>
+      <span><strong>Classification:</strong> {{acte.classification}}</span> <br>
+      <span><strong>Date de publication:</strong> {{acte.date_publication}}</span> <br>
+      <span><strong>Siren:</strong> {{acte.siren}}</span> <br>
+    </div>
+
+    <div class="annexes">
+
+      <strong *ngIf="acte.annexes.length === 0">Aucune annexe liée au document</strong>
+
+      <strong *ngIf="acte.annexes.length > 0">
+        Annexes liées au document ({{acte.annexes.length}})
+      </strong>
+
+      <div class="annexe" *ngFor="let annexe of acte.annexes">
+
+        <mat-icon>description</mat-icon>
+        <span>{{annexe.titre}}</span>
+        <!-- <span class="annexe-summary">
+        </span> -->
+
         <span class="spacer"></span>
 
-        <div class="header-actions">
-            <button mat-icon-button #tooltip="matTooltip" matTooltip="Aperçu" matTooltipPosition="above"
-                aria-label="Bouton de visualisation" disabled>
-                <mat-icon class="icon">visibility</mat-icon>
-            </button>
-            <button mat-icon-button #tooltip="matTooltip" matTooltip="Copier le lien du document"
-                matTooltipPosition="above" aria-label="Bouton du lien" disabled>
-                <mat-icon class="icon">link</mat-icon>
-            </button>
-            <button mat-icon-button #tooltip="matTooltip" matTooltip="Télécharger" matTooltipPosition="above"
-                aria-label="Bouton de téléchargement" disabled>
-                <mat-icon class="icon">download</mat-icon>
-            </button>
+        <div class="annexe-actions">
+          <button mat-icon-button #tooltip="matTooltip" matTooltip="Aperçu" matTooltipPosition="above"
+                  aria-label="Bouton de visualisation" disabled>
+            <mat-icon class="icon">visibility</mat-icon>
+          </button>
+          <button mat-icon-button #tooltip="matTooltip" matTooltip="Copier le lien du document"
+                  matTooltipPosition="above" aria-label="Bouton du lien" disabled>
+            <mat-icon class="icon">link</mat-icon>
+          </button>
+          <button mat-icon-button #tooltip="matTooltip" matTooltip="Télécharger" matTooltipPosition="above"
+                  aria-label="Bouton de téléchargement" disabled>
+            <mat-icon class="icon">download</mat-icon>
+          </button>
         </div>
+      </div>
+
     </div>
 
-    <div class="content" [ngClass]="{ 'collapsed': collapsed }">
-        <div>
-            <span><strong>Objet:</strong> {{acte.objet}}</span> <br>
-            <span><strong>Type de document:</strong> {{acte.type}}</span> <br>
-            <span><strong>Classification:</strong> {{acte.classification}}</span> <br>
-            <span><strong>Date de publication:</strong> {{acte.date_publication}}</span> <br>
-            <span><strong>Siren:</strong> {{acte.siren}}</span> <br>
-        </div>
-
-        <div class="annexes">
-
-            <strong *ngIf="acte.annexes.length === 0">Aucune annexe liée au document</strong>
-
-            <strong *ngIf="acte.annexes.length > 0">
-                Annexes liées au document ({{acte.annexes.length}})
-            </strong>
-
-            <div class="annexe" *ngFor="let annexe of acte.annexes">
-
-                <mat-icon>description</mat-icon>
-                <span>{{annexe.titre}}</span>
-                <!-- <span class="annexe-summary">
-                </span> -->
-
-                <span class="spacer"></span>
-
-                <div class="annexe-actions">
-                    <button mat-icon-button #tooltip="matTooltip" matTooltip="Aperçu" matTooltipPosition="above"
-                        aria-label="Bouton de visualisation" disabled>
-                        <mat-icon class="icon">visibility</mat-icon>
-                    </button>
-                    <button mat-icon-button #tooltip="matTooltip" matTooltip="Copier le lien du document"
-                        matTooltipPosition="above" aria-label="Bouton du lien" disabled>
-                        <mat-icon class="icon">link</mat-icon>
-                    </button>
-                    <button mat-icon-button #tooltip="matTooltip" matTooltip="Télécharger" matTooltipPosition="above"
-                        aria-label="Bouton de téléchargement" disabled>
-                        <mat-icon class="icon">download</mat-icon>
-                    </button>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+  </div>
 
 
 </ng-container>

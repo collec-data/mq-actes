@@ -9,6 +9,7 @@ import Acte = ViewModel.Acte;
 
 export interface SearchService {
   all(): Observable<Acte[]>;
+
   search(params: SearchParams): Observable<Page<Acte>>;
 }
 

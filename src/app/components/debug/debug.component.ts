@@ -17,13 +17,14 @@ export class DebugComponent implements OnInit, OnDestroy {
 
   destroy$ = new Subject<boolean>();
 
-  mediaQueriesState: [string,boolean][] = []
+  mediaQueriesState: [string, boolean][] = [];
 
-  constructor(private responsive: BreakpointObserver) { }
+  constructor(private responsive: BreakpointObserver) {
+  }
 
   ngOnDestroy(): void {
-      this.destroy$.next(true);
-      this.destroy$.unsubscribe();
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
   ngOnInit(): void {
@@ -41,12 +42,12 @@ export class DebugComponent implements OnInit, OnDestroy {
     ];
 
     this.responsive.observe(breakpoints)
-    .pipe(
-      takeUntil(this.destroy$)
-    )
-    .subscribe(r => {
-      this.mediaQueriesState = Object.entries(r.breakpoints);
-    })
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe(r => {
+        this.mediaQueriesState = Object.entries(r.breakpoints);
+      });
   }
 
 }
