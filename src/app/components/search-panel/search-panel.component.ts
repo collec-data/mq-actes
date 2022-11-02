@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchParams } from "../../models/model";
 import { MatInputModule } from "@angular/material/input";
@@ -10,7 +10,8 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import {
   AdvancedSearchParamsDialogComponent
 } from "./advanced-search-params-dialog/advanced-search-params-dialog.component";
-import { SearchFilterListComponent } from "./search-filter-list/search-filter-list.component";
+import { Filter, SearchFilterListComponent } from "./search-filter-list/search-filter-list.component";
+import { SearchFiltersService } from "./search-filters.service";
 
 @Component({
   selector: 'app-search-panel',
@@ -28,12 +29,13 @@ import { SearchFilterListComponent } from "./search-filter-list/search-filter-li
   templateUrl: './search-panel.component.html'
 })
 export class SearchPanelComponent {
+  private searchParamsToFiltersService = inject(SearchFiltersService);
+  private dialog = inject(MatDialog);
+
   searchParams: SearchParams = {
     query: ''
   };
-
-  constructor(private dialog: MatDialog) {
-  }
+  filters: Filter[] = [];
 
   openAdvancedParamsDialog() {
     // On ouvre la boîte de dialogue.
@@ -47,11 +49,17 @@ export class SearchPanelComponent {
           ...this.searchParams,
           ...updatedSearchParams
         };
+        this.filters = this.searchParamsToFiltersService.toFilters(this.searchParams);
       }
     });
   }
 
   search(form: NgForm, $event: any) {
-    console.log('search', this.searchParams)
+    console.log('search', this.searchParams);
+  }
+
+  removeFilter(index: number) {
+    const removedFilter = this.filters.splice(index, 1)[0];
+    this.searchParams = this.searchParamsToFiltersService.removeFilter(this.searchParams, removedFilter);
   }
 }

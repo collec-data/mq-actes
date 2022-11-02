@@ -9,5 +9,5 @@
     </button>
   </div>
 
-  <app-search-filter-list></app-search-filter-list>
+  <app-search-filter-list [filters]="filters" (removeFilter)="removeFilter($event)"></app-search-filter-list>
 </form>

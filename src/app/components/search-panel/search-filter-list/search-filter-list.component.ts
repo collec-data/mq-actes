@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
@@ -20,21 +20,8 @@ export type Filter = {
 })
 export class SearchFilterListComponent {
 
-  @Input() filters: Filter[] = [{
-    label: 'Ubrbanisme',
-    data: null
-  }, {
-    label: '2022',
-    data: null
-  }, {
-    label: 'Paimpont',
-    data: null
-  }, {
-    label: 'Délibération',
-    data: null
-  }];
+  @Input() filters: Filter[] = [];
 
-  clearFilter(index: number) {
-    this.filters.splice(index, 1);
-  }
+  @Output() removeFilter = new EventEmitter<number>();
+
 }
