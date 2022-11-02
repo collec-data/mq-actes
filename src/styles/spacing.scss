@@ -34,3 +34,15 @@ $sizes: (
     }
   }
 }
+
+@each $value in (flex-start, flex-end, center, space-between, space-around, space-evenly) {
+  .justify-content-#{$value} {
+    justify-content: $value;
+  }
+}
+
+@each $value in (auto, flex-start, flex-end, center, baseline, stretch) {
+  .align-items-#{$value} {
+    align-items: $value;
+  }
+}

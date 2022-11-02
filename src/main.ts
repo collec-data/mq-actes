@@ -6,6 +6,7 @@ import { bootstrapApplication } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { routes } from "./app/app-routes";
 import { RouterModule } from "@angular/router";
+import { MatNativeDateModule } from "@angular/material/core";
 
 if (environment.production) {
   enableProdMode();
@@ -16,6 +17,7 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom([
       RouterModule.forRoot(routes),
       NoopAnimationsModule,
+      MatNativeDateModule
     ]),
 
     // TODO: remplacer par un vrai search service
