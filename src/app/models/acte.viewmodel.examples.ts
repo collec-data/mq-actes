@@ -1,27 +1,35 @@
-import { ViewModel } from "src/app/models/acte.viewmodel"
+import { ViewModel } from "src/app/models/acte.viewmodel";
 
-export function annexes(): ViewModel.Annexe[] {
+export function annexes(): Partial<ViewModel.Annexe>[] {
   return [
-    {titre: 'Délibération du 19.11 dm 11', url: 'void'},
-    {titre: 'Délibération du 20.11 dm 11', url: 'void'},
+    {objet: 'Délibération du 19.11 dm 11', url: 'void'},
+    {objet: 'Délibération du 20.11 dm 11', url: 'void'},
   ];
 }
 
 export function acte(): ViewModel.Acte {
-
-  let _annexes = annexes()
-  return {
-    titre: 'Délibération du 19.11 décision modificative 11',
+  const common = {
+    hash: 'xxx',
+    id: 'xxx',
+    id_publication: 123,
+    typologie: '99_DE',
+    content_type: 'application/pdf',
+    objet: 'Délibération du 19.11 décision modificative 11',
     date_acte: '19/11/2021',
     date_publication: '15/10/2022',
-
-    objet: 'DELIB du 19.11 DM 11',
-    type: 'Document budgétaires et financiers',
-    classification: '7.1 Finances locales/Divers',
-    siren: '253514491',
     url: 'void',
 
-    annexes: _annexes,
+    type: '5' as const,
+    classification_code: '7.1',
+    classification_libelle: 'Finances locales/Divers',
+    siren: '253514491'
+  };
+  return {
+    ...common,
+    annexes: annexes().map(a => ({
+      ...common,
+      ...a
+    })),
   };
 }
 

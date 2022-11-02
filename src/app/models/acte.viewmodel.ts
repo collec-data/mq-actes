@@ -1,58 +1,72 @@
+export const typesActes = {
+  '1': "Délibérations",
+  '2': "Actes réglementaires",
+  '3': "Actes individuels",
+  '4': "Contrats,conventions et avenants",
+  '5': "Documents budgétaires et financiers",
+  '6': "Autres",
+  '7': "Hors Préfecture",
+} as const;
+
+export const classifications = {
+  '1': "Commande Publique",
+  '2': "Urbanisme",
+  '3': "Domaine et patrimoine",
+  '4': "Fonction publique",
+  '5': "Institutions et vie politique",
+  '6': "Libertes publiques et pourvoirs de police",
+  '7': "Finances locales",
+  '8': "Domaines de competences par themes",
+  '9': "Autres domaines de competences",
+} as const;
+
+type TypeActeCode = keyof typeof typesActes;
+type ClassificationCode = keyof typeof classifications;
+
 export namespace ViewModel {
-  export interface Acte {
-    titre: string;
+  export interface Document {
+    hash: string;
+    id: string;
+    type: TypeActeCode;
+    type_autre_detail?: string;
+    classification_code: string; // ou string[]
+    classification_libelle: string; // ou string[]
+    objet: string;
+    id_publication: number;
     date_acte: string;
     date_publication: string;
     url: string;
-
-    objet: string;
-    type: string;
-    classification: string;
+    typologie: string;
+    content_type: string;
+    blockchain_transaction_hash?: string;
+    blockchain_url?: string;
     siren: string;
+    resultat_recherche?: boolean;
+  }
 
+  export interface Acte extends Document {
     annexes: Annexe[];
   }
 
-  export interface Annexe {
-    titre: string;
-    url: string;
-  }
-
-  export enum Classification {
-    COMMANDE_PUBLIQUE = 'COMMANDE_PUBLIQUE',
-    DOMAINE_ET_PATRIMOINE = 'DOMAINE_ET_PATRIMOINE',
-    FONCTION_PUBLIQUE = 'FONCTION_PUBLIQUE',
-    FINANCES_LOCALES = 'FINANCES_LOCALES',
-    INSTITUTION_ET_VIE_POLITIQUE = 'INSTITUTION_ET_VIE_POLITIQUE',
-    DOMAINES_DE_COMPETENCE_PAR_THEME = 'DOMAINES_DE_COMPETENCE_PAR_THEME',
-    URBANISME = 'URBANISME',
-    AUTRE_DOMAINES_DE_COMPETENCE = 'AUTRE_DOMAINES_DE_COMPETENCE',
-    LIBERTES_PUBLIQUES_ET_POLICE = 'LIBERTES_PUBLIQUES_ET_POLICE',
-  }
-
-  export enum TypeActe {
-    DELIBERATION = 'DELIBERATION',
-    ACTES_INDIVIDUELS = 'ACTES_INDIVIDUELS',
-    ACTES_REGLEMENTAIRES = 'ACTES_REGLEMENTAIRES',
-    AUTRES = 'AUTRES',
+  export interface Annexe extends Document {
   }
 
   export interface Page<T> {
-    numFound: number;
-    start: number;
-    docs: T[];
+    nb_resultats: number;
+    debut: number;
+    resultats: T[];
   }
 
   export interface Pageable {
-    page?: number;
-    pageSize?: number;
+    debut?: number;
+    lignes?: number;
   }
 
   export interface SearchParams extends Pageable {
     query: string;
     date_debut?: Date;
     date_fin?: Date;
-    classifications?: Classification[];
-    type_acte?: TypeActe[];
+    classifications?: Set<ClassificationCode>;
+    types_actes?: Set<TypeActeCode>;
   }
 }

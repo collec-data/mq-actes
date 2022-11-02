@@ -32,7 +32,6 @@
     <!-- {{node.acte.titre}} -->
 
     <div>
-      <span><strong>Objet:</strong> {{node.acte.objet}}</span> <br>
       <span><strong>Type de document:</strong> {{node.acte.type}}</span> <br>
       <span><strong>Classification:</strong> {{node.acte.classification}}</span> <br>
       <span><strong>Date de publication:</strong> {{node.acte.date_publication}}</span> <br>
@@ -47,7 +46,7 @@
         {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
       </mat-icon>
     </button>
-    {{node.acte.titre}}
+    {{node.acte.objet}}
   </mat-tree-node>
 </mat-tree>
 
@@ -55,7 +54,7 @@
 <div *ngFor="let acte of _actes">
   <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
-      <mat-panel-title>{{acte.titre}}</mat-panel-title>
+      <mat-panel-title>{{acte.objet}}</mat-panel-title>
 
       <mat-panel-description>
         Émit le {{acte.date_acte}}, publié le {{acte.date_publication}}
@@ -63,9 +62,8 @@
     </mat-expansion-panel-header>
 
 
-    <span><strong>Objet:</strong> {{acte.objet}}</span> <br>
     <span><strong>Type de document:</strong> {{acte.type}}</span> <br>
-    <span><strong>Classification:</strong> {{acte.classification}}</span> <br>
+    <span><strong>Classification:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
     <span><strong>Date de publication:</strong> {{acte.date_publication}}</span> <br>
     <span><strong>Siren:</strong> {{acte.siren}}</span> <br>
   </mat-expansion-panel>

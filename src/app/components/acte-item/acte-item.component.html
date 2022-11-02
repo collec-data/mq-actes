@@ -12,7 +12,7 @@
 
     <span class="summary">
             <span class="titre">
-                {{acte.titre}}
+                {{acte.objet}}
             </span>
             <br>
             <span class="sous-titre">
@@ -40,9 +40,8 @@
 
   <div class="content" [ngClass]="{ 'collapsed': collapsed }">
     <div>
-      <span><strong>Objet:</strong> {{acte.objet}}</span> <br>
       <span><strong>Type de document:</strong> {{acte.type}}</span> <br>
-      <span><strong>Classification:</strong> {{acte.classification}}</span> <br>
+      <span><strong>Classification:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
       <span><strong>Date de publication:</strong> {{acte.date_publication}}</span> <br>
       <span><strong>Siren:</strong> {{acte.siren}}</span> <br>
     </div>
@@ -58,7 +57,7 @@
       <div class="annexe" *ngFor="let annexe of acte.annexes">
 
         <mat-icon>description</mat-icon>
-        <span>{{annexe.titre}}</span>
+        <span>{{annexe.objet}}</span>
         <!-- <span class="annexe-summary">
         </span> -->
 
