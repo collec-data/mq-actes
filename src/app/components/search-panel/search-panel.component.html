@@ -2,7 +2,8 @@
   <div class="d-flex align-items-center">
     <mat-form-field appearance="fill" class="flex-grow-1">
       <input matInput type="search" name="query" [(ngModel)]="searchParams.query" #searchInput>
-      <button matSuffix mat-icon-button type="button" (click)="openAdvancedParamsDialog()"  matTooltip="Paramètres avancés">
+      <button matSuffix mat-icon-button type="button" (click)="openAdvancedParamsDialog()"
+              matTooltip="Paramètres avancés">
         <mat-icon>tune</mat-icon>
       </button>
       <button matSuffix mat-mini-fab color="primary" type="submit" matTooltip="Lancer la recherche">
@@ -11,5 +12,7 @@
     </mat-form-field>
   </div>
 
-  <app-search-filter-list [filters]="filters" (removeFilter)="removeFilter($event)"></app-search-filter-list>
+  <ng-container *ngIf="filters | async as filterArray">
+    <app-search-filter-list [filters]="filterArray" (removeFilter)="removeFilter($event)"></app-search-filter-list>
+  </ng-container>
 </form>

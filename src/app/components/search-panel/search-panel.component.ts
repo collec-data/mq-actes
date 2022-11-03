@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchParams } from "../../models/model";
 import { MatInputModule } from "@angular/material/input";
@@ -13,31 +13,48 @@ import {
 import { Filter, SearchFilterListComponent } from "./search-filter-list/search-filter-list.component";
 import { SearchFiltersService } from "./search-filters.service";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { BehaviorSubject, map, Observable } from "rxjs";
 
 @Component({
   selector: 'app-search-panel',
   standalone: true,
-    imports: [
-        CommonModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatIconModule,
-        MatInputModule,
-        MatButtonModule,
-        MatDialogModule,
-        SearchFilterListComponent,
-        MatTooltipModule,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    SearchFilterListComponent,
+    MatTooltipModule,
+  ],
   templateUrl: './search-panel.component.html'
 })
-export class SearchPanelComponent {
+export class SearchPanelComponent implements OnChanges {
   private searchParamsToFiltersService = inject(SearchFiltersService);
   private dialog = inject(MatDialog);
-
-  searchParams: SearchParams = {
+  private searchParamsSubject = new BehaviorSubject<SearchParams>({
     query: ''
-  };
-  filters: Filter[] = [];
+  });
+
+  @Input() set searchParams(params: SearchParams) {
+    this.searchParamsSubject.next(params);
+  }
+
+  get searchParams() {
+    return this.searchParamsSubject.getValue();
+  }
+
+  filters: Observable<Filter[]> = this.searchParamsSubject.pipe(
+    map((params) => this.searchParamsToFiltersService.toFilters(params))
+  );
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('searchParams' in changes) {
+      this.searchParams = changes['searchParams'].currentValue;
+    }
+  }
 
   openAdvancedParamsDialog() {
     // On ouvre la boîte de dialogue.
@@ -51,7 +68,6 @@ export class SearchPanelComponent {
           ...this.searchParams,
           ...updatedSearchParams
         };
-        this.filters = this.searchParamsToFiltersService.toFilters(this.searchParams);
       }
     });
   }
@@ -60,8 +76,7 @@ export class SearchPanelComponent {
     console.log('search', this.searchParams);
   }
 
-  removeFilter(index: number) {
-    const removedFilter = this.filters.splice(index, 1)[0];
-    this.searchParams = this.searchParamsToFiltersService.removeFilter(this.searchParams, removedFilter);
+  removeFilter(filterToRemove: Filter) {
+    this.searchParams = this.searchParamsToFiltersService.removeFilter(this.searchParams, filterToRemove);
   }
 }

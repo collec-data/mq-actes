@@ -1,7 +1,7 @@
 <mat-chip-list aria-label="Filtres">
-  <mat-chip *ngFor="let filter of filters; index as i">
+  <mat-chip *ngFor="let filter of filters">
     {{filter.label}}
-    <button matChipRemove (click)="removeFilter.emit(i)">
+    <button matChipRemove (click)="removeFilter.emit(filter)">
       <mat-icon>cancel</mat-icon>
     </button>
   </mat-chip>

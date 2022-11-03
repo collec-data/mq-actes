@@ -22,6 +22,6 @@ export class SearchFilterListComponent {
 
   @Input() filters: Filter[] = [];
 
-  @Output() removeFilter = new EventEmitter<number>();
+  @Output() removeFilter = new EventEmitter<Filter>();
 
 }
