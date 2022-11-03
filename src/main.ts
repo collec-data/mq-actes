@@ -1,6 +1,6 @@
 import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { environment } from './environments/environment';
-import { FakeSearchService, SEARCH_SERVICE_TOKEN } from "./app/search.service";
+import { FakeSearchService, SearchService } from "./app/search.service";
 import { AppComponent } from "./app/app.component";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -22,7 +22,7 @@ bootstrapApplication(AppComponent, {
 
     // TODO: remplacer par un vrai search service
     {
-      provide: SEARCH_SERVICE_TOKEN,
+      provide: SearchService,
       useClass: FakeSearchService,
     }
   ]
