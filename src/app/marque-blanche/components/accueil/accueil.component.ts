@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { sharedModules } from "../../../shared/shared-modules";
 import { SearchPanelComponent } from "../../../components/search-panel/search-panel.component";
+import { DocumentListComponent } from "../../../components/document-list/document-list.component";
+import { Acte } from "../../../models/model";
 
 @Component({
   selector: 'app-accueil',
@@ -8,8 +10,10 @@ import { SearchPanelComponent } from "../../../components/search-panel/search-pa
   standalone: true,
   imports: [
     ...sharedModules,
-    SearchPanelComponent
+    SearchPanelComponent,
+    DocumentListComponent
   ]
 })
 export class AccueilComponent {
+  actesPromise: Promise<Acte[]> | undefined;
 }
