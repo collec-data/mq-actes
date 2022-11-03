@@ -1,12 +1,14 @@
-<form #searchForm="ngForm" (ngSubmit)="search(searchForm, $event)">
+<form ngForm (ngSubmit)="search()">
   <div class="d-flex align-items-center">
     <mat-form-field appearance="fill" class="flex-grow-1">
-      <input matInput type="search" name="query" [(ngModel)]="searchParams.query">
-      <mat-icon matSuffix>search</mat-icon>
+      <input matInput type="search" name="query" [(ngModel)]="searchParams.query" #searchInput>
+      <button matSuffix mat-icon-button type="button" (click)="openAdvancedParamsDialog()"  matTooltip="Paramètres avancés">
+        <mat-icon>tune</mat-icon>
+      </button>
+      <button matSuffix mat-mini-fab color="primary" type="submit" matTooltip="Lancer la recherche">
+        <mat-icon matSuffix>search</mat-icon>
+      </button>
     </mat-form-field>
-    <button mat-icon-button type="button" (click)="openAdvancedParamsDialog()">
-      <mat-icon>tune</mat-icon>
-    </button>
   </div>
 
   <app-search-filter-list [filters]="filters" (removeFilter)="removeFilter($event)"></app-search-filter-list>

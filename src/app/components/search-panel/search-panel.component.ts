@@ -4,7 +4,7 @@ import { SearchParams } from "../../models/model";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
-import { FormsModule, NgForm } from "@angular/forms";
+import { FormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import {
@@ -12,20 +12,22 @@ import {
 } from "./advanced-search-params-dialog/advanced-search-params-dialog.component";
 import { Filter, SearchFilterListComponent } from "./search-filter-list/search-filter-list.component";
 import { SearchFiltersService } from "./search-filters.service";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-search-panel',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDialogModule,
-    SearchFilterListComponent,
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatInputModule,
+        MatButtonModule,
+        MatDialogModule,
+        SearchFilterListComponent,
+        MatTooltipModule,
+    ],
   templateUrl: './search-panel.component.html'
 })
 export class SearchPanelComponent {
@@ -54,7 +56,7 @@ export class SearchPanelComponent {
     });
   }
 
-  search(form: NgForm, $event: any) {
+  search() {
     console.log('search', this.searchParams);
   }
 
