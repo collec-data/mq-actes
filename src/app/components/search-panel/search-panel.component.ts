@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchParams } from "../../models/model";
 import { MatInputModule } from "@angular/material/input";
@@ -46,6 +46,8 @@ export class SearchPanelComponent implements OnChanges {
     return this.searchParamsSubject.getValue();
   }
 
+  @Output() search = new EventEmitter<SearchParams>();
+
   filters: Observable<Filter[]> = this.searchParamsSubject.pipe(
     map((params) => this.searchParamsToFiltersService.toFilters(params))
   );
@@ -70,10 +72,6 @@ export class SearchPanelComponent implements OnChanges {
         };
       }
     });
-  }
-
-  search() {
-    console.log('search', this.searchParams);
   }
 
   removeFilter(filterToRemove: Filter) {
