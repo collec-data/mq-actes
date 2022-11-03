@@ -1,4 +1,6 @@
 @import "./spacing";
+@import "./centered-stack";
+@import "./overlay";
 
 .sub-section {
   margin-bottom: 1rem;
@@ -12,10 +14,34 @@
   display: flex;
 }
 
+.d-none {
+  display: none !important;
+}
+
+.h-100 {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.min-h-0 {
+  min-height: 0;
+}
+
 .flex-column {
   flex-direction: column;
 }
 
 .flex-grow-1 {
   flex-grow: 1;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+[hidden] {
+  display: none !important;
 }

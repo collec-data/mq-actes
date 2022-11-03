@@ -1,0 +1,28 @@
+<div class="flex-grow-1 min-h-0 centered-stack overlay__container">
+  <div
+    class="overlay__background"
+    [class.d-none]="!loading"
+  ></div>
+
+  <mat-progress-spinner
+    [class.d-none]="!loading"
+    class="overlay__foreground"
+    mode="indeterminate"
+    style="margin: auto"
+  ></mat-progress-spinner>
+
+  <div class="overflow-auto min-h-0 h-100 w-100">
+    <div *ngFor="let acte of data">
+      <app-acte-item [acte]="acte"></app-acte-item>
+    </div>
+  </div>
+</div>
+
+<mat-paginator
+  [length]="currentPage?.total"
+  [pageIndex]="currentPage ? (currentPage.debut / currentPage.taille_page) : null"
+  [pageSize]="currentPage?.taille_page"
+  [pageSizeOptions]="currentPage ? [currentPage.taille_page] : []"
+  [disabled]="false"
+  aria-label="Select page"
+></mat-paginator>

@@ -1,9 +1,12 @@
-<div id="application-iframe">
+<app-search-panel (search)="doSearch($event)"></app-search-panel>
 
-  <div class="recherche">
-    <app-search-panel></app-search-panel>
+<app-paginated-document-list
+  [class.d-none]="!searchLaunched"
+  (pageRequest)="loadPage($event)"
+  [loading]="pageLoading"
+  class="flex-grow-1 min-h-0"
+></app-paginated-document-list>
 
-    <app-document-list [actesPromise]="actesPromise"></app-document-list>
-  </div>
-
+<div [class.d-none]="searchLaunched">
+  Les résultats seront affichés ici
 </div>

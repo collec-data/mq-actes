@@ -1,0 +1,13 @@
+/*
+ * Pour empiler des éléments les uns devant les autres, centrés dans un container,
+ * et que le container soit dimensionné en fonction de l'élément le plus grand.
+ */
+
+.centered-stack {
+  display: grid;
+}
+
+.centered-stack > * {
+  grid-area: 1 / 1;
+  margin: auto;
+}

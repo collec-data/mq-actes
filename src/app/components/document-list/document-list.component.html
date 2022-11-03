@@ -1,9 +1,0 @@
-<ng-container *ngIf="!actesPromise">
-  Les résultats de recherche s'afficheront ici.
-</ng-container>
-
-<ng-container *ngIf="actesPromise | async as actes">
-  <div *ngFor="let acte of actes">
-    <app-acte-item [acte]="acte"></app-acte-item>
-  </div>
-</ng-container>

@@ -51,9 +51,10 @@ export interface Annexe extends Document {
 }
 
 export interface Page<T> {
-  nb_resultats: number;
+  total: number;
   debut: number;
-  resultats: T[];
+  taille_page: number;
+  items: T[];
 }
 
 export interface Pageable {
