@@ -1,0 +1,12 @@
+// Classe à ajouter sur mat-checkbox pour les libellés longs
+// https://github.com/angular/components/issues/8416
+
+.checkbox-text-wrap {
+  .mat-checkbox-layout {
+    white-space: normal;
+  }
+
+  .mat-checkbox-inner-container {
+    margin-top: 0.25rem;
+  }
+}

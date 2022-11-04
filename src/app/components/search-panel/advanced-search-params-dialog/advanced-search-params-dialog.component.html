@@ -29,6 +29,7 @@
     <div class="columns-sm">
       <div *ngFor="let check of classifications | keyvalue">
         <mat-checkbox
+          class="checkbox-text-wrap"
           [checked]="updatedParams.classifications?.has($any(check.key))"
           (change)="toggleElement(updatedParams.classifications, check.key)"
         >
@@ -44,6 +45,7 @@
     <div class="columns-sm">
       <div *ngFor="let check of typesActe | keyvalue">
         <mat-checkbox
+          class="checkbox-text-wrap"
           [checked]="updatedParams.types_actes?.has($any(check.key))"
           (change)="toggleElement(updatedParams.types_actes, check.key)"
         >

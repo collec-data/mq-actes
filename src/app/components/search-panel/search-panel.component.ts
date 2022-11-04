@@ -62,7 +62,8 @@ export class SearchPanelComponent implements OnChanges {
     // On ouvre la boîte de dialogue.
     // Celle-ci retourne les paramètres de recherche mis à jour en résultat.
     let dialogRef = this.dialog.open(AdvancedSearchParamsDialogComponent, {
-      data: this.searchParams
+      data: this.searchParams,
+      width: '40rem',
     });
     dialogRef.afterClosed().subscribe(updatedSearchParams => {
       if (updatedSearchParams) {
