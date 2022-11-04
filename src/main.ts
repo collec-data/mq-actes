@@ -3,7 +3,7 @@ import { environment } from './environments/environment';
 import { FakeSearchService, SearchService } from "./app/search.service";
 import { AppComponent } from "./app/app.component";
 import { bootstrapApplication } from "@angular/platform-browser";
-import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { routes } from "./app/app-routes";
 import { RouterModule } from "@angular/router";
 import { MatNativeDateModule } from "@angular/material/core";
@@ -16,7 +16,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom([
       RouterModule.forRoot(routes),
-      NoopAnimationsModule,
+      BrowserAnimationsModule,
       MatNativeDateModule
     ]),
 
