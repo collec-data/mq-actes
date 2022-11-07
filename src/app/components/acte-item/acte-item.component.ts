@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Acte } from 'src/app/models/model';
 import { experimentationsModules } from "../../experimentations/experimentations-modules";
 import { TypeActePipe } from "../../shared/type-acte.pipe";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 @Component({
   selector: 'app-acte-item',
@@ -13,8 +14,23 @@ import { TypeActePipe } from "../../shared/type-acte.pipe";
     TypeActePipe
   ],
   host: {
-    class: 'd-flex flex-column py-l pr-l g-m'
-  }
+    class: 'd-flex flex-column py-l pr-l'
+  },
+  animations: [
+    trigger('collapsed', [
+      state('open', style({
+        height: '*',
+        marginTop: '*',
+        overflow: 'hidden'
+      })),
+      state('closed', style({
+        height: '0px',
+        marginTop: '0px',
+        overflow: 'hidden'
+      })),
+      transition('closed <=> open', animate('300ms ease-in-out')),
+    ]),
+  ]
 })
 export class ActeItemComponent {
 

@@ -18,19 +18,19 @@ $sizes: (
   @each $size-prefix, $length in $sizes {
     @each $side in $sides {
       .#{$prefix}#{str-slice($side, 0, 1)}-#{$size-prefix} {
-        #{$prop}-#{$side}: #{$length} !important;
+        #{$prop}-#{$side}: #{$length};
       }
     }
     .#{$prefix}x-#{$size-prefix} {
-      #{$prop}-left: #{$length} !important;
-      #{$prop}-right: #{$length} !important;
+      #{$prop}-left: #{$length};
+      #{$prop}-right: #{$length};
     }
     .#{$prefix}y-#{$size-prefix} {
-      #{$prop}-top: #{$length} !important;
-      #{$prop}-bottom: #{$length} !important;
+      #{$prop}-top: #{$length};
+      #{$prop}-bottom: #{$length};
     }
     .#{$prefix}-#{$size-prefix} {
-      #{$prop}: #{$length} !important;
+      #{$prop}: #{$length};
     }
   }
 }

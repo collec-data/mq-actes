@@ -32,7 +32,10 @@
   </div>
 </div>
 
-<div class="content d-flex flex-column g-m" [class.collapsed]="collapsed">
+<div
+  class="content mt-m d-flex flex-column g-m"
+  [@collapsed]="collapsed ? 'closed' : 'open'"
+>
   <div>
     <span><strong>Type de document:</strong> {{acte.type | appTypeActe}}</span> <br>
     <span><strong>Classification:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
