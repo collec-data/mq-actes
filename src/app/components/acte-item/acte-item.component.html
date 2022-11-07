@@ -8,13 +8,13 @@
     <mat-icon>expand_more</mat-icon>
   </button>
 
-  <span class="summary">
+  <div class="summary cursor-pointer flex-grow-1" (click)="collapsed = !collapsed">
     <span class="titre">{{acte.objet}}</span>
     <br>
     <span class="sous-titre">
         Émis le {{acte.date_acte | date:'shortDate'}}, publié le {{acte.date_publication | date:'shortDate'}}
     </span>
-  </span>
+  </div>
 
   <div class="header-actions">
     <button mat-icon-button matTooltip="Aperçu" matTooltipPosition="above"
@@ -47,9 +47,7 @@
 
     <div class="annexe" *ngFor="let annexe of acte.annexes">
       <mat-icon>description</mat-icon>
-      <span>{{annexe.objet}}</span>
-      <!-- <span class="annexe-summary">
-      </span> -->
+      <div class="flex-grow-1">{{annexe.objet}}</div>
 
       <div class="annexe-actions">
         <button mat-icon-button matTooltip="Aperçu" matTooltipPosition="above"

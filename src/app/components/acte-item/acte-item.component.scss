@@ -3,11 +3,6 @@ $couleur-primaire: #b4bbc5;
 $marge-gauche: 3em;
 $marge-bas: 1em;
 
-// utility
-.spacer {
-  flex-grow: 1;
-}
-
 //
 :host {
   background-color: lightgray;
@@ -20,19 +15,9 @@ $marge-bas: 1em;
   align-items: center;
 }
 
-
 .header .summary .sous-titre {
   font-weight: lighter;
   color: gray;
-}
-
-// content
-.collapsed {
-  display: none;
-}
-
-.header-actions {
-  margin-left: auto;
 }
 
 // Marge à gauche pour chaque item
@@ -45,7 +30,6 @@ $marge-bas: 1em;
   margin-left: $marge-gauche;
 }
 
-
 // annexes
 .annexe {
   display: flex;
@@ -53,10 +37,6 @@ $marge-bas: 1em;
   padding: .5em;
   border-radius: .5em;
   align-items: center;
-}
-
-.annexe-actions {
-  margin-left: auto;
 }
 
 .annexe-actions .icon {
