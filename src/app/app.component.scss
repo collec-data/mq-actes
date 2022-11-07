@@ -1,3 +1,4 @@
 .full-height-route + * {
-  height: 100%;
+  flex-grow: 1;
+  min-height: 0;
 }
