@@ -1,0 +1,35 @@
+<a
+  mat-icon-button
+  matTooltipPosition="above"
+  matTooltip="Aperçu"
+  aria-label="Aperçu"
+  [href]="documentUrl"
+  target="_blank"
+  referrerpolicy="no-referrer"
+>
+  <mat-icon [class]="iconClass">visibility</mat-icon>
+</a>
+<a
+  type="button"
+  mat-icon-button
+  matTooltipPosition="above"
+  matTooltip="Copier le lien du document"
+  aria-label="Copier le lien du document"
+  [href]="documentUrl"
+  [cdkCopyToClipboard]="copyLink._elementRef.nativeElement.href"
+  (cdkCopyToClipboardCopied)="textCopied()"
+  (click)="false"
+  #copyLink
+>
+  <mat-icon [class]="iconClass">link</mat-icon>
+</a>
+<a
+  mat-icon-button
+  matTooltipPosition="above"
+  matTooltip="Télécharger"
+  aria-label="Télécharger"
+  [href]="documentUrl"
+  download
+>
+  <mat-icon [class]="iconClass">download</mat-icon>
+</a>

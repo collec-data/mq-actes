@@ -1,7 +1,6 @@
 $couleur-primaire: #b4bbc5;
 
 $marge-gauche: 3em;
-$marge-bas: 1em;
 
 //
 :host {
@@ -37,8 +36,4 @@ $marge-bas: 1em;
   padding: .5em;
   border-radius: .5em;
   align-items: center;
-}
-
-.annexe-actions .icon {
-  font-size: 1.3em;
 }

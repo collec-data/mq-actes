@@ -3,6 +3,7 @@ import { Acte } from 'src/app/models/model';
 import { experimentationsModules } from "../../experimentations/experimentations-modules";
 import { TypeActePipe } from "../../shared/type-acte.pipe";
 import { animate, state, style, transition, trigger } from "@angular/animations";
+import { DocumentActionsComponent } from "../document-actions/document-actions.component";
 
 @Component({
   selector: 'app-acte-item',
@@ -11,7 +12,8 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
   standalone: true,
   imports: [
     ...experimentationsModules,
-    TypeActePipe
+    TypeActePipe,
+    DocumentActionsComponent
   ],
   host: {
     class: 'd-flex flex-column py-l pr-l'
@@ -33,12 +35,8 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
   ]
 })
 export class ActeItemComponent {
-
-  @Input()
-  acte!: Acte;
-
-  @Input()
-  collapsed = false;
+  @Input() acte!: Acte;
+  @Input() collapsed = false;
 
   collapse() {
     this.collapsed = true;
