@@ -17,18 +17,19 @@
   </div>
 
   <div class="header-actions">
-    <button mat-icon-button matTooltip="Aperçu" matTooltipPosition="above"
-            aria-label="Bouton de visualisation" disabled>
-      <mat-icon class="icon">visibility</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Copier le lien du document"
-            matTooltipPosition="above" aria-label="Bouton du lien" disabled>
-      <mat-icon class="icon">link</mat-icon>
-    </button>
-    <button mat-icon-button matTooltip="Télécharger" matTooltipPosition="above"
-            aria-label="Bouton de téléchargement" disabled>
-      <mat-icon class="icon">download</mat-icon>
-    </button>
+    <ng-container *ngIf="acte.url">
+      <a mat-icon-button matTooltip="Aperçu" matTooltipPosition="above" aria-label="Aperçu" [href]="acte.url" target="_blank">
+        <mat-icon class="icon">visibility</mat-icon>
+      </a>
+      <button mat-icon-button matTooltip="Copier le lien du document"
+              matTooltipPosition="above" aria-label="Copier le lien du document" disabled>
+        <mat-icon class="icon">link</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Télécharger" matTooltipPosition="above"
+              aria-label="Télécharger" disabled>
+        <mat-icon class="icon">download</mat-icon>
+      </button>
+    </ng-container>
   </div>
 </div>
 
@@ -51,15 +52,15 @@
 
       <div class="annexe-actions">
         <button mat-icon-button matTooltip="Aperçu" matTooltipPosition="above"
-                aria-label="Bouton de visualisation" disabled>
+                aria-label="Aperçu" disabled>
           <mat-icon class="icon">visibility</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Copier le lien du document"
-                matTooltipPosition="above" aria-label="Bouton du lien" disabled>
+                matTooltipPosition="above" aria-label="Copier le lien du document" disabled>
           <mat-icon class="icon">link</mat-icon>
         </button>
         <button mat-icon-button matTooltip="Télécharger" matTooltipPosition="above"
-                aria-label="Bouton de téléchargement" disabled>
+                aria-label="Télécharger" disabled>
           <mat-icon class="icon">download</mat-icon>
         </button>
       </div>
