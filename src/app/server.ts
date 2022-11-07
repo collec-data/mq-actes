@@ -24,7 +24,7 @@ const actesBetween = (d1: Date, d2: Date, nbActes: number): Acte[] => {
       objet: `Délibération ${index}`,
       date_acte: new Date(date.getTime() - 10000).toISOString(),
       date_publication: date.toISOString(),
-      url: 'void',
+      url: '/assets/minimal.pdf',
 
       type,
       classification_code: classificationCode,
