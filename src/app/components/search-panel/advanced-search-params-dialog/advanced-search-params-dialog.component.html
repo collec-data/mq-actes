@@ -1,63 +1,79 @@
-<h2 mat-dialog-title>Affiner votre recherche</h2>
+<form #form="ngForm" (ngSubmit)="validate(form)">
+  <h2 mat-dialog-title>Affiner votre recherche</h2>
 
-<mat-dialog-content>
-  <div class="sub-section">
-    <h3>Date de publication</h3>
+  <mat-dialog-content>
+    <div class="sub-section">
+      <h3>Date de publication</h3>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Début</mat-label>
-      <input matInput [matDatepicker]="startPicker" [(ngModel)]="updatedParams.date_debut" #debut="ngModel">
-      <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-      <mat-datepicker #startPicker></mat-datepicker>
-      <mat-error *ngIf="debut.hasError('matStartDateInvalid')">Date invalide</mat-error>
-    </mat-form-field>
-
-    et
-
-    <mat-form-field appearance="fill">
-      <mat-label>Fin</mat-label>
-      <input matInput [matDatepicker]="endPicker" [(ngModel)]="updatedParams.date_fin" #fin="ngModel">
-      <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-      <mat-datepicker #endPicker></mat-datepicker>
-      <mat-error *ngIf="fin.hasError('matEndDateInvalid')">Date invalide</mat-error>
-    </mat-form-field>
-  </div>
-
-  <div class="sub-section">
-    <h3>Classification</h3>
-
-    <div class="columns-sm">
-      <div *ngFor="let check of classifications | keyvalue">
-        <mat-checkbox
-          class="checkbox-text-wrap"
-          [checked]="updatedParams.classifications?.has($any(check.key))"
-          (change)="toggleElement(updatedParams.classifications, check.key)"
+      <mat-form-field appearance="fill">
+        <mat-label>Début</mat-label>
+        <input
+          matInput
+          [matDatepicker]="startPicker"
+          name="date_debut"
+          [(ngModel)]="updatedParams.date_debut"
+          #debut="ngModel"
         >
-          {{check.value}}
-        </mat-checkbox>
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+        <mat-error *ngIf="debut.hasError('matStartDateInvalid')">Date invalide</mat-error>
+      </mat-form-field>
+
+      et
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fin</mat-label>
+        <input
+          matInput
+          [matDatepicker]="endPicker"
+          [min]="updatedParams.date_debut"
+          name="date_fin"
+          [(ngModel)]="updatedParams.date_fin"
+          #fin="ngModel"
+        >
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+        <mat-error *ngIf="fin.hasError('matEndDateInvalid')">Date invalide</mat-error>
+        <mat-error *ngIf="fin.hasError('matDatepickerMin')">La date de fin doit se trouver après le début</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="sub-section">
+      <h3>Classification</h3>
+
+      <div class="columns-sm">
+        <div *ngFor="let check of classifications | keyvalue">
+          <mat-checkbox
+            class="checkbox-text-wrap"
+            [checked]="updatedParams.classifications?.has($any(check.key))"
+            (change)="toggleElement(updatedParams.classifications, check.key)"
+          >
+            {{check.value}}
+          </mat-checkbox>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="sub-section">
-    <h3>Type d'acte</h3>
+    <div class="sub-section">
+      <h3>Type d'acte</h3>
 
-    <div class="columns-sm">
-      <div *ngFor="let check of typesActe | keyvalue">
-        <mat-checkbox
-          class="checkbox-text-wrap"
-          [checked]="updatedParams.types_actes?.has($any(check.key))"
-          (change)="toggleElement(updatedParams.types_actes, check.key)"
-        >
-          {{check.value}}
-        </mat-checkbox>
+      <div class="columns-sm">
+        <div *ngFor="let check of typesActe | keyvalue">
+          <mat-checkbox
+            class="checkbox-text-wrap"
+            [checked]="updatedParams.types_actes?.has($any(check.key))"
+            (change)="toggleElement(updatedParams.types_actes, check.key)"
+          >
+            {{check.value}}
+          </mat-checkbox>
+        </div>
       </div>
     </div>
-  </div>
 
-</mat-dialog-content>
+  </mat-dialog-content>
 
-<mat-dialog-actions>
-  <button mat-button (click)="cancel()">Annuler</button>
-  <button mat-button (click)="validate()">Ok</button>
-</mat-dialog-actions>
+  <mat-dialog-actions>
+    <button mat-button type="button" (click)="cancel()">Annuler</button>
+    <button mat-button type="submit">Ok</button>
+  </mat-dialog-actions>
+</form>

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { classifications, typesActes, SearchParams } from "../../../models/model";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -48,8 +48,10 @@ export class AdvancedSearchParamsDialogComponent {
     this.dialogRef.close();
   }
 
-  validate() {
-    this.dialogRef.close(this.updatedParams);
+  validate(form: NgForm) {
+    if (form.valid) {
+      this.dialogRef.close(this.updatedParams);
+    }
   }
 
   toggleElement<T>(set: Set<T> | undefined, elem: T) {
