@@ -71,11 +71,13 @@ export class SearchPanelComponent implements OnChanges {
           ...this.searchParams,
           ...updatedSearchParams
         };
+        this.search.emit(this.searchParams);
       }
     });
   }
 
   removeFilter(filterToRemove: Filter) {
     this.searchParams = this.searchParamsToFiltersService.removeFilter(this.searchParams, filterToRemove);
+    this.search.emit(this.searchParams);
   }
 }
