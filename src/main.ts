@@ -10,6 +10,8 @@ import { MatNativeDateModule } from "@angular/material/core";
 import { HttpClientModule } from "@angular/common/http";
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from "@angular/common";
+import { MatPaginatorIntl } from "@angular/material/paginator";
+import { MatPaginatorIntlFr } from "./app/shared/mat-paginator-intl-fr";
 
 registerLocaleData(localeFr);
 
@@ -36,6 +38,10 @@ bootstrapApplication(AppComponent, {
     {
       provide: LOCALE_ID,
       useValue: 'fr-FR'
+    },
+    {
+      provide: MatPaginatorIntl,
+      useClass: MatPaginatorIntlFr
     }
   ]
 }).catch(err => console.error(err));
