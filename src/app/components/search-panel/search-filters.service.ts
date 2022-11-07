@@ -15,7 +15,7 @@ export class SearchFiltersService {
 
     if (params.date_debut) {
       filters.push({
-        label: `après ${this.datePipe.transform(params.date_debut, 'shortDate')}`,
+        label: `après le ${this.datePipe.transform(params.date_debut, 'shortDate')}`,
         data: {
           prop: 'date_debut'
         }
@@ -24,7 +24,7 @@ export class SearchFiltersService {
 
     if (params.date_fin) {
       filters.push({
-        label: `avant ${this.datePipe.transform(params.date_fin, 'shortDate')}`,
+        label: `avant le ${this.datePipe.transform(params.date_fin, 'shortDate')}`,
         data: {
           prop: 'date_fin'
         }
