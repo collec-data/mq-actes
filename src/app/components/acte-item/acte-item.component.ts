@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Acte } from 'src/app/models/model';
 import { experimentationsModules } from "../../experimentations/experimentations-modules";
+import { TypeActePipe } from "../../shared/type-acte.pipe";
 
 @Component({
   selector: 'app-acte-item',
@@ -8,16 +9,20 @@ import { experimentationsModules } from "../../experimentations/experimentations
   styleUrls: ['./acte-item.component.scss'],
   standalone: true,
   imports: [
-    ...experimentationsModules
-  ]
+    ...experimentationsModules,
+    TypeActePipe
+  ],
+  host: {
+    class: 'd-flex flex-column py-l pr-l g-m'
+  }
 })
 export class ActeItemComponent {
 
   @Input()
-  acte: Acte | null = null
+  acte!: Acte;
 
   @Input()
-  collapsed: boolean = false
+  collapsed = false;
 
   collapse() {
     this.collapsed = true;

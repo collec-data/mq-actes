@@ -3,6 +3,10 @@
 @import "./overlay";
 @import "./checkbox-text-wrap";
 
+body {
+  min-width: 30rem;
+}
+
 .sub-section {
   margin-bottom: 1rem;
 }

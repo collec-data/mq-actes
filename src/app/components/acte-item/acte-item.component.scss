@@ -11,15 +11,13 @@ $marge-bas: 1em;
 //
 :host {
   background-color: lightgray;
-  display: block;
-  border-radius: 2em;
+  border-radius: .5em;
 }
 
 // header
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: $marge-bas;
 }
 
 
@@ -29,13 +27,12 @@ $marge-bas: 1em;
 }
 
 // content
-.content {
-  display: block;
-  margin-bottom: $marge-bas;
-}
-
 .collapsed {
   display: none;
+}
+
+.header-actions {
+  margin-left: auto;
 }
 
 // Marge à gauche pour chaque item
@@ -50,18 +47,16 @@ $marge-bas: 1em;
 
 
 // annexes
-.annexes {
-  margin-left: $marge-gauche;
-  margin-right: 10em;
-}
-
 .annexe {
   display: flex;
   background-color: $couleur-primaire;
   padding: .5em;
-  border-radius: 1em;
+  border-radius: .5em;
   align-items: center;
-  margin-top: $marge-bas;
+}
+
+.annexe-actions {
+  margin-left: auto;
 }
 
 .annexe-actions .icon {
