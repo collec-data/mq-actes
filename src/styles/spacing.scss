@@ -22,12 +22,12 @@ $sizes: (
       }
     }
     .#{$prefix}x-#{$size-prefix} {
-      left: #{$length} !important;
-      right: #{$length} !important;
+      #{$prop}-left: #{$length} !important;
+      #{$prop}-right: #{$length} !important;
     }
     .#{$prefix}y-#{$size-prefix} {
-      top: #{$length} !important;
-      bottom: #{$length} !important;
+      #{$prop}-top: #{$length} !important;
+      #{$prop}-bottom: #{$length} !important;
     }
     .#{$prefix}-#{$size-prefix} {
       #{$prop}: #{$length} !important;
