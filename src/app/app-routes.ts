@@ -18,9 +18,5 @@ export const routes: Routes = [
     path: MARQUE_BLANCHE_PATH,
     loadChildren: () => import('./marque-blanche/marque-blanche-routes').then(m => m.routes)
   },
-  {
-    path: 'experimentations',
-    loadChildren: () => import('./experimentations/experimentations-routes').then(m => m.routes)
-  },
   {path: '**', redirectTo: ACCUEIL_PATH},
 ];

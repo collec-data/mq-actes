@@ -1,5 +1,4 @@
 import { acte } from "src/app/models/model.examples";
-import { sharedModules } from "src/app/shared/shared-modules";
 import { ActeItemComponent } from "./acte-item.component";
 
 describe('ActeItemComponent', () => {
@@ -12,7 +11,6 @@ describe('ActeItemComponent', () => {
       ActeItemComponent,
       {
         declarations: [ActeItemComponent],
-        imports: [...sharedModules],
         componentProperties: {acte: exempleActe},
       });
   });

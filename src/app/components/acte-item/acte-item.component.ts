@@ -1,9 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { Acte } from 'src/app/models/model';
-import { experimentationsModules } from "../../experimentations/experimentations-modules";
 import { TypeActePipe } from "../../shared/type-acte.pipe";
 import { animate, state, style, transition, trigger } from "@angular/animations";
 import { DocumentActionsComponent } from "../document-actions/document-actions.component";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { CommonModule, DatePipe } from "@angular/common";
 
 @Component({
   selector: 'app-acte-item',
@@ -11,9 +13,12 @@ import { DocumentActionsComponent } from "../document-actions/document-actions.c
   styleUrls: ['./acte-item.component.scss'],
   standalone: true,
   imports: [
-    ...experimentationsModules,
+    CommonModule,
     TypeActePipe,
-    DocumentActionsComponent
+    DocumentActionsComponent,
+    MatIconModule,
+    MatButtonModule,
+    DatePipe
   ],
   host: {
     class: 'd-flex flex-column py-l pr-l'

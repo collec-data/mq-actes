@@ -1,5 +1,4 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
-import { sharedModules } from "../../../shared/shared-modules";
 import { SearchPanelComponent } from "../../../components/search-panel/search-panel.component";
 import {
   PaginatedDocumentListComponent
@@ -13,7 +12,6 @@ import { finalize, Subject, switchMap, tap } from "rxjs";
   templateUrl: './accueil.component.html',
   standalone: true,
   imports: [
-    ...sharedModules,
     SearchPanelComponent,
     PaginatedDocumentListComponent
   ],
