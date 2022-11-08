@@ -1,5 +1,5 @@
-import { createServer } from "miragejs"
-import { Acte, classifications, Document, Page, typesActes } from "./models/model";
+import { rest } from 'msw';
+import { Acte, classifications, Document, typesActes } from "../app/models/model";
 
 // des actes entre 2 dates
 const actesBetween = (d1: Date, d2: Date, nbActes: number): Acte[] => {
@@ -58,37 +58,42 @@ const actes: Acte[] = actesBetween(
   1200
 );
 
-createServer({
-  routes() {
-    this.get<Page<Acte>>(
-      "api/actes",
-      (schema, request) => {
-        const {lignes, debut, query, date_debut, date_fin, classifications, types_actes} = request.queryParams ?? {};
-        const classificationsArray = classifications?.split(',');
-        const typesActesArray = types_actes?.split(',');
-        const taillePageNb = Number.parseInt(lignes, 0) ?? 10;
-        const debutNb = Number.parseInt(debut, 0) ?? 0;
-        const dateDebutTime = date_debut && new Date(date_debut).getTime();
-        const dateFinTime = date_fin && new Date(date_fin).getTime();
+export const handlers = [
+  rest.get('/assets/*', (req) => {
+    return req.passthrough();
+  }),
 
-        const filteredActes = actes.filter(a =>
-          (!query || a.objet.toLocaleLowerCase().includes(query.toLocaleLowerCase())) &&
-          (!classificationsArray || classificationsArray.some((x: string) => x.startsWith(a.classification_code))) &&
-          (!typesActesArray || typesActesArray.includes(a.type)) &&
-          (!dateDebutTime || new Date(a.date_publication).getTime() >= dateDebutTime) &&
-          (!dateFinTime || new Date(a.date_publication).getTime() <= dateFinTime)
-        );
+  rest.get('/api/actes', (req, res, ctx) => {
+    const query = req.url.searchParams.get('query');
 
-        return {
-          taille_page: taillePageNb,
-          debut: debutNb,
-          items: filteredActes.slice(debutNb, debutNb + taillePageNb),
-          total: filteredActes.length
-        };
-      },
-      {timing: 500}
+    const classificationsArray = req.url.searchParams.get('classifications')?.split(',');
+    const typesActesArray = req.url.searchParams.get('types_actes')?.split(',');
+    const taillePageNb = Number.parseInt(req.url.searchParams.get('lignes') ?? '10', 0);
+    const debutNb = Number.parseInt(req.url.searchParams.get('debut') ?? '0', 0);
+
+    const dateDebut = req.url.searchParams.get('date_debut');
+    const dateDebutTime = dateDebut && new Date(dateDebut).getTime();
+
+    const dateFin = req.url.searchParams.get('date_fin');
+    const dateFinTime = dateFin && new Date(dateFin).getTime();
+
+
+    const filteredActes = actes.filter(a =>
+      (!query || a.objet.toLocaleLowerCase().includes(query.toLocaleLowerCase())) &&
+      (!classificationsArray || classificationsArray.some((x: string) => x.startsWith(a.classification_code))) &&
+      (!typesActesArray || typesActesArray.includes(a.type)) &&
+      (!dateDebutTime || new Date(a.date_publication).getTime() >= dateDebutTime) &&
+      (!dateFinTime || new Date(a.date_publication).getTime() <= dateFinTime)
     );
 
-    this.passthrough();
-  }
-});
+    return res(
+      ctx.status(200),
+      ctx.json({
+        taille_page: taillePageNb,
+        debut: debutNb,
+        items: filteredActes.slice(debutNb, debutNb + taillePageNb),
+        total: filteredActes.length
+      }),
+    )
+  })
+];

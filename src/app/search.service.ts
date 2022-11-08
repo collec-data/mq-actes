@@ -3,9 +3,10 @@ import { map, Observable, of } from 'rxjs';
 import { Acte, Page, Pageable, SearchParams } from './models/model';
 import { actes } from './models/model.examples';
 import { delay } from 'rxjs/operators';
-
-import './server';
 import { HttpClient } from "@angular/common/http";
+import { worker } from '../mocks/browser';
+
+worker.start()
 
 export const API_ACTES_URL = new InjectionToken<string>('API_ACTES_URL');
 
