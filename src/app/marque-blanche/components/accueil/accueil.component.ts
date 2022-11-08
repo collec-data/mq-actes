@@ -4,6 +4,7 @@ import { BreakpointObserver } from "@angular/cdk/layout";
 import { takeUntil } from "rxjs/operators";
 import { CommonModule } from "@angular/common";
 import { SearchListComponent } from "../search-list/search-list.component";
+import { PdfViewerComponent } from "../../../components/pdf-viewer/pdf-viewer.component";
 
 const breakpointLarge = '(min-width: 960px)';
 
@@ -14,7 +15,8 @@ const breakpointLarge = '(min-width: 960px)';
   standalone: true,
   imports: [
     CommonModule,
-    SearchListComponent
+    SearchListComponent,
+    PdfViewerComponent
   ],
   host: {
     class: 'd-flex'

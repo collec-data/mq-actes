@@ -1,0 +1,25 @@
+<ngx-extended-pdf-viewer
+  class="flex-1"
+  *ngIf="pdfUrl"
+  [src]="pdfUrl"
+
+  [showToolbar]="true"
+  [showSidebarButton]="true"
+  [showFindButton]="false"
+  [showPagingButtons]="false"
+  [showZoomButtons]="true"
+  [showPresentationModeButton]="false"
+  [showOpenFileButton]="false"
+  [showPrintButton]="false"
+  [showDownloadButton]="false"
+  [showBookmarkButton]="false"
+  [showSecondaryToolbarButton]="false"
+  [showRotateButton]="false"
+  [showHandToolButton]="false"
+  [showScrollingButton]="false"
+  [showSpreadButton]="false"
+  [showPropertiesButton]="true"
+
+  [useBrowserLocale]="true"
+  [showUnverifiedSignatures]="true"
+></ngx-extended-pdf-viewer>

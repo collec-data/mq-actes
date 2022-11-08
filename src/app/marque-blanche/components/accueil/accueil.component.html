@@ -3,6 +3,8 @@
   [class.sidebar-search-list]="showPdfViewer"
 ></app-search-list>
 
-<div *ngIf="showPdfViewer" class="flex-grow-1">
-  Visionneuse
-</div>
+<app-pdf-viewer
+  *ngIf="showPdfViewer"
+  class="flex-grow-1"
+  pdfUrl="http://localhost:4200/assets/minimal.pdf"
+></app-pdf-viewer>

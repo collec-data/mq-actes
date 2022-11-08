@@ -60,10 +60,8 @@ const actes: Acte[] = actesBetween(
 
 createServer({
   routes() {
-    this.namespace = "api"
-
     this.get<Page<Acte>>(
-      "/actes",
+      "api/actes",
       (schema, request) => {
         const {lignes, debut, query, date_debut, date_fin, classifications, types_actes} = request.queryParams ?? {};
         const classificationsArray = classifications?.split(',');
@@ -90,5 +88,7 @@ createServer({
       },
       {timing: 500}
     );
+
+    this.passthrough();
   }
 });
