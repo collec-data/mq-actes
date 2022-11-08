@@ -1,1 +1,8 @@
-<app-search-list></app-search-list>
+<app-search-list
+  [class.flex-grow-1]="!showPdfViewer"
+  [class.sidebar-search-list]="showPdfViewer"
+></app-search-list>
+
+<div *ngIf="showPdfViewer" class="flex-grow-1">
+  Visionneuse
+</div>
