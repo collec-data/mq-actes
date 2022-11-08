@@ -1,0 +1,12 @@
+<app-search-panel (search)="doSearch($event)" class="mb-l"></app-search-panel>
+
+<app-paginated-document-list
+  [class.d-none]="!searchLaunched"
+  (pageRequest)="loadPage($event)"
+  [loading]="pageLoading"
+  class="flex-grow-1 min-h-0"
+></app-paginated-document-list>
+
+<div [class.d-none]="searchLaunched">
+  Les résultats seront affichés ici
+</div>
