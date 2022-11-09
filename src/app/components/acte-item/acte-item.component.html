@@ -1,11 +1,12 @@
 <div class="header">
 
-  <button type="button" *ngIf="collapsed" mat-icon-button aria-label="Déplier" (click)="uncollapse()">
-    <mat-icon>chevron_right</mat-icon>
-  </button>
-
-  <button type="button" *ngIf="!collapsed" mat-icon-button aria-label="Replier" (click)="collapse()">
-    <mat-icon>expand_more</mat-icon>
+  <button
+    type="button"
+    mat-icon-button
+    [attr.aria-label]="collapsed ? 'Déplier' : 'Replier'"
+    (click)="collapsed = !collapsed"
+  >
+    <mat-icon [@rotate]="collapsed ? 'right' : 'down'">chevron_right</mat-icon>
   </button>
 
   <div class="summary cursor-pointer flex-grow-1" (click)="collapsed = !collapsed">

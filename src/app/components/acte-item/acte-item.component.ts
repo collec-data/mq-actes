@@ -37,6 +37,15 @@ import { CommonModule, DatePipe } from "@angular/common";
       })),
       transition('closed <=> open', animate('300ms ease-in-out')),
     ]),
+    trigger('rotate', [
+      state('right', style({
+        transform: 'rotate(0)'
+      })),
+      state('down', style({
+        transform: 'rotate(90deg)'
+      })),
+      transition('right <=> down', animate('200ms ease-in-out')),
+    ]),
   ]
 })
 export class ActeItemComponent {
