@@ -44,10 +44,6 @@ export class AdvancedSearchParamsDialogComponent {
     };
   }
 
-  cancel() {
-    this.dialogRef.close();
-  }
-
   validate(form: NgForm) {
     if (form.valid) {
       this.dialogRef.close(this.updatedParams);
