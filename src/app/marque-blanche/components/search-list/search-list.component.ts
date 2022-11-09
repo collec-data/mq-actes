@@ -16,7 +16,7 @@ import { finalize, Subject, switchMap, tap } from "rxjs";
     PaginatedDocumentListComponent
   ],
   host: {
-    class: 'd-flex flex-column m-l'
+    class: 'd-flex flex-column'
   }
 })
 export class SearchListComponent implements OnInit {

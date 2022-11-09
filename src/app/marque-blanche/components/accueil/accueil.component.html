@@ -3,8 +3,14 @@
   [class.sidebar-search-list]="showPdfViewer"
 ></app-search-list>
 
-<app-pdf-viewer
-  *ngIf="showPdfViewer"
-  class="flex-grow-1"
-  pdfUrl="http://localhost:4200/assets/minimal.pdf"
-></app-pdf-viewer>
+<div *ngIf="showPdfViewer" class="flex-grow-1 d-flex flex-column g-m">
+  <ng-container *ngIf="store.selectedDocument$ | async as doc">
+    <div>
+      {{doc.objet}}
+    </div>
+    <app-pdf-viewer
+      class="flex-grow-1 min-h-0"
+      [pdfUrl]="doc.url"
+    ></app-pdf-viewer>
+  </ng-container>
+</div>

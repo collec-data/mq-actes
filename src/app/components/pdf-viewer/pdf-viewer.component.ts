@@ -12,5 +12,5 @@ import { CommonModule } from "@angular/common";
   standalone: true
 })
 export class PdfViewerComponent {
-  @Input() pdfUrl?: string;
+  @Input() pdfUrl?: string | null;
 }

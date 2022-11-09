@@ -16,7 +16,7 @@
     </span>
   </div>
 
-  <app-document-actions [documentUrl]="acte.url"></app-document-actions>
+  <app-document-actions [document]="acte"></app-document-actions>
 </div>
 
 <div
@@ -35,7 +35,7 @@
     <div class="annexe" *ngFor="let annexe of acte.annexes">
       <mat-icon>description</mat-icon>
       <div class="flex-grow-1">{{annexe.objet}}</div>
-      <app-document-actions [documentUrl]="annexe.url" iconClass="small-icons"></app-document-actions>
+      <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
     </div>
   </div>
 </div>

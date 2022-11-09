@@ -17,14 +17,14 @@ const actesBetween = (d1: Date, d2: Date, nbActes: number): Acte[] => {
 
     const common: Document = {
       hash: 'xxx',
-      id: 'xxx',
+      id: `${date.getTime()}`,
       id_publication: date.getTime(),
       typologie: '99_DE',
       content_type: 'application/pdf',
       objet: `Délibération ${index}`,
       date_acte: new Date(date.getTime() - 10000).toISOString(),
       date_publication: date.toISOString(),
-      url: '/assets/minimal.pdf',
+      url: `/assets/minimal.pdf?acte=${date.getTime()}`,
 
       type,
       classification_code: classificationCode,
@@ -35,10 +35,14 @@ const actesBetween = (d1: Date, d2: Date, nbActes: number): Acte[] => {
       ...common,
       annexes: [{
         ...common,
-        objet: `${common.objet} annexe 1`
+        id: `${date.getTime()}-anx1`,
+        objet: `${common.objet} annexe 1`,
+        url: `/assets/minimal.pdf?acte=${date.getTime()}&annexe=1`
       }, {
         ...common,
-        objet: `${common.objet} annexe 2`
+        id: `${date.getTime()}-anx2`,
+        objet: `${common.objet} annexe 2`,
+        url: `/assets/minimal.pdf?acte=${date.getTime()}&annexe=2`
       }],
     };
   };
