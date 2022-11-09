@@ -1,0 +1,4 @@
+/* Espacement entre les boutons si plusieurs en suffixe du même champ de formulaire. */
+.mat-form-field-suffix > button + button {
+  margin-left: 0.25rem;
+}
