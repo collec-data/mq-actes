@@ -24,20 +24,17 @@
     <mat-icon [class]="iconClass">visibility</mat-icon>
   </a>
 </ng-template>
-<a
+<button
   type="button"
   mat-icon-button
   matTooltipPosition="above"
   matTooltip="Copier le lien du document"
   aria-label="Copier le lien du document"
-  [href]="document.url"
-  [cdkCopyToClipboard]="copyLink._elementRef.nativeElement.href"
+  [cdkCopyToClipboard]="document.url"
   (cdkCopyToClipboardCopied)="textCopied()"
-  (click)="false"
-  #copyLink
 >
   <mat-icon [class]="iconClass">link</mat-icon>
-</a>
+</button>
 <a
   mat-icon-button
   matTooltipPosition="above"
