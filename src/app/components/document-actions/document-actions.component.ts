@@ -24,7 +24,10 @@ import { Document } from "../../models/model";
     AsyncPipe,
     NgIf,
   ],
-  styleUrls: ['./document-actions.component.scss']
+  styleUrls: ['./document-actions.component.scss'],
+  host: {
+    class: 'd-flex'
+  }
 })
 export class DocumentActionsComponent {
   @Input() document!: Document;
