@@ -40,6 +40,15 @@
       </div>
     </div>
   </div>
+
+  <span
+    [@collapsed]="collapsed ? 'open' : 'closed'"
+    *ngIf="acte.annexes.length"
+    (click)="collapsed = !collapsed"
+    class="content mt-m d-inline-block cursor-pointer"
+  >
+      + {{acte.annexes.length}} annexe{{acte.annexes.length > 1 ? 's' : ''}}
+    </span>
 </ng-container>
 
 <ng-template #skeleton>
