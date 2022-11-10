@@ -20,27 +20,27 @@ export const classifications = {
   '9': "Autres domaines de competences",
 } as const;
 
-type TypeActeCode = keyof typeof typesActes;
-type ClassificationCode = keyof typeof classifications;
+export type TypeActeCode = keyof typeof typesActes;
+export type ClassificationCode = keyof typeof classifications;
 
 export interface Document {
-  hash: string;
-  id: string;
-  type: TypeActeCode;
-  type_autre_detail?: string;
-  classification_code: string; // ou string[]
-  classification_libelle: string; // ou string[]
-  objet: string;
-  id_publication: number;
-  date_acte: string;
-  date_publication: string;
-  url: string;
-  typologie: string;
-  content_type: string;
   blockchain_transaction_hash?: string;
   blockchain_url?: string;
-  siren: string;
+  classification_code: string; // ou string[]
+  classification_libelle: string; // ou string[]
+  content_type: string;
+  date_acte: string;
+  date_publication: string;
+  hash: string;
+  id: string;
+  id_publication: number;
+  objet: string;
   resultat_recherche?: boolean;
+  siren: string;
+  type: TypeActeCode;
+  type_autre_detail?: string;
+  typologie: string;
+  url: string;
 }
 
 export interface Acte extends Document {
@@ -51,10 +51,10 @@ export interface Annexe extends Document {
 }
 
 export interface Page<T> {
-  total: number;
   debut: number;
+  nb_resultats: number;
+  resultats: T[];
   taille_page: number;
-  items: T[];
 }
 
 export interface Pageable {
@@ -63,6 +63,7 @@ export interface Pageable {
 }
 
 export interface SearchParams extends Pageable {
+  siren?: string;
   query: string;
   date_debut?: Date;
   date_fin?: Date;
@@ -70,3 +71,15 @@ export interface SearchParams extends Pageable {
   types_actes?: Set<TypeActeCode>;
 }
 
+
+export type PageBack<T> = Omit<Page<T>, 'taille_page'>;
+
+export type AnnexeBack = {
+  hash: string;
+  id: string;
+  resultat_recherche: boolean;
+  url: string;
+  // content_type ?
+};
+
+export type ActeBack = Omit<Acte, 'type' | 'annexes'> & { type: number, annexes: AnnexeBack[] };

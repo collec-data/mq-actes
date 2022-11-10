@@ -1,52 +1,47 @@
 import { rest } from 'msw';
-import { Acte, classifications, Document, typesActes } from "../app/models/model";
+import { ActeBack, classifications, PageBack, typesActes } from "../app/models/model";
+
+const acteForTime = (date: Date, index: number): ActeBack => {
+  const allTypesCodes = Object.keys(typesActes);
+  const type = allTypesCodes[date.getTime() % allTypesCodes.length] as keyof typeof typesActes;
+  const allClassificationCodes = Object.keys(classifications);
+  const classificationCode = allClassificationCodes[date.getTime() % allClassificationCodes.length] as keyof typeof classifications;
+  const classificationLabel = classifications[classificationCode];
+
+  return {
+    hash: 'xxx',
+    id: `${date.getTime()}`,
+    id_publication: date.getTime(),
+    typologie: '99_DE',
+    content_type: 'application/pdf',
+    objet: `Délibération ${index}`,
+    date_acte: new Date(date.getTime() - 10000).toISOString(),
+    date_publication: date.toISOString(),
+    url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}`,
+    type: Number(type),
+    classification_code: classificationCode,
+    classification_libelle: classificationLabel,
+    siren: '253514491',
+    annexes: [{
+      hash: 'xxx-anx1',
+      id: `${date.getTime()}-anx1`,
+      url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}&annexe=1`,
+      resultat_recherche: false
+    }, {
+      hash: 'xxx-anx2',
+      id: `${date.getTime()}-anx1`,
+      url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}&annexe=1`,
+      resultat_recherche: false
+    }]
+  };
+};
 
 // des actes entre 2 dates
-const actesBetween = (d1: Date, d2: Date, nbActes: number): Acte[] => {
+const actesBetween = (d1: Date, d2: Date, nbActes: number): ActeBack[] => {
   const plage = d2.getTime() - d1.getTime();
   const increment = plage / nbActes;
 
-  const result: Acte[] = [];
-
-  const acteForTime = (date: Date, index: number): Acte => {
-    const allTypesCodes = Object.keys(typesActes);
-    const type = allTypesCodes[date.getTime() % allTypesCodes.length] as keyof typeof typesActes;
-    const allClassificationCodes = Object.keys(classifications);
-    const classificationCode = allClassificationCodes[date.getTime() % allClassificationCodes.length] as keyof typeof classifications;
-    const classificationLabel = classifications[classificationCode];
-
-    const common: Document = {
-      hash: 'xxx',
-      id: `${date.getTime()}`,
-      id_publication: date.getTime(),
-      typologie: '99_DE',
-      content_type: 'application/pdf',
-      objet: `Délibération ${index}`,
-      date_acte: new Date(date.getTime() - 10000).toISOString(),
-      date_publication: date.toISOString(),
-      url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}`,
-
-      type,
-      classification_code: classificationCode,
-      classification_libelle: classificationLabel,
-      siren: '253514491'
-    };
-    return {
-      ...common,
-      annexes: [{
-        ...common,
-        id: `${date.getTime()}-anx1`,
-        objet: `${common.objet} annexe 1`,
-        url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}&annexe=1`
-      }, {
-        ...common,
-        id: `${date.getTime()}-anx2`,
-        objet: `${common.objet} annexe 2`,
-        url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}&annexe=2`
-      }],
-    };
-  };
-
+  const result: ActeBack[] = [];
   let index = 0;
   for (let time = d1.getTime(); time < d2.getTime(); time += increment) {
     index++;
@@ -56,7 +51,7 @@ const actesBetween = (d1: Date, d2: Date, nbActes: number): Acte[] => {
   return result;
 }
 
-const actes: Acte[] = actesBetween(
+const actes: ActeBack[] = actesBetween(
   new Date(2020, 2, 5),
   new Date(),
   1200
@@ -85,7 +80,7 @@ export const handlers = [
     const filteredActes = actes.filter(a =>
       (!query || a.objet.toLocaleLowerCase().includes(query.toLocaleLowerCase())) &&
       (!classificationsArray || classificationsArray.some((x: string) => x.startsWith(a.classification_code))) &&
-      (!typesActesArray || typesActesArray.includes(a.type)) &&
+      (!typesActesArray || typesActesArray.includes(`${a.type}`)) &&
       (!dateDebutTime || new Date(a.date_publication).getTime() >= dateDebutTime) &&
       (!dateFinTime || new Date(a.date_publication).getTime() <= dateFinTime)
     );
@@ -93,12 +88,11 @@ export const handlers = [
     return res(
       ctx.delay(500),
       ctx.status(200),
-      ctx.json({
-        taille_page: taillePageNb,
+      ctx.json(((): PageBack<ActeBack> => ({
         debut: debutNb,
-        items: filteredActes.slice(debutNb, debutNb + taillePageNb),
-        total: filteredActes.length
-      }),
+        resultats: filteredActes.slice(debutNb, debutNb + taillePageNb),
+        nb_resultats: filteredActes.length
+      }))()),
     )
   })
 ];

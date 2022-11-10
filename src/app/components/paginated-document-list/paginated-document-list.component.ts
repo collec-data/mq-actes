@@ -38,6 +38,6 @@ export class PaginatedDocumentListComponent implements AfterViewInit {
 
   public loadPage(page: Page<Acte>) {
     this.currentPage = page;
-    this.data = page.items;
+    this.data = page.resultats;
   }
 }

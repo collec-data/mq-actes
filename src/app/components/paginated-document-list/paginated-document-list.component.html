@@ -20,7 +20,7 @@
 </div>
 
 <mat-paginator
-  [length]="currentPage?.total"
+  [length]="currentPage?.nb_resultats"
   [pageIndex]="currentPage ? (currentPage.debut / currentPage.taille_page) : null"
   [pageSize]="currentPage?.taille_page"
   [pageSizeOptions]="currentPage ? [currentPage.taille_page] : []"
