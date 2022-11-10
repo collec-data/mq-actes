@@ -1,42 +1,53 @@
-<div class="header">
+<ng-container *ngIf="acte else skeleton">
+  <div class="header">
+    <button
+      type="button"
+      mat-icon-button
+      [attr.aria-label]="collapsed ? 'Déplier' : 'Replier'"
+      (click)="collapsed = !collapsed"
+    >
+      <mat-icon [@rotate]="collapsed ? 'right' : 'down'">chevron_right</mat-icon>
+    </button>
 
-  <button
-    type="button"
-    mat-icon-button
-    [attr.aria-label]="collapsed ? 'Déplier' : 'Replier'"
-    (click)="collapsed = !collapsed"
-  >
-    <mat-icon [@rotate]="collapsed ? 'right' : 'down'">chevron_right</mat-icon>
-  </button>
-
-  <div class="summary cursor-pointer flex-grow-1" (click)="collapsed = !collapsed">
-    <span class="titre">{{acte.objet}}</span>
-    <br>
-    <span class="sous-titre">
+    <div class="summary cursor-pointer flex-grow-1" (click)="collapsed = !collapsed">
+      <span class="titre">{{acte.objet}}</span>
+      <br>
+      <span class="sous-titre">
         Émis le {{acte.date_acte | date:'shortDate'}}, publié le {{acte.date_publication | date:'shortDate'}}
     </span>
+    </div>
+
+    <app-document-actions [document]="acte"></app-document-actions>
   </div>
 
-  <app-document-actions [document]="acte"></app-document-actions>
-</div>
+  <div
+    class="content mt-m d-flex flex-column g-m"
+    [@collapsed]="collapsed ? 'closed' : 'open'"
+  >
+    <div>
+      <span><strong>Type de document:</strong> {{acte.type | appTypeActe}}</span> <br>
+      <span><strong>Classification:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
+      <span><strong>Siren:</strong> {{acte.siren}}</span> <br>
+    </div>
 
-<div
-  class="content mt-m d-flex flex-column g-m"
-  [@collapsed]="collapsed ? 'closed' : 'open'"
->
-  <div>
-    <span><strong>Type de document:</strong> {{acte.type | appTypeActe}}</span> <br>
-    <span><strong>Classification:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
-    <span><strong>Siren:</strong> {{acte.siren}}</span> <br>
-  </div>
+    <div class="annexes d-flex flex-column g-m" *ngIf="acte.annexes.length">
+      <strong>Annexes liées au document ({{acte.annexes.length}})</strong>
 
-  <div class="annexes d-flex flex-column g-m" *ngIf="acte.annexes.length">
-    <strong>Annexes liées au document ({{acte.annexes.length}})</strong>
-
-    <div class="annexe" *ngFor="let annexe of acte.annexes">
-      <mat-icon>description</mat-icon>
-      <div class="flex-grow-1">{{annexe.objet}}</div>
-      <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
+      <div class="annexe" *ngFor="let annexe of acte.annexes">
+        <mat-icon>description</mat-icon>
+        <div class="flex-grow-1">{{annexe.objet}}</div>
+        <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
+      </div>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #skeleton>
+  <div class="header">
+    <div class="summary">
+      <span class="titre">&nbsp;</span>
+      <br>
+      <span class="sous-titre">&nbsp;</span>
+    </div>
+  </div>
+</ng-template>

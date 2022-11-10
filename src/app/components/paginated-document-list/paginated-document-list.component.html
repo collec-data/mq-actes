@@ -1,23 +1,20 @@
-<div class="flex-grow-1 min-h-0 centered-stack overlay__container">
-  <div
-    class="overlay__background"
-    [class.d-none]="!loading"
-  ></div>
-
-  <mat-progress-spinner
-    [class.d-none]="!loading"
-    class="overlay__foreground"
-    mode="indeterminate"
-    style="margin: auto"
-  ></mat-progress-spinner>
+<div class="flex-grow-1 min-h-0 centered-stack">
 
   <div class="overflow-auto min-h-0 h-100 w-100">
     <div class="pr-m d-flex flex-column g-m">
+      <ng-container *ngIf="!loading else loadingSkeleton">
         <app-acte-item
           *ngFor="let acte of data"
           [acte]="acte"
           [collapsed]="true"
         ></app-acte-item>
+      </ng-container>
+
+      <ng-template #loadingSkeleton>
+        <app-acte-item></app-acte-item>
+        <app-acte-item></app-acte-item>
+        <app-acte-item></app-acte-item>
+      </ng-template>
     </div>
   </div>
 </div>

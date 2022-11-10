@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 import { Acte } from 'src/app/models/model';
 import { TypeActePipe } from "../../shared/type-acte.pipe";
 import { animate, state, style, transition, trigger } from "@angular/animations";
@@ -49,14 +49,10 @@ import { CommonModule, DatePipe } from "@angular/common";
   ]
 })
 export class ActeItemComponent {
-  @Input() acte!: Acte;
+  @Input() acte?: Acte;
   @Input() collapsed = false;
 
-  collapse() {
-    this.collapsed = true;
-  }
-
-  uncollapse() {
-    this.collapsed = false;
+  @HostBinding('class.is-loading') get isLoading() {
+    return this.acte == null;
   }
 }

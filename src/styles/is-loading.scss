@@ -1,0 +1,25 @@
+.is-loading {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: inherit;
+    background-size: 200% 100%;
+    @media (prefers-reduced-motion: no-preference) {
+      animation: 1.5s loading-shine linear infinite;
+    }
+  }
+}
+
+@keyframes loading-shine {
+  to {
+    background-position-x: -200%;
+  }
+}
