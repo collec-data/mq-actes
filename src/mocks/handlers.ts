@@ -8,13 +8,17 @@ const acteForTime = (date: Date, index: number): ActeBack => {
   const classificationCode = allClassificationCodes[date.getTime() % allClassificationCodes.length] as keyof typeof classifications;
   const classificationLabel = classifications[classificationCode];
 
+  const objet = index % 10 === 0
+    ? `Délibération ${index} avec un long texte pour tester les limites de l'affichage et voir si ça casse tout, ce qui serait dommage (on peut légitimement penser qu'un objet de cette longueur indique que la personne à son origine a pour volonté de nuire). Et que se passe-t-il si l'objet contient un mot très très long, comme aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaarrrrrrrrrrrrrrrrrrrrgh ?`
+    : `Délibération ${index}`;
+
   return {
     hash: 'xxx',
     id: `${date.getTime()}`,
     id_publication: date.getTime(),
     typologie: '99_DE',
     content_type: 'application/pdf',
-    objet: `Délibération ${index}`,
+    objet,
     date_acte: new Date(date.getTime() - 10000).toISOString(),
     date_publication: date.toISOString(),
     url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}`,

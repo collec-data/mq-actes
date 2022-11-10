@@ -34,7 +34,7 @@
       <strong>Annexes liées au document ({{acte.annexes.length}})</strong>
 
       <div class="annexe" *ngFor="let annexe of acte.annexes">
-        <mat-icon>description</mat-icon>
+        <mat-icon class="flex-shrink-0">description</mat-icon>
         <div class="flex-grow-1">{{annexe.objet}}</div>
         <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
       </div>

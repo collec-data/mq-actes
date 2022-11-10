@@ -6,6 +6,9 @@
 
 body {
   min-width: 30rem;
+
+  /* on préfère couper les mots plutôt que de déborder et casser l'affichage */
+  word-break: break-word;
 }
 
 .cursor-pointer {
@@ -50,6 +53,10 @@ body {
 
 .flex-grow-1 {
   flex-grow: 1;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 
 .overflow-auto {

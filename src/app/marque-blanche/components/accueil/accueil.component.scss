@@ -1,4 +1,5 @@
 .sidebar-search-list {
   width: 30rem; /* fallback si clamp non supporté */
   width: clamp(30rem, 30vw, 50rem); /* clamp : 30% de la largeur de l'écran (=30vw), minimum 30rem, maximum 50rem*/
+  flex-shrink: 0;
 }
