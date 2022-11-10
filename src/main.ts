@@ -12,6 +12,7 @@ import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from "@angular/common";
 import { MatPaginatorIntl } from "@angular/material/paginator";
 import { MatPaginatorIntlFr } from "./app/shared/mat-paginator-intl-fr";
+import { worker } from "./mocks/browser";
 
 registerLocaleData(localeFr);
 
@@ -19,29 +20,35 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    importProvidersFrom([
-      RouterModule.forRoot(routes),
-      BrowserAnimationsModule,
-      MatNativeDateModule,
-      HttpClientModule
-    ]),
-    {
-      provide: API_ACTES_URL,
-      useValue: '/api'
-    },
-    {
-      provide: SearchService,
-      useClass: HttpSearchService
-    },
-    {
-      provide: LOCALE_ID,
-      useValue: 'fr-FR'
-    },
-    {
-      provide: MatPaginatorIntl,
-      useClass: MatPaginatorIntlFr
-    }
-  ]
-}).catch(err => console.error(err));
+worker.start({
+  serviceWorker: {
+    url: `${document.baseURI}mockServiceWorker.js`,
+  }
+}).then(() =>
+  bootstrapApplication(AppComponent, {
+    providers: [
+      importProvidersFrom([
+        RouterModule.forRoot(routes),
+        BrowserAnimationsModule,
+        MatNativeDateModule,
+        HttpClientModule
+      ]),
+      {
+        provide: API_ACTES_URL,
+        useValue: '/api'
+      },
+      {
+        provide: SearchService,
+        useClass: HttpSearchService
+      },
+      {
+        provide: LOCALE_ID,
+        useValue: 'fr-FR'
+      },
+      {
+        provide: MatPaginatorIntl,
+        useClass: MatPaginatorIntlFr
+      }
+    ]
+  }))
+  .catch(err => console.error(err));
