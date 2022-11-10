@@ -44,7 +44,7 @@ export class HttpSearchService extends SearchService {
   private baseUrl = inject(API_ACTES_URL);
 
   override search(params: SearchParams & Pageable): Observable<Page<Acte>> {
-    return this.httpClient.get<PageBack<ActeBack>>(`${this.baseUrl}/actes`, {
+    return this.httpClient.get<PageBack<ActeBack>>(`${this.baseUrl}/search`, {
       params: {
         query: params.query,
         ...params.date_debut && {date_debut: params.date_debut.toISOString()},

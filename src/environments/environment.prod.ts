@@ -1,3 +1,5 @@
 export const environment = {
-  production: true
+  production: true,
+  useMocks: false,
+  installMocks: () => Promise.resolve()
 };

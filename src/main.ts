@@ -12,19 +12,19 @@ import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from "@angular/common";
 import { MatPaginatorIntl } from "@angular/material/paginator";
 import { MatPaginatorIntlFr } from "./app/shared/mat-paginator-intl-fr";
-import { worker } from "./mocks/browser";
 
 registerLocaleData(localeFr);
 
-if (environment.production) {
-  enableProdMode();
+const prepare = () => {
+  if (environment.production) {
+    enableProdMode();
+  }
+  return environment.useMocks
+    ? environment.installMocks()
+    : Promise.resolve();
 }
 
-worker.start({
-  serviceWorker: {
-    url: `${document.baseURI}mockServiceWorker.js`,
-  }
-}).then(() =>
+prepare().then(() =>
   bootstrapApplication(AppComponent, {
     providers: [
       importProvidersFrom([
@@ -35,7 +35,7 @@ worker.start({
       ]),
       {
         provide: API_ACTES_URL,
-        useValue: '/api'
+        useValue: 'https://data-api-preprod.megalis.bretagne.bzh/mq_apis/actes/v1'
       },
       {
         provide: SearchService,
