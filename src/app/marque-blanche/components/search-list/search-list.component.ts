@@ -44,7 +44,11 @@ export class SearchListComponent implements OnInit {
       })
     ).subscribe((page) => {
       this.documentList?.loadPage(page);
-    })
+    });
+
+    this.doSearch({
+      query: ''
+    });
   }
 
   doSearch(params: SearchParams) {
