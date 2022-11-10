@@ -41,6 +41,15 @@
           },
           "configurations": {
             "production": {
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                  "output": "/assets/"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
