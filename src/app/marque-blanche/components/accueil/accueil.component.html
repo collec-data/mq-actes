@@ -6,6 +6,9 @@
 <div *ngIf="showPdfViewer" class="flex-grow-1 d-flex flex-column g-m">
   <ng-container *ngIf="store.selectedDocument$ | async as doc">
     <div>
+      <ng-container *ngIf="$any(doc).index_annexe !== undefined">
+        Annexe {{ $any(doc).index_annexe + 1 }} de
+      </ng-container>
       {{doc.objet}}
     </div>
     <app-pdf-viewer
