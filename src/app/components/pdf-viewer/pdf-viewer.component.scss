@@ -1,0 +1,8 @@
+::ng-deep {
+  ngx-extended-pdf-viewer {
+    .unverified-signature-warning {
+      // On masque le message d'avertissement sur la signature.
+      display: none;
+    }
+  }
+}
