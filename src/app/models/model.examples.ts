@@ -26,8 +26,9 @@ export function acte(): Acte {
   };
   return {
     ...common,
-    annexes: annexes().map(a => ({
+    annexes: annexes().map((a, index) => ({
       ...common,
+      index_annexe: index,
       ...a
     })),
   };

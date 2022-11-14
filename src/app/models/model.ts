@@ -48,6 +48,7 @@ export interface Acte extends Document {
 }
 
 export interface Annexe extends Document {
+  index_annexe: number;
 }
 
 export interface Page<T> {

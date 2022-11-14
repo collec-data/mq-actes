@@ -35,7 +35,7 @@
 
       <div class="annexe" *ngFor="let annexe of acte.annexes">
         <mat-icon class="flex-shrink-0">description</mat-icon>
-        <div class="flex-grow-1">{{annexe.objet}}</div>
+        <div class="flex-grow-1">Annexe {{(acte.annexes.length > 1) ? annexe.index_annexe + 1 : ''}}</div>
         <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
       </div>
     </div>

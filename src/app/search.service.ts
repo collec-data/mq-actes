@@ -63,8 +63,9 @@ export class HttpSearchService extends SearchService {
           return {
             ...acteBack,
             type: typeFront,
-            annexes: annexes.map((annexeBack): Annexe => ({
+            annexes: annexes.map((annexeBack, index): Annexe => ({
               ...propsCommunes,
+              index_annexe: index,
               type: typeFront,
               ...annexeBack
             }))
