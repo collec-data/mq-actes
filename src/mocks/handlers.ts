@@ -30,7 +30,8 @@ const acteForTime = (date: Date, index: number): ActeBack => {
       hash: 'xxx-anx1',
       id: `${date.getTime()}-anx1`,
       url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}&annexe=1`,
-      resultat_recherche: false
+      resultat_recherche: false,
+      content_type: 'application/pdf'
     },
       ...(index % 7 === 0)
         ? []
@@ -38,7 +39,8 @@ const acteForTime = (date: Date, index: number): ActeBack => {
           hash: 'xxx-anx2',
           id: `${date.getTime()}-anx1`,
           url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}&annexe=1`,
-          resultat_recherche: false
+          resultat_recherche: false,
+          content_type: 'application/pdf'
         }]
     ]
   };

@@ -79,7 +79,7 @@ export type AnnexeBack = {
   id: string;
   resultat_recherche: boolean;
   url: string;
-  // content_type ?
+  content_type: string;
 };
 
 export type ActeBack = Omit<Acte, 'type' | 'annexes'> & { type: number, annexes: AnnexeBack[] };
