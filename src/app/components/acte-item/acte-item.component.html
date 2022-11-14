@@ -10,7 +10,7 @@
     </button>
 
     <div class="summary cursor-pointer flex-grow-1" (click)="collapsed = !collapsed">
-      <span class="titre">{{acte.objet}}</span>
+      <span class="titre" [class.resultat-recherche]="acte.resultat_recherche">{{acte.objet}}</span>
       <br>
       <span class="sous-titre">
         Décision du {{acte.date_acte | date:'shortDate'}}, publié le {{acte.date_publication | date:'shortDate'}}
@@ -35,7 +35,7 @@
 
       <div class="annexe" *ngFor="let annexe of acte.annexes">
         <mat-icon class="flex-shrink-0">description</mat-icon>
-        <div class="flex-grow-1">Annexe {{(acte.annexes.length > 1) ? annexe.index_annexe + 1 : ''}}</div>
+        <div class="flex-grow-1" [class.resultat-recherche]="annexe.resultat_recherche">Annexe {{(acte.annexes.length > 1) ? annexe.index_annexe + 1 : ''}}</div>
         <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
       </div>
     </div>
