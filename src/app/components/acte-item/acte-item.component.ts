@@ -6,6 +6,7 @@ import { DocumentActionsComponent } from "../document-actions/document-actions.c
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { CommonModule, DatePipe } from "@angular/common";
+import { PluralPipe } from "../../shared/plural.pipe";
 
 @Component({
   selector: 'app-acte-item',
@@ -18,7 +19,8 @@ import { CommonModule, DatePipe } from "@angular/common";
     DocumentActionsComponent,
     MatIconModule,
     MatButtonModule,
-    DatePipe
+    DatePipe,
+    PluralPipe
   ],
   host: {
     class: 'd-flex flex-column py-l pr-l'

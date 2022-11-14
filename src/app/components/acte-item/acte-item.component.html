@@ -31,7 +31,7 @@
     </div>
 
     <div class="annexes d-flex flex-column g-m" *ngIf="acte.annexes.length">
-      <strong>Annexes liées au document ({{acte.annexes.length}})</strong>
+      <strong>{{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</strong>
 
       <div class="annexe" *ngFor="let annexe of acte.annexes">
         <mat-icon class="flex-shrink-0">description</mat-icon>
@@ -47,7 +47,7 @@
     (click)="collapsed = !collapsed"
     class="content mt-m d-inline-block cursor-pointer"
   >
-      + {{acte.annexes.length}} annexe{{acte.annexes.length > 1 ? 's' : ''}}
+      <strong>+ {{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</strong>
     </span>
 </ng-container>
 
