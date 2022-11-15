@@ -1,7 +1,14 @@
 <form ngForm (ngSubmit)="search.emit(searchParams)">
   <div class="d-flex align-items-center">
     <mat-form-field appearance="fill" class="flex-grow-1">
-      <input matInput type="search" name="query" [(ngModel)]="searchParams.query" #searchInput>
+      <input
+        matInput
+        type="search"
+        name="query"
+        [(ngModel)]="searchParams.query"
+        placeholder="Entrez les termes à rechercher"
+        autofocus
+      >
       <button
         *ngIf="searchParams.query"
         matSuffix

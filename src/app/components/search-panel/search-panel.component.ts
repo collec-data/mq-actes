@@ -14,6 +14,7 @@ import { Filter, SearchFilterListComponent } from "./search-filter-list/search-f
 import { SearchFiltersService } from "./search-filters.service";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { BehaviorSubject, map, Observable } from "rxjs";
+import { AutofocusDirective } from "../../shared/autofocus.directive";
 
 @Component({
   selector: 'app-search-panel',
@@ -28,6 +29,7 @@ import { BehaviorSubject, map, Observable } from "rxjs";
     MatDialogModule,
     SearchFilterListComponent,
     MatTooltipModule,
+    AutofocusDirective
   ],
   templateUrl: './search-panel.component.html'
 })
