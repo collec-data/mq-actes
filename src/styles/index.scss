@@ -5,8 +5,6 @@
 @import "./is-loading";
 
 body {
-  min-width: 30rem;
-
   /* on préfère couper les mots plutôt que de déborder et casser l'affichage */
   word-break: break-word;
 }
