@@ -48,7 +48,7 @@ export class SearchPanelComponent implements OnChanges {
     return this.searchParamsSubject.getValue();
   }
 
-  @Output() search = new EventEmitter<SearchParams>();
+  @Output() searchRequest = new EventEmitter<SearchParams>();
 
   filters: Observable<Filter[]> = this.searchParamsSubject.pipe(
     map((params) => this.searchParamsToFiltersService.toFilters(params))
@@ -74,13 +74,13 @@ export class SearchPanelComponent implements OnChanges {
           ...this.searchParams,
           ...updatedSearchParams
         };
-        this.search.emit(this.searchParams);
+        this.searchRequest.emit(this.searchParams);
       }
     });
   }
 
   removeFilter(filterToRemove: Filter) {
     this.searchParams = this.searchParamsToFiltersService.removeFilter(this.searchParams, filterToRemove);
-    this.search.emit(this.searchParams);
+    this.searchRequest.emit(this.searchParams);
   }
 }
