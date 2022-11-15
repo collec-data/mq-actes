@@ -2,6 +2,16 @@
   <div class="d-flex align-items-center">
     <mat-form-field appearance="fill" class="flex-grow-1">
       <input matInput type="search" name="query" [(ngModel)]="searchParams.query" #searchInput>
+      <button
+        *ngIf="searchParams.query"
+        matSuffix
+        mat-icon-button
+        aria-label="Effacer"
+        matTooltip="Effacer"
+        (click)="searchParams.query = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
       <button matSuffix mat-icon-button type="button" (click)="openAdvancedParamsDialog()"
               matTooltip="Paramètres avancés">
         <mat-icon>tune</mat-icon>

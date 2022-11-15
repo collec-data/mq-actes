@@ -8,6 +8,8 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatIconModule } from "@angular/material/icon";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
   standalone: true,
@@ -20,7 +22,9 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatIconModule,
+    MatTooltipModule
   ],
   templateUrl: './advanced-search-params-dialog.component.html'
 })

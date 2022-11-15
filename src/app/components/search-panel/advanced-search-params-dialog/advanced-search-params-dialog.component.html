@@ -14,6 +14,16 @@
           [(ngModel)]="updatedParams.date_debut"
           #debut="ngModel"
         >
+        <button
+          *ngIf="updatedParams.date_debut"
+          matSuffix
+          mat-icon-button
+          aria-label="Effacer"
+          matTooltip="Effacer"
+          (click)="updatedParams.date_debut = undefined"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
         <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
         <mat-datepicker #startPicker></mat-datepicker>
         <mat-error *ngIf="debut.hasError('matStartDateInvalid')">Date invalide</mat-error>
@@ -31,6 +41,16 @@
           [(ngModel)]="updatedParams.date_fin"
           #fin="ngModel"
         >
+        <button
+          *ngIf="updatedParams.date_fin"
+          matSuffix
+          mat-icon-button
+          aria-label="Effacer"
+          matTooltip="Effacer"
+          (click)="updatedParams.date_fin = undefined"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
         <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
         <mat-datepicker #endPicker></mat-datepicker>
         <mat-error *ngIf="fin.hasError('matEndDateInvalid')">Date invalide</mat-error>
