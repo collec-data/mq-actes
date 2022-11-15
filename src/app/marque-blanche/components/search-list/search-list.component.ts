@@ -5,7 +5,7 @@ import {
 } from "../../../components/paginated-document-list/paginated-document-list.component";
 import { Pageable, SearchParams } from "../../../models/model";
 import { SearchService } from "../../../search.service";
-import { finalize, Subject, switchMap, tap } from "rxjs";
+import { debounceTime, finalize, Subject, switchMap, tap } from "rxjs";
 
 @Component({
   selector: 'app-search-list',
@@ -34,6 +34,7 @@ export class SearchListComponent implements OnInit {
       tap(() => {
         this.searchLaunched = true;
       }),
+      debounceTime(150),
       switchMap(({params, pageable}) => {
         this.pageLoading = true;
         return this.searchService.search({...params, ...pageable}).pipe(
