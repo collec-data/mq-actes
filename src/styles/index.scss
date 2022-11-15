@@ -24,11 +24,11 @@ body {
 }
 
 .d-flex {
-  display: flex;
+  display: flex !important;
 }
 
 .d-inline-block {
-  display: inline-block;
+  display: inline-block !important;
 }
 
 .d-none {

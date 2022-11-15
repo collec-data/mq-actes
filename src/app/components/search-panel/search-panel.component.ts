@@ -64,6 +64,7 @@ export class SearchPanelComponent implements OnChanges {
     let dialogRef = this.dialog.open(AdvancedSearchParamsDialogComponent, {
       data: this.searchParams,
       width: '40rem',
+      autoFocus: 'input'
     });
     dialogRef.afterClosed().subscribe(updatedSearchParams => {
       if (updatedSearchParams) {

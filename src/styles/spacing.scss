@@ -18,31 +18,31 @@ $sizes: (
   @each $size-prefix, $length in $sizes {
     @each $side in $sides {
       .#{$prefix}#{str-slice($side, 0, 1)}-#{$size-prefix} {
-        #{$prop}-#{$side}: #{$length};
+        #{$prop}-#{$side}: #{$length} !important;
       }
     }
     .#{$prefix}x-#{$size-prefix} {
-      #{$prop}-left: #{$length};
-      #{$prop}-right: #{$length};
+      #{$prop}-left: #{$length} !important;
+      #{$prop}-right: #{$length} !important;
     }
     .#{$prefix}y-#{$size-prefix} {
-      #{$prop}-top: #{$length};
-      #{$prop}-bottom: #{$length};
+      #{$prop}-top: #{$length} !important;
+      #{$prop}-bottom: #{$length} !important;
     }
     .#{$prefix}-#{$size-prefix} {
-      #{$prop}: #{$length};
+      #{$prop}: #{$length} !important;
     }
   }
 }
 
 @each $value in (flex-start, flex-end, center, space-between, space-around, space-evenly) {
   .justify-content-#{$value} {
-    justify-content: $value;
+    justify-content: $value !important;
   }
 }
 
 @each $value in (auto, flex-start, flex-end, center, baseline, stretch) {
   .align-items-#{$value} {
-    align-items: $value;
+    align-items: $value !important;
   }
 }

@@ -1,5 +1,16 @@
 <form #form="ngForm" (ngSubmit)="validate(form)">
-  <h2 mat-dialog-title>Affiner votre recherche</h2>
+  <div mat-dialog-title class="d-flex justify-content-space-between">
+    <h2>Affiner votre recherche</h2>
+    <button
+      type="button"
+      mat-icon-button
+      mat-dialog-close
+      aria-label="Fermer"
+      matTooltip="Fermer"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 
   <mat-dialog-content>
     <div class="sub-section">
