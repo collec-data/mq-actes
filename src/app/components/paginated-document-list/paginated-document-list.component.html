@@ -3,11 +3,19 @@
   <div class="overflow-auto min-h-0 h-100 w-100">
     <div class="pr-m d-flex flex-column g-m">
       <ng-container *ngIf="!loading else loadingSkeleton">
-        <app-acte-item
-          *ngFor="let acte of data"
-          [acte]="acte"
-          [collapsed]="true"
-        ></app-acte-item>
+        <ng-container *ngIf="data.length else noResults">
+          <app-acte-item
+            *ngFor="let acte of data"
+            [acte]="acte"
+            [collapsed]="true"
+          ></app-acte-item>
+        </ng-container>
+        <ng-template #noResults>
+          <div *ngIf="currentPage">
+            <p>Aucun document n'a été trouvé.</p>
+            <p>Vérifiez les termes de recherche et/ou les filtres appliqués.</p>
+          </div>
+        </ng-template>
       </ng-container>
 
       <ng-template #loadingSkeleton>
