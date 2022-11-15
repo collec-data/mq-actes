@@ -1,8 +1,6 @@
 <mat-chip-list aria-label="Filtres">
-  <mat-chip *ngFor="let filter of filters">
+  <mat-chip *ngFor="let filter of filters" [selectable]="false">
     {{filter.label}}
-    <button matChipRemove (click)="removeFilter.emit(filter)">
-      <mat-icon>cancel</mat-icon>
-    </button>
+    <mat-icon matChipRemove (click)="removeFilter.emit(filter)">cancel</mat-icon>
   </mat-chip>
 </mat-chip-list>
