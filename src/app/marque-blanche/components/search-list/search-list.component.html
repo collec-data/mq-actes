@@ -1,7 +1,11 @@
-<app-search-panel (searchRequest)="doSearch($event)" class="mb-l"></app-search-panel>
+<app-search-panel
+  (searchRequest)="dataSource.search($event)"
+  class="mb-l"
+  [searchParams]="initialSearch"
+  [launchFirstSearch]="true"
+></app-search-panel>
 
 <app-paginated-document-list
-  (pageRequest)="loadPage($event)"
-  [loading]="pageLoading"
+  [dataSource]="dataSource"
   class="flex-grow-1 min-h-0"
 ></app-paginated-document-list>

@@ -1,11 +1,11 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchPanelComponent } from "../../../components/search-panel/search-panel.component";
 import {
   PaginatedDocumentListComponent
 } from "../../../components/paginated-document-list/paginated-document-list.component";
-import { Pageable, SearchParams } from "../../../models/model";
-import { SearchService } from "../../../search.service";
-import { debounceTime, finalize, Subject, switchMap, tap } from "rxjs";
+import { ActeDataSource } from "../../../acte-data-source";
+import { filter } from "rxjs/operators";
+import { SearchParams } from "../../../models/model";
 
 @Component({
   selector: 'app-search-list',
@@ -20,46 +20,19 @@ import { debounceTime, finalize, Subject, switchMap, tap } from "rxjs";
   }
 })
 export class SearchListComponent implements OnInit {
-  private searchService = inject(SearchService);
-  private searchParams?: SearchParams;
+  dataSource = new ActeDataSource();
+  @ViewChild(PaginatedDocumentListComponent) documentList?: PaginatedDocumentListComponent;
 
-  @ViewChild(PaginatedDocumentListComponent) documentList!: PaginatedDocumentListComponent;
-  searchLaunched = false;
-  pageLoading = false;
-
-  pageLoad = new Subject<{ params: SearchParams, pageable?: Pageable }>();
+  initialSearch: SearchParams = {
+    query: '',
+    lignes: 10
+  };
 
   ngOnInit() {
-    this.pageLoad.pipe(
-      tap(() => {
-        this.searchLaunched = true;
-      }),
-      debounceTime(150),
-      switchMap(({params, pageable}) => {
-        this.pageLoading = true;
-        return this.searchService.search({...params, ...pageable}).pipe(
-          finalize(() => {
-            this.pageLoading = false;
-          })
-        );
-      })
-    ).subscribe((page) => {
-      this.documentList?.loadPage(page);
+    this.dataSource.stream$.pipe(
+      filter(stream => stream.lastLoad === 'search')
+    ).subscribe(() => {
+      this.documentList?.scrollTop();
     });
-
-    this.doSearch({
-      query: ''
-    });
-  }
-
-  doSearch(params: SearchParams) {
-    this.searchParams = params;
-    this.pageLoad.next({params: this.searchParams})
-  }
-
-  loadPage(pageable: Pageable) {
-    if (this.searchParams) {
-      this.pageLoad.next({params: this.searchParams, pageable})
-    }
   }
 }

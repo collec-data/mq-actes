@@ -52,15 +52,13 @@ export interface Annexe extends Document {
 }
 
 export interface Page<T> {
-  debut: number;
   nb_resultats: number;
   resultats: T[];
-  taille_page: number;
+  page_suivante?: string;
 }
 
 export interface Pageable {
-  debut?: number;
-  lignes?: number;
+  lignes: number;
 }
 
 export interface SearchParams extends Pageable {
@@ -70,6 +68,7 @@ export interface SearchParams extends Pageable {
   date_fin?: Date;
   classifications?: Set<ClassificationCode>;
   types_actes?: Set<TypeActeCode>;
+  page_suivante?: string;
 }
 
 

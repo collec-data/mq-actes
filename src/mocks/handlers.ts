@@ -78,7 +78,7 @@ export const handlers = [
     const classificationsArray = req.url.searchParams.get('classifications')?.split(',');
     const typesActesArray = req.url.searchParams.get('types_actes')?.split(',');
     const taillePageNb = Number.parseInt(req.url.searchParams.get('lignes') ?? '10', 0);
-    const debutNb = Number.parseInt(req.url.searchParams.get('debut') ?? '0', 0);
+    const debutNb = req.url.searchParams.get('page_suivante') ? Number.parseInt(req.url.searchParams.get('page_suivante') ?? '0', 0) : 0;
 
     const dateDebut = req.url.searchParams.get('date_debut');
     const dateDebutTime = dateDebut && new Date(dateDebut).getTime();
@@ -99,9 +99,9 @@ export const handlers = [
       ctx.delay(500),
       ctx.status(200),
       ctx.json(((): PageBack<ActeBack> => ({
-        debut: debutNb,
         resultats: filteredActes.slice(debutNb, debutNb + taillePageNb),
-        nb_resultats: filteredActes.length
+        nb_resultats: filteredActes.length,
+        page_suivante: (debutNb + taillePageNb >= filteredActes.length) ? '' : `${debutNb + taillePageNb}`,
       }))()),
     )
   })

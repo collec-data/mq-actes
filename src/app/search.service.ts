@@ -27,8 +27,6 @@ export class FakeSearchService extends SearchService {
       map((actes) => {
         return ({
           nb_resultats: actes.length,
-          taille_page: params.lignes || 10,
-          debut: params.debut || 0,
           resultats: actes
         });
       })
@@ -51,8 +49,8 @@ export class HttpSearchService extends SearchService {
         ...params.date_fin && {date_fin: params.date_fin?.toISOString()},
         ...params.classifications?.size && {classifications: [...params.classifications].join(',')},
         ...params.types_actes?.size && {types_actes: [...params.types_actes].join(',')},
-        debut: params.debut ?? 0,
-        lignes: params.lignes ?? 10
+        ...params.page_suivante && {page_suivante: params.page_suivante},
+        lignes: params.lignes,
       }
     }).pipe(
       map((pageBack): Page<Acte> => ({
@@ -70,8 +68,7 @@ export class HttpSearchService extends SearchService {
               ...annexeBack
             }))
           };
-        }),
-        taille_page: params.lignes ?? 10
+        })
       }))
     );
   }

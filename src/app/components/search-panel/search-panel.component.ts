@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchParams } from "../../models/model";
 import { MatInputModule } from "@angular/material/input";
@@ -33,16 +33,22 @@ import { AutofocusDirective } from "../../shared/autofocus.directive";
   ],
   templateUrl: './search-panel.component.html'
 })
-export class SearchPanelComponent implements OnChanges {
+export class SearchPanelComponent implements OnChanges, OnInit {
   private searchParamsToFiltersService = inject(SearchFiltersService);
   private dialog = inject(MatDialog);
   private searchParamsSubject = new BehaviorSubject<SearchParams>({
-    query: ''
+    query: '',
+    lignes: 10
   });
 
   @Input() set searchParams(params: SearchParams) {
     this.searchParamsSubject.next(params);
   }
+
+  /**
+   * Indique si une recherche doit être émise dès l'initialisation du composant.
+   */
+  @Input() launchFirstSearch = false;
 
   get searchParams() {
     return this.searchParamsSubject.getValue();
@@ -53,6 +59,12 @@ export class SearchPanelComponent implements OnChanges {
   filters: Observable<Filter[]> = this.searchParamsSubject.pipe(
     map((params) => this.searchParamsToFiltersService.toFilters(params))
   );
+
+  ngOnInit() {
+    if (this.launchFirstSearch) {
+      this.searchRequest.emit(this.searchParams);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('searchParams' in changes) {

@@ -1,37 +1,28 @@
-<div class="flex-grow-1 min-h-0 centered-stack">
+<div
+  *ngIf="acteData"
+  class="min-h-0 h-100 overflow-auto d-flex flex-column g-m pr-m"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  [scrollWindow]="false"
+  [fromRoot]="true"
+  (scrolled)="dataSource.loadNextPage()"
+  #scrollContainer
+>
+  <app-acte-item
+    *ngFor="let acte of acteData.items; trackBy: idTrackBy"
+    [acte]="acte"
+    [collapsed]="true"
+  ></app-acte-item>
 
-  <div class="overflow-auto min-h-0 h-100 w-100">
-    <div class="pr-m d-flex flex-column g-m">
-      <ng-container *ngIf="!loading else loadingSkeleton">
-        <ng-container *ngIf="data.length else noResults">
-          <app-acte-item
-            *ngFor="let acte of data"
-            [acte]="acte"
-            [collapsed]="true"
-          ></app-acte-item>
-        </ng-container>
-        <ng-template #noResults>
-          <div *ngIf="currentPage">
-            <p>Aucun document n'a été trouvé.</p>
-            <p>Vérifiez les termes de recherche et/ou les filtres appliqués.</p>
-          </div>
-        </ng-template>
-      </ng-container>
+  <ng-container *ngIf="acteData.loading">
+    <app-acte-item></app-acte-item>
+    <app-acte-item></app-acte-item>
+    <app-acte-item></app-acte-item>
+  </ng-container>
 
-      <ng-template #loadingSkeleton>
-        <app-acte-item></app-acte-item>
-        <app-acte-item></app-acte-item>
-        <app-acte-item></app-acte-item>
-      </ng-template>
-    </div>
+  <div *ngIf="acteData.searchLaunched && !acteData.loading && acteData.items.length === 0">
+    <p>Aucun document n'a été trouvé.</p>
+    <p>Vérifiez les termes de recherche et/ou les filtres appliqués.</p>
   </div>
 </div>
-
-<mat-paginator
-  [length]="currentPage?.nb_resultats"
-  [pageIndex]="currentPage ? (currentPage.debut / currentPage.taille_page) : null"
-  [pageSize]="currentPage?.taille_page"
-  [pageSizeOptions]="currentPage ? [currentPage.taille_page] : []"
-  [disabled]="false"
-  aria-label="Select page"
-></mat-paginator>
