@@ -5,17 +5,19 @@ import { CommonModule } from "@angular/common";
 import { ActeData, ActeDataSource } from "../../acte-data-source";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { debounceTime, Subject } from "rxjs";
+import { PluralPipe } from "../../shared/plural.pipe";
 
 @Component({
   selector: 'app-paginated-document-list',
   templateUrl: './paginated-document-list.component.html',
   styleUrls: ['./paginated-document-list.component.scss'],
   standalone: true,
-  imports: [
-    CommonModule,
-    ActeItemComponent,
-    InfiniteScrollModule
-  ],
+    imports: [
+        CommonModule,
+        ActeItemComponent,
+        InfiniteScrollModule,
+        PluralPipe
+    ],
   host: {
     class: 'd-flex flex-column'
   }

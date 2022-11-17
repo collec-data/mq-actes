@@ -7,6 +7,7 @@ export type ActeData = {
   searchLaunched: boolean,
   loading: boolean,
   items: Acte[],
+  total: number,
   lastLoad?: 'search' | 'page',
   noMoreElement?: boolean
 };
@@ -15,7 +16,8 @@ export class ActeDataSource {
   private stream = new BehaviorSubject<ActeData>({
     searchLaunched: false,
     loading: false,
-    items: []
+    items: [],
+    total: 0
   });
   stream$ = this.stream.asObservable();
 
@@ -58,6 +60,7 @@ export class ActeDataSource {
           searchLaunched: true,
           loading: false,
           items: pageResult.resultats,
+          total: pageResult.nb_resultats,
           noMoreElement: !pageResult.page_suivante
         });
       });
@@ -89,6 +92,7 @@ export class ActeDataSource {
           ...this.stream.value,
           loading: false,
           items: [...this.stream.value.items, ...pageResult.resultats],
+          total: pageResult.nb_resultats,
           noMoreElement: !pageResult.page_suivante
         });
       });

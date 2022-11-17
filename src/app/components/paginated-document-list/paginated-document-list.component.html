@@ -9,20 +9,30 @@
   (scrolled)="dataSource.loadNextPage()"
   #scrollContainer
 >
-  <app-acte-item
-    *ngFor="let acte of acteData.items; trackBy: idTrackBy"
-    [acte]="acte"
-    [collapsed]="true"
-  ></app-acte-item>
-
-  <ng-container *ngIf="acteData.loading">
-    <app-acte-item></app-acte-item>
-    <app-acte-item></app-acte-item>
-    <app-acte-item></app-acte-item>
-  </ng-container>
-
-  <div *ngIf="acteData.searchLaunched && !acteData.loading && acteData.items.length === 0">
+  <div *ngIf="!acteData.loading && acteData.total === 0 else results">
     <p>Aucun document n'a été trouvé.</p>
     <p>Vérifiez les termes de recherche et/ou les filtres appliqués.</p>
   </div>
+
+  <ng-template #results>
+    <div *ngIf="acteData.total > 0">
+      {{acteData.total}} {{acteData.total | appPlural:'résultat':'résultats'}} (actes + annexes)
+    </div>
+
+    <app-acte-item
+      *ngFor="let acte of acteData.items; trackBy: idTrackBy"
+      [acte]="acte"
+      [collapsed]="true"
+    ></app-acte-item>
+
+    <ng-container *ngIf="acteData.loading">
+      <app-acte-item></app-acte-item>
+      <app-acte-item></app-acte-item>
+      <app-acte-item></app-acte-item>
+    </ng-container>
+
+    <div *ngIf="!acteData.loading && acteData.noMoreElement">
+      Vous avez atteint la fin des résultats.
+    </div>
+  </ng-template>
 </div>
