@@ -25,9 +25,9 @@
     [@collapsed]="collapsed ? 'closed' : 'open'"
   >
     <div>
-      <span><strong>Type de document:</strong> {{acte.type | appTypeActe}}</span> <br>
-      <span><strong>Classification:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
-      <span><strong>Siren:</strong> {{acte.siren}}</span> <br>
+      <span><strong>Type de document&nbsp;:</strong> {{acte.type | appTypeActe}}</span> <br>
+      <span><strong>Classification&nbsp;:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
+      <span><strong>Siren&nbsp;:</strong> {{acte.siren}}</span> <br>
     </div>
 
     <div class="annexes d-flex flex-column g-m" *ngIf="acte.annexes.length">
