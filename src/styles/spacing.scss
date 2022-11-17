@@ -3,7 +3,6 @@
 $props: (
   "p": "padding",
   "m": "margin",
-  "g": "gap",
 );
 $sides: (top, bottom, left, right);
 $sizes: (
@@ -32,6 +31,17 @@ $sizes: (
     .#{$prefix}-#{$size-prefix} {
       #{$prop}: #{$length} !important;
     }
+  }
+}
+
+@each $size-prefix, $length in $sizes {
+  @each $direction in (row, column) {
+    .g-#{$direction}-#{$size-prefix} {
+      #{$direction}-gap: #{$length} !important;
+    }
+  }
+  .g-#{$size-prefix} {
+    gap: #{$length} !important;
   }
 }
 

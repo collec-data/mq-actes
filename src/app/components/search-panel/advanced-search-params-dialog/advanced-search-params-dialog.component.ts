@@ -27,7 +27,8 @@ import { getDateDebutPublicationsEnCours } from "../../../utils";
     MatIconModule,
     MatTooltipModule
   ],
-  templateUrl: './advanced-search-params-dialog.component.html'
+  templateUrl: './advanced-search-params-dialog.component.html',
+  styleUrls: ['./advanced-search-params-dialog.component.scss']
 })
 export class AdvancedSearchParamsDialogComponent {
 
