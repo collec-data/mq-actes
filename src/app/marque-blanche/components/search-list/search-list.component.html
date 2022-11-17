@@ -8,4 +8,5 @@
 <app-paginated-document-list
   [dataSource]="dataSource"
   class="flex-grow-1 min-h-0"
+  [hideSiren]="!!initialSearch.siren"
 ></app-paginated-document-list>

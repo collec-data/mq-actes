@@ -23,6 +23,7 @@
       *ngFor="let acte of acteData.items; trackBy: idTrackBy"
       [acte]="acte"
       [collapsed]="true"
+      [hideSiren]="hideSiren"
     ></app-acte-item>
 
     <ng-container *ngIf="acteData.loading">

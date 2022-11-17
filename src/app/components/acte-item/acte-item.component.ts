@@ -53,6 +53,7 @@ import { PluralPipe } from "../../shared/plural.pipe";
 export class ActeItemComponent {
   @Input() acte?: Acte;
   @Input() collapsed = false;
+  @Input() hideSiren = false;
 
   @HostBinding('class.is-loading') get isLoading() {
     return this.acte == null;

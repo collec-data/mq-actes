@@ -24,6 +24,7 @@ import { PluralPipe } from "../../shared/plural.pipe";
 })
 export class PaginatedDocumentListComponent implements OnInit {
   @Input() dataSource!: ActeDataSource;
+  @Input() hideSiren = false;
 
   acteData?: ActeData;
   @ViewChild('scrollContainer') scrollContainer?: ElementRef;
