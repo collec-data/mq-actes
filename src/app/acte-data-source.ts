@@ -1,7 +1,7 @@
 import { BehaviorSubject, finalize, Subscription } from "rxjs";
 import { SearchService } from "./search.service";
 import { inject } from "@angular/core";
-import { Acte, Pageable, SearchParams } from "./models/model";
+import { Acte, SearchParams } from "./models/model";
 
 export type ActeData = {
   searchLaunched: boolean,
@@ -21,7 +21,7 @@ export class ActeDataSource {
   });
   stream$ = this.stream.asObservable();
 
-  private searchParams?: SearchParams & Pageable;
+  private searchParams?: SearchParams;
   private nextPageToken?: string;
   private pendingSearch?: Subscription;
   private pendingPage?: Subscription;
@@ -36,7 +36,7 @@ export class ActeDataSource {
     this.pendingPage?.unsubscribe();
   }
 
-  search(params: SearchParams & Pageable) {
+  search(params: SearchParams) {
     this.cancelPage();
     this.cancelSearch();
 

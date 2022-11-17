@@ -57,11 +57,7 @@ export interface Page<T> {
   page_suivante?: string;
 }
 
-export interface Pageable {
-  lignes: number;
-}
-
-export interface SearchParams extends Pageable {
+export interface SearchParams {
   siren?: string;
   query: string;
   date_debut?: Date;
@@ -69,6 +65,7 @@ export interface SearchParams extends Pageable {
   classifications?: Set<ClassificationCode>;
   types_actes?: Set<TypeActeCode>;
   page_suivante?: string;
+  lignes?: number;
 }
 
 

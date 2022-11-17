@@ -37,8 +37,7 @@ export class SearchPanelComponent implements OnChanges, OnInit {
   private searchParamsToFiltersService = inject(SearchFiltersService);
   private dialog = inject(MatDialog);
   private searchParamsSubject = new BehaviorSubject<SearchParams>({
-    query: '',
-    lignes: 10
+    query: ''
   });
 
   @Input() set searchParams(params: SearchParams) {
