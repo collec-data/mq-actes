@@ -1,0 +1,14 @@
+/*
+ * Classe css pour passer les boîte de dialogue en plain écran selon la largeur d'affichage disponible.
+ */
+
+$breakpoint-xs-end: 599.9px;
+
+@media (max-width: $breakpoint-xs-end) {
+  .fullscreen-pane-xs {
+    height: 100% !important;
+    width: 100% !important;
+    max-height: 100% !important;
+    max-width: 100% !important;
+  }
+}
