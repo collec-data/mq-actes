@@ -45,6 +45,7 @@ export class HttpSearchService extends SearchService {
     return this.httpClient.get<PageBack<ActeBack>>(`${this.baseUrl}/search`, {
       params: {
         query: params.query,
+        ...params.siren && {siren: params.siren},
         ...params.date_debut && {date_debut: params.date_debut.toISOString()},
         ...params.date_fin && {date_fin: params.date_fin?.toISOString()},
         ...params.classifications?.size && {classifications: [...params.classifications].join(',')},
