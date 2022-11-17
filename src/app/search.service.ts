@@ -4,6 +4,7 @@ import { Acte, ActeBack, Annexe, Page, PageBack, SearchParams, TypeActeCode } fr
 import { actes } from './models/model.examples';
 import { delay } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
+import { getDateDebutPublicationsEnCours } from "./utils";
 
 export const API_ACTES_URL = new InjectionToken<string>('API_ACTES_URL');
 const NB_LIGNES = 10;
@@ -43,12 +44,17 @@ export class HttpSearchService extends SearchService {
   private baseUrl = inject(API_ACTES_URL);
 
   override search(params: SearchParams): Observable<Page<Acte>> {
+    // On ajuste les dates de début et fin si le filtre sur les publications en cours est présent.
+    const {date_debut, date_fin} = params.publications_en_cours
+      ? {date_debut: getDateDebutPublicationsEnCours(), date_fin: undefined}
+      : params;
+
     return this.httpClient.get<PageBack<ActeBack>>(`${this.baseUrl}/search`, {
       params: {
         query: params.query,
         ...params.siren && {siren: params.siren},
-        ...params.date_debut && {date_debut: params.date_debut.toISOString()},
-        ...params.date_fin && {date_fin: params.date_fin?.toISOString()},
+        ...date_debut && {date_debut: date_debut.toISOString()},
+        ...date_fin && {date_fin: date_fin.toISOString()},
         ...params.classifications?.size && {classifications: [...params.classifications].join(',')},
         ...params.types_actes?.size && {types_actes: [...params.types_actes].join(',')},
         ...params.page_suivante && {page_suivante: params.page_suivante},

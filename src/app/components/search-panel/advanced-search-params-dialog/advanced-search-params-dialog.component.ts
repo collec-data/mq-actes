@@ -1,8 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { classifications, typesActes, SearchParams } from "../../../models/model";
-import { FormsModule, NgForm, ReactiveFormsModule } from "@angular/forms";
+import { classifications, SearchParams, typesActes } from "../../../models/model";
+import { FormsModule, NgForm, NgModel, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -10,6 +10,7 @@ import { MatInputModule } from "@angular/material/input";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { getDateDebutPublicationsEnCours } from "../../../utils";
 
 @Component({
   standalone: true,
@@ -31,9 +32,7 @@ import { MatTooltipModule } from "@angular/material/tooltip";
 export class AdvancedSearchParamsDialogComponent {
 
   updatedParams: SearchParams;
-
   readonly classifications = classifications;
-
   readonly typesActe = typesActes;
 
   constructor(
@@ -46,11 +45,21 @@ export class AdvancedSearchParamsDialogComponent {
       classifications: new Set([...initialParams.classifications ?? []]),
       types_actes: new Set([...initialParams.types_actes ?? []]),
     };
+    if (this.updatedParams.publications_en_cours) {
+      this.updatedParams.date_debut = getDateDebutPublicationsEnCours();
+    }
   }
 
   validate(form: NgForm) {
     if (form.valid) {
-      this.dialogRef.close(this.updatedParams);
+      const finalParams = this.updatedParams.publications_en_cours
+        ? {
+          ...this.updatedParams,
+          date_debut: undefined
+        }
+        : this.updatedParams;
+
+      this.dialogRef.close(finalParams);
     }
   }
 
@@ -62,6 +71,15 @@ export class AdvancedSearchParamsDialogComponent {
       set.delete(elem);
     } else {
       set.add(elem);
+    }
+  }
+
+  updatePublicationEnCours(publicationEnCours: boolean, form: NgForm, debut: NgModel, fin: NgModel) {
+    if (publicationEnCours) {
+      const controlDebut = form.getControl(debut);
+      const controlFin = form.getControl(fin);
+      controlDebut.setValue(getDateDebutPublicationsEnCours());
+      controlFin.setValue(null);
     }
   }
 }

@@ -13,6 +13,15 @@ export class SearchFiltersService {
   toFilters(params: SearchParams): Filter[] {
     const filters: Filter[] = [];
 
+    if (params.publications_en_cours) {
+      filters.push({
+        label: `publications en cours`,
+        data: {
+          prop: 'publications_en_cours'
+        }
+      });
+    }
+
     if (params.date_debut) {
       filters.push({
         label: `après le ${this.datePipe.transform(params.date_debut, 'shortDate')}`,

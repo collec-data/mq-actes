@@ -20,6 +20,16 @@
       >
         <mat-icon>close</mat-icon>
       </button>
+      <button
+        type="button"
+        matSuffix
+        mat-icon-button
+        aria-label="Afficher les publications en cours"
+        matTooltip="Afficher les publications en cours"
+        (click)="basculerPublicationEnCours(); launchSearch()"
+      >
+        <mat-icon>pending_actions</mat-icon>
+      </button>
       <button matSuffix mat-icon-button type="button" (click)="openAdvancedParamsDialog()"
               matTooltip="Paramètres de recherche avancés">
         <mat-icon>tune</mat-icon>

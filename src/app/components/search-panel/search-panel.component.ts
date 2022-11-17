@@ -37,7 +37,8 @@ export class SearchPanelComponent implements OnChanges, OnInit {
   private searchParamsToFiltersService = inject(SearchFiltersService);
   private dialog = inject(MatDialog);
   private searchParamsSubject = new BehaviorSubject<SearchParams>({
-    query: ''
+    query: '',
+    publications_en_cours: false
   });
 
   @Input() set searchParams(params: SearchParams) {
@@ -106,5 +107,19 @@ export class SearchPanelComponent implements OnChanges, OnInit {
   removeFilter(filterToRemove: Filter) {
     this.searchParams = this.searchParamsToFiltersService.removeFilter(this.searchParams, filterToRemove);
     this.launchSearch();
+  }
+
+  basculerPublicationEnCours() {
+    this.searchParams = this.searchParams.publications_en_cours
+      ? {
+        ...this.searchParams,
+        publications_en_cours: false
+      }
+      : {
+        ...this.searchParams,
+        publications_en_cours: true,
+        date_debut: undefined,
+        date_fin: undefined
+      };
   }
 }

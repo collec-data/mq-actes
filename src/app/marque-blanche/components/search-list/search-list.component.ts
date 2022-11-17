@@ -28,6 +28,7 @@ export class SearchListComponent implements OnInit {
 
   initialSearch: SearchParams = {
     query: '',
+    publications_en_cours: false,
     siren: this.route.snapshot.queryParams['siren']
   };
 

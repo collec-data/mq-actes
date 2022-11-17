@@ -16,6 +16,17 @@
     <div class="sub-section">
       <h3>Date de publication</h3>
 
+      <div class="mb-m">
+        <mat-checkbox
+          class="checkbox-text-wrap"
+          name="publications_en_cours"
+          [(ngModel)]="updatedParams.publications_en_cours"
+          (ngModelChange)="updatePublicationEnCours($event, form, debut, fin)"
+        >
+          Afficher les publications en cours (datant de moins de 60 jours)
+        </mat-checkbox>
+      </div>
+
       <mat-form-field appearance="fill">
         <mat-label>Début</mat-label>
         <input
@@ -23,6 +34,7 @@
           [matDatepicker]="startPicker"
           name="date_debut"
           [(ngModel)]="updatedParams.date_debut"
+          [disabled]="updatedParams.publications_en_cours"
           #debut="ngModel"
         >
         <button
@@ -33,6 +45,8 @@
           aria-label="Effacer"
           matTooltip="Effacer"
           (click)="updatedParams.date_debut = undefined"
+          [disabled]="updatedParams.publications_en_cours"
+          [matTooltipDisabled]="updatedParams.publications_en_cours"
         >
           <mat-icon>close</mat-icon>
         </button>
@@ -51,6 +65,7 @@
           [min]="updatedParams.date_debut"
           name="date_fin"
           [(ngModel)]="updatedParams.date_fin"
+          [disabled]="updatedParams.publications_en_cours"
           #fin="ngModel"
         >
         <button
@@ -61,6 +76,8 @@
           aria-label="Effacer"
           matTooltip="Effacer"
           (click)="updatedParams.date_fin = undefined"
+          [disabled]="updatedParams.publications_en_cours"
+          [matTooltipDisabled]="updatedParams.publications_en_cours"
         >
           <mat-icon>close</mat-icon>
         </button>
