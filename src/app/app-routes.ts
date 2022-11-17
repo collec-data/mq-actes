@@ -8,7 +8,6 @@ export const MARQUE_BLANCHE_PATH = 'marque-blanche';
 export const MARQUE_BLANCHE_URL = `/${MARQUE_BLANCHE_PATH}`;
 
 export const routes: Routes = [
-  {path: '', redirectTo: ACCUEIL_PATH, pathMatch: 'full'},
   {
     path: ACCUEIL_PATH,
     loadChildren: () => import('./principal/principal-routes').then(m => m.routes),
