@@ -6,10 +6,12 @@
 <div *ngIf="showPdfViewer" class="flex-grow-1 d-flex flex-column g-m">
   <ng-container *ngIf="store.selectedDocument$ | async as doc">
     <div>
-      <ng-container *ngIf="$any(doc).index_annexe !== undefined">
-        Annexe {{ $any(doc).index_annexe + 1 }} de
-      </ng-container>
-      {{doc.objet}}
+      <h2 class="mat-headline-1">
+        {{doc.objet + (($any(doc).index_annexe !== undefined) ? (', annexe ' + ($any(doc).index_annexe + 1)) : '')}}
+      </h2>
+      <p>
+        Décision du {{doc.date_acte | date:'shortDate'}}, publié le {{doc.date_publication | date:'shortDate'}}
+      </p>
     </div>
     <app-pdf-viewer
       class="flex-grow-1 min-h-0"
