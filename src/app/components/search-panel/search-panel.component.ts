@@ -61,7 +61,7 @@ export class SearchPanelComponent implements OnChanges, OnInit {
 
   ngOnInit() {
     if (this.launchFirstSearch) {
-      this.searchRequest.emit(this.searchParams);
+      this.launchSearch();
     }
   }
 
@@ -69,6 +69,18 @@ export class SearchPanelComponent implements OnChanges, OnInit {
     if ('searchParams' in changes) {
       this.searchParams = changes['searchParams'].currentValue;
     }
+  }
+
+  launchSearch() {
+    let params = this.searchParams;
+    // On émet une copie des paramètres de recherche pour qu'il soit impossible de les modifier à notre insu.
+    this.searchRequest.emit({
+      ...params,
+      classifications: params.classifications ? new Set(params.classifications) : undefined,
+      types_actes: params.types_actes ? new Set(params.types_actes) : undefined,
+      date_debut: params.date_debut ? new Date(params.date_debut) : undefined,
+      date_fin: params.date_fin ? new Date(params.date_fin) : undefined
+    });
   }
 
   openAdvancedParamsDialog() {
@@ -86,13 +98,13 @@ export class SearchPanelComponent implements OnChanges, OnInit {
           ...this.searchParams,
           ...updatedSearchParams
         };
-        this.searchRequest.emit(this.searchParams);
+        this.launchSearch();
       }
     });
   }
 
   removeFilter(filterToRemove: Filter) {
     this.searchParams = this.searchParamsToFiltersService.removeFilter(this.searchParams, filterToRemove);
-    this.searchRequest.emit(this.searchParams);
+    this.launchSearch();
   }
 }
