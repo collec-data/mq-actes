@@ -36,13 +36,13 @@
     [@collapsed]="collapsed ? 'closed' : 'open'"
   >
     <div>
-      <span><strong>Type de document&nbsp;:</strong> {{acte.type | appTypeActe}}</span> <br>
-      <span><strong>Classification&nbsp;:</strong> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
-      <span *ngIf="!hideSiren"><strong>Siren&nbsp;:</strong> {{acte.siren}}</span> <br>
+      <span><span class="font-weight-500">Type de document&nbsp;:</span> {{acte.type | appTypeActe}}</span> <br>
+      <span><span class="font-weight-500">Classification&nbsp;:</span> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
+      <span *ngIf="!hideSiren"><span class="font-weight-500">Siren&nbsp;:</span> {{acte.siren}}</span> <br>
     </div>
 
     <div class="annexes d-flex flex-column g-m" *ngIf="acte.annexes.length">
-      <strong>{{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</strong>
+      <span class="font-weight-500">{{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</span>
 
       <div class="annexe" *ngFor="let annexe of acte.annexes">
         <mat-icon class="flex-shrink-0">description</mat-icon>
@@ -69,7 +69,7 @@
     (click)="collapsed = !collapsed"
     class="content mt-m d-inline-block cursor-pointer"
   >
-      <strong>+ {{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</strong>
+      <span class="font-weight-500">+ {{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</span>
     </span>
 </ng-container>
 
