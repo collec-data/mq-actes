@@ -1,39 +1,42 @@
-<div
+<ng-container
   *ngIf="acteData"
-  class="min-h-0 h-100 overflow-auto d-flex flex-column g-m pr-m"
-  infiniteScroll
-  [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="50"
-  [scrollWindow]="false"
-  [fromRoot]="true"
-  (scrolled)="dataSource.loadNextPage()"
-  #scrollContainer
 >
-  <div *ngIf="!acteData.loading && acteData.total === 0 else results">
-    <p>Aucun document n'a été trouvé.</p>
-    <p>Vérifiez les termes de recherche et/ou les filtres appliqués.</p>
+  <em *ngIf="(!acteData.loading || acteData.lastLoad === 'page') && acteData.total > 0" class="mb-m">
+    {{acteData.total}} {{acteData.total | appPlural:'résultat':'résultats'}} (actes + annexes)
+  </em>
+
+  <div
+    class="min-h-0 h-100 overflow-auto d-flex flex-column g-m pr-m"
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="50"
+    [scrollWindow]="false"
+    [fromRoot]="true"
+    (scrolled)="dataSource.loadNextPage()"
+    #scrollContainer
+  >
+    <div *ngIf="!acteData.loading && acteData.total === 0 else results">
+      <p>Aucun document n'a été trouvé.</p>
+      <p>Vérifiez les termes de recherche et/ou les filtres appliqués.</p>
+    </div>
+
+    <ng-template #results>
+      <app-acte-item
+        *ngFor="let acte of acteData.items; trackBy: idTrackBy"
+        [acte]="acte"
+        [collapsed]="true"
+        [hideSiren]="hideSiren"
+      ></app-acte-item>
+
+      <ng-container *ngIf="acteData.loading">
+        <app-acte-item></app-acte-item>
+        <app-acte-item></app-acte-item>
+        <app-acte-item></app-acte-item>
+      </ng-container>
+
+      <div *ngIf="!acteData.loading && acteData.noMoreElement">
+        Vous avez atteint la fin des résultats.
+      </div>
+    </ng-template>
   </div>
-
-  <ng-template #results>
-    <div *ngIf="acteData.total > 0">
-      {{acteData.total}} {{acteData.total | appPlural:'résultat':'résultats'}} (actes + annexes)
-    </div>
-
-    <app-acte-item
-      *ngFor="let acte of acteData.items; trackBy: idTrackBy"
-      [acte]="acte"
-      [collapsed]="true"
-      [hideSiren]="hideSiren"
-    ></app-acte-item>
-
-    <ng-container *ngIf="acteData.loading">
-      <app-acte-item></app-acte-item>
-      <app-acte-item></app-acte-item>
-      <app-acte-item></app-acte-item>
-    </ng-container>
-
-    <div *ngIf="!acteData.loading && acteData.noMoreElement">
-      Vous avez atteint la fin des résultats.
-    </div>
-  </ng-template>
-</div>
+</ng-container>
