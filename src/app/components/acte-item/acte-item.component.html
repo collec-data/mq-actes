@@ -10,7 +10,18 @@
     </button>
 
     <div class="summary cursor-pointer flex-grow-1" (click)="collapsed = !collapsed">
-      <span class="titre" [class.resultat-recherche]="acte.resultat_recherche">{{acte.objet}}</span>
+      <span class="titre">
+        {{acte.objet}}
+        <mat-icon
+          *ngIf="!acte.resultat_recherche"
+          [inline]="true"
+          fontSet="material-icons-outlined"
+          class="flex-shrink-0 vertical-align-bottom"
+          matTooltip="Ce document ne correspond pas aux critères recherchés, il est inclus dans les résultats car au moins une annexe rattachée fait partie des résultats"
+        >
+          info
+        </mat-icon>
+      </span>
       <br>
       <span class="sous-titre">
         Décision du {{acte.date_acte | date:'shortDate'}}, publié le {{acte.date_publication | date:'shortDate'}}
@@ -35,7 +46,18 @@
 
       <div class="annexe" *ngFor="let annexe of acte.annexes">
         <mat-icon class="flex-shrink-0">description</mat-icon>
-        <div class="flex-grow-1" [class.resultat-recherche]="annexe.resultat_recherche">Annexe {{(acte.annexes.length > 1) ? annexe.index_annexe + 1 : ''}}</div>
+        <div class="flex-grow-1">
+          Annexe {{(acte.annexes.length > 1) ? annexe.index_annexe + 1 : ''}}
+          <mat-icon
+            *ngIf="!annexe.resultat_recherche"
+            [inline]="true"
+            fontSet="material-icons-outlined"
+            class="flex-shrink-0 vertical-align-bottom"
+            matTooltip="Cette annexe ne correspond pas aux critères recherchés, elle est incluse car l'acte auquel elle est rattachée fait partie des résultats"
+          >
+            info
+          </mat-icon>
+        </div>
         <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
       </div>
     </div>

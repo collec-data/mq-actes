@@ -7,6 +7,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { CommonModule, DatePipe } from "@angular/common";
 import { PluralPipe } from "../../shared/plural.pipe";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-acte-item',
@@ -20,7 +21,8 @@ import { PluralPipe } from "../../shared/plural.pipe";
     MatIconModule,
     MatButtonModule,
     DatePipe,
-    PluralPipe
+    PluralPipe,
+    MatTooltipModule
   ],
   host: {
     class: 'd-flex flex-column py-l pr-l'
