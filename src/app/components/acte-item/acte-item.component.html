@@ -15,7 +15,6 @@
         <mat-icon
           *ngIf="!acte.resultat_recherche"
           [inline]="true"
-          fontSet="material-icons-outlined"
           class="flex-shrink-0 vertical-align-bottom"
           matTooltip="Ce document ne correspond pas aux critères recherchés, il est présent car au moins une annexe rattachée fait partie des résultats"
         >
@@ -45,13 +44,12 @@
       <span class="font-weight-500">{{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</span>
 
       <div class="annexe" *ngFor="let annexe of acte.annexes">
-        <mat-icon class="flex-shrink-0">description</mat-icon>
+        <mat-icon class="flex-shrink-0 mr-s">description</mat-icon>
         <div class="flex-grow-1">
           Annexe {{(acte.annexes.length > 1) ? annexe.index_annexe + 1 : ''}}
           <mat-icon
             *ngIf="!annexe.resultat_recherche"
             [inline]="true"
-            fontSet="material-icons-outlined"
             class="flex-shrink-0 vertical-align-bottom"
             matTooltip="Cette annexe ne correspond pas aux critères recherchés, elle est présente car l'acte auquel elle est rattachée fait partie des résultats"
           >

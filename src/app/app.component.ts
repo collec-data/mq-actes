@@ -1,9 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { CommonModule } from "@angular/common";
 import { DebugComponent } from "./components/debug/debug.component";
+import { MatIconRegistry } from "@angular/material/icon";
 
 @Component({
   selector: 'app-root',
@@ -25,11 +26,12 @@ export class AppComponent implements OnInit, OnDestroy {
   includeDebug = false
 
   destroy$ = new Subject<boolean>();
-
-  constructor(private route: ActivatedRoute) {
-  }
+  private route = inject(ActivatedRoute);
+  private iconRegistry = inject(MatIconRegistry);
 
   ngOnInit(): void {
+    // Icônes en contours par défaut.
+    this.iconRegistry.setDefaultFontSetClass('material-icons-outlined');
 
     this.route.queryParams
       .pipe(
