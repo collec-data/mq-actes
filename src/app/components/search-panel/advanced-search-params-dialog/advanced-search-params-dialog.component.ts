@@ -37,7 +37,7 @@ export class AdvancedSearchParamsDialogComponent {
   updatedParams: SearchParams;
   readonly classifications = classifications;
   readonly typesActe = typesActes;
-  readonly thematiques = thematiques;
+  readonly thematiques = Object.entries(thematiques);
 
   constructor(
     private dialogRef: MatDialogRef<AdvancedSearchParamsDialogComponent>,

@@ -100,12 +100,12 @@
         [value]="updatedParams.thematique"
       >
         <mat-button-toggle
-          *ngFor="let check of thematiques | keyvalue"
-          [value]="check.key"
+          *ngFor="let check of thematiques"
+          [value]="check[0]"
           (change)="thematiqueChange($event)"
         >
-          <mat-icon>{{check.value.icon}}</mat-icon>
-          {{check.value.libelle}}
+          <mat-icon>{{check[1].icon}}</mat-icon>
+          {{check[1].libelle}}
         </mat-button-toggle>
       </mat-button-toggle-group>
     </div>
