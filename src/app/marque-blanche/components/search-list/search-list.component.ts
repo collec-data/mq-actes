@@ -6,7 +6,8 @@ import {
 import { ActeDataSource } from "../../../acte-data-source";
 import { filter } from "rxjs/operators";
 import { SearchParams } from "../../../models/model";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { queryParamsToSearchParams, searchParamsToQueryParams } from "../../../utils";
 
 @Component({
   selector: 'app-search-list',
@@ -25,12 +26,9 @@ export class SearchListComponent implements OnInit {
   @ViewChild(PaginatedDocumentListComponent) documentList?: PaginatedDocumentListComponent;
 
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
-  initialSearch: SearchParams = {
-    query: '',
-    publications_en_cours: false,
-    siren: this.route.snapshot.queryParams['siren']
-  };
+  initialSearch = queryParamsToSearchParams(this.route.snapshot.queryParams);
 
   ngOnInit() {
     this.dataSource.stream$.pipe(
@@ -38,5 +36,10 @@ export class SearchListComponent implements OnInit {
     ).subscribe(() => {
       this.documentList?.scrollTop();
     });
+  }
+
+  launchNewSearch(searchParams: SearchParams) {
+    this.dataSource.search(searchParams);
+    this.router.navigate([], {queryParams: searchParamsToQueryParams(searchParams)});
   }
 }
