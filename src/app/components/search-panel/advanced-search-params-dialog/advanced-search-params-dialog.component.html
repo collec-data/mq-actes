@@ -92,6 +92,24 @@
     </div>
 
     <div class="sub-section">
+      <h3>Thématiques</h3>
+
+      <mat-button-toggle-group
+        name="thematique"
+        [multiple]="false"
+        [value]="updatedParams.thematique"
+      >
+        <mat-button-toggle
+          *ngFor="let check of thematiques | keyvalue"
+          [value]="check.key"
+          (change)="thematiqueChange($event)"
+        >
+          {{check.value.libelle}}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+
+    <div class="sub-section">
       <h3>Classification</h3>
 
       <div class="columns-sm">

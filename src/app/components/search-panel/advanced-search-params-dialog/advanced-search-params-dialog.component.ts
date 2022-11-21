@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { classifications, SearchParams, typesActes } from "../../../models/model";
+import { classifications, SearchParams, thematiques, typesActes } from "../../../models/model";
 import { FormsModule, NgForm, NgModel, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -11,6 +11,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { getDateDebutPublicationsEnCours } from "../../../utils";
+import { MatButtonToggleChange, MatButtonToggleModule } from "@angular/material/button-toggle";
 
 @Component({
   standalone: true,
@@ -25,7 +26,8 @@ import { getDateDebutPublicationsEnCours } from "../../../utils";
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatButtonToggleModule
   ],
   templateUrl: './advanced-search-params-dialog.component.html',
   styleUrls: ['./advanced-search-params-dialog.component.scss']
@@ -35,6 +37,7 @@ export class AdvancedSearchParamsDialogComponent {
   updatedParams: SearchParams;
   readonly classifications = classifications;
   readonly typesActe = typesActes;
+  readonly thematiques = thematiques;
 
   constructor(
     private dialogRef: MatDialogRef<AdvancedSearchParamsDialogComponent>,
@@ -52,6 +55,7 @@ export class AdvancedSearchParamsDialogComponent {
   }
 
   validate(form: NgForm) {
+    console.log(this.updatedParams)
     if (form.valid) {
       const finalParams = this.updatedParams.publications_en_cours
         ? {
@@ -82,5 +86,12 @@ export class AdvancedSearchParamsDialogComponent {
       controlDebut.setValue(getDateDebutPublicationsEnCours());
       controlFin.setValue(null);
     }
+  }
+
+  thematiqueChange(changeEvent: MatButtonToggleChange) {
+    this.updatedParams.thematique = this.updatedParams.thematique === changeEvent.value
+      // désélectionne la thématique si déjà sélectionnée
+      ? undefined
+      : changeEvent.value;
   }
 }

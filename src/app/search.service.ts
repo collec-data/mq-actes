@@ -1,6 +1,6 @@
 import { inject, Injectable, InjectionToken } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { Acte, ActeBack, Annexe, Page, PageBack, SearchParams, TypeActeCode } from './models/model';
+import { Acte, ActeBack, Annexe, Page, PageBack, SearchParams, thematiques, TypeActeCode } from './models/model';
 import { actes } from './models/model.examples';
 import { delay } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
@@ -49,9 +49,15 @@ export class HttpSearchService extends SearchService {
       ? {date_debut: getDateDebutPublicationsEnCours(), date_fin: undefined}
       : params;
 
+    let query = params.query;
+
+    if (params.thematique) {
+      query = `${query} ${thematiques[params.thematique].keywords}`;
+    }
+
     return this.httpClient.get<PageBack<ActeBack>>(`${this.baseUrl}/search`, {
       params: {
-        query: params.query,
+        query,
         ...params.siren && {siren: params.siren},
         ...date_debut && {date_debut: date_debut.toISOString()},
         ...date_fin && {date_fin: date_fin.toISOString()},

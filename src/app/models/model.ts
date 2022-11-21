@@ -20,8 +20,24 @@ export const classifications = {
   '9': "Autres domaines de competences",
 } as const;
 
+export const thematiques = {
+  sante: {
+    libelle: "Santé",
+    keywords: "santé docteur infirmier hopital soins"
+  },
+  urbanisme: {
+    libelle: "Urbanisme",
+    keywords: "urbanisme PLU aménagement maison immeuble immobilier voirie route"
+  },
+  economie: {
+    libelle: "Economie",
+    keywords: "economie financement budget dépense recette investissement"
+  }
+} as const;
+
 export type TypeActeCode = keyof typeof typesActes;
 export type ClassificationCode = keyof typeof classifications;
+export type ThematiqueCode = keyof typeof thematiques;
 
 export interface Document {
   blockchain_transaction_hash?: string;
@@ -65,6 +81,7 @@ export interface SearchParams {
   date_fin?: Date;
   classifications?: Set<ClassificationCode>;
   types_actes?: Set<TypeActeCode>;
+  thematique?: ThematiqueCode;
   page_suivante?: string;
   lignes?: number;
 }
