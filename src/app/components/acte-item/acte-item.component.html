@@ -35,7 +35,7 @@
     [@collapsed]="collapsed ? 'closed' : 'open'"
   >
     <div>
-      <span><span class="font-weight-500">Type de document&nbsp;:</span> {{acte.type | appTypeActe}}</span> <br>
+      <span><span class="font-weight-500">Type de document&nbsp;:</span> {{acte | appTypeActe}}</span> <br>
       <span><span class="font-weight-500">Classification&nbsp;:</span> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
       <span *ngIf="!hideSiren"><span class="font-weight-500">Siren&nbsp;:</span> {{acte.siren}}</span> <br>
     </div>
