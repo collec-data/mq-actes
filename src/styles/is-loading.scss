@@ -1,3 +1,5 @@
+@use '../custom-theme';
+
 .is-loading {
   position: relative;
 
@@ -9,7 +11,7 @@
     right: 0;
     bottom: 0;
     background: #eee;
-    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    background: linear-gradient(110deg, custom-theme.$opendata-marqueblanche-fond-1 8%, lighten(custom-theme.$opendata-marqueblanche-fond-1, 2.5) 18%, custom-theme.$opendata-marqueblanche-fond-1 33%);
     border-radius: inherit;
     background-size: 200% 100%;
     @media (prefers-reduced-motion: no-preference) {
