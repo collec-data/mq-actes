@@ -1,4 +1,4 @@
-import { classifications, SearchParams, typesActes } from "../../models/model";
+import { classifications, SearchParams, thematiques, typesActes } from "../../models/model";
 import { Filter } from "./search-filter-list/search-filter-list.component";
 import { inject, Injectable } from "@angular/core";
 import { DatePipe } from "@angular/common";
@@ -12,6 +12,17 @@ export class SearchFiltersService {
    */
   toFilters(params: SearchParams): Filter[] {
     const filters: Filter[] = [];
+
+    if (params.thematique) {
+      let thematique = thematiques[params.thematique];
+      filters.push({
+        icon: thematique.icon,
+        label: thematique.libelle,
+        data: {
+          prop: 'thematique'
+        }
+      });
+    }
 
     if (params.publications_en_cours) {
       filters.push({

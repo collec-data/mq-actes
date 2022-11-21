@@ -21,15 +21,18 @@ export const classifications = {
 } as const;
 
 export const thematiques = {
-  sante: {
+  '1-sante': {
+    icon: 'medical_services',
     libelle: "Santé",
     keywords: "santé docteur infirmier hopital soins"
   },
-  urbanisme: {
+  '2-urbanisme': {
+    icon: 'home_work',
     libelle: "Urbanisme",
     keywords: "urbanisme PLU aménagement maison immeuble immobilier voirie route"
   },
-  economie: {
+  '3-economie': {
+    icon: 'trending_up',
     libelle: "Economie",
     keywords: "economie financement budget dépense recette investissement"
   }

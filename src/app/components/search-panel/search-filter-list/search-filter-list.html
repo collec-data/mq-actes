@@ -1,5 +1,12 @@
 <mat-chip-list aria-label="Filtres">
   <mat-chip *ngFor="let filter of filters" [selectable]="false">
+    <mat-icon
+      *ngIf="filter.icon"
+      fontSet="material-icons-outlined"
+      class="mr-s"
+    >
+      {{filter.icon}}
+    </mat-icon>
     {{filter.label}}
     <mat-icon matChipRemove (click)="removeFilter.emit(filter)">cancel</mat-icon>
   </mat-chip>

@@ -4,6 +4,7 @@ import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
 
 export type Filter = {
+  icon?: string;
   label: string;
   data: any;
 };
