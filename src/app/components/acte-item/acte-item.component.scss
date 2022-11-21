@@ -1,11 +1,11 @@
-@use '../../../custom-theme';
+@use '../../../couleurs';
 
 $marge-gauche: 3em;
 $couleur-sous-titre: #41475D;
 
 //
 :host {
-  background-color: custom-theme.$opendata-marqueblanche-fond-1;
+  background-color: couleurs.$opendata-marqueblanche-fond-1;
   border-radius: .4em;
 }
 
@@ -33,7 +33,7 @@ $couleur-sous-titre: #41475D;
 // annexes
 .annexe {
   display: flex;
-  background-color: custom-theme.$opendata-marqueblanche-fond-2;
+  background-color: couleurs.$opendata-marqueblanche-fond-2;
   padding: .5em;
   border-radius: .4em;
   align-items: center;
