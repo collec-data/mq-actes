@@ -1,0 +1,50 @@
+/**
+ * Surcharge des styles des composants Material pour appliquer les couleurs du thème.
+ */
+
+.app-actes {
+
+  // Bouton de suppression des filtres.
+  .mat-standard-chip .mat-chip-remove.mat-icon {
+    opacity: .9;
+    color: var(--theme-color-primary);
+    font-size: 1.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Champs de formulaire (par ex. pour les dates).
+  .mat-form-field.mat-focused {
+    // Barre de soulignement (visible si focus)
+    .mat-form-field-ripple {
+      background-color: var(--theme-color-primary);
+    }
+
+    // Couleur du label (visible si focus).
+    .mat-form-field-label {
+      color: var(--theme-color-primary);
+    }
+  }
+
+  // Cases à cocher
+  .mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+  .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+  .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    background-color: var(--theme-color-primary);
+  }
+
+  // Boutons
+  .mat-button.mat-primary,
+  .mat-icon-button.mat-primary,
+  .mat-stroked-button.mat-primary {
+    color: var(--theme-color-primary);
+
+    .mat-button-focus-overlay {
+      background-color: var(--theme-color-primary);
+    }
+  }
+}

@@ -11,12 +11,16 @@
   }
 
   .mat-form-field-outline {
-    background-color: #F0F0F1;
+    background-color: var(--theme-color-bg-3);
     border-radius: 28px;
   }
 
   .mat-form-field-outline-thick {
     color: rgba(0, 0, 0, 0.12);
+  }
+
+  &.mat-focused .mat-form-field-outline-thick {
+    color: var(--theme-color-primary);
   }
 
   .mat-form-field-outline-start {
@@ -33,10 +37,11 @@
   }
 
   .mat-form-field-suffix {
-    color: #41475D;
+    color: var(--theme-color-text-secondary);
   }
 
   .mat-mini-fab {
     box-shadow: unset;
+    background-color: var(--theme-color-primary);
   }
 }

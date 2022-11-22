@@ -1,4 +1,4 @@
-import { Component, inject, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
@@ -28,8 +28,16 @@ export class AppComponent implements OnInit, OnDestroy {
   destroy$ = new Subject<boolean>();
   private route = inject(ActivatedRoute);
   private iconRegistry = inject(MatIconRegistry);
+  private renderer = inject(Renderer2);
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(
+      (params) => {
+        // On applique le theme en attribut de l'élément body
+        this.renderer.setAttribute(document.body, 'data-theme', params['theme'] ?? 'defaut');
+      }
+    )
+
     // Icônes en contours par défaut.
     this.iconRegistry.setDefaultFontSetClass('material-icons-outlined');
 

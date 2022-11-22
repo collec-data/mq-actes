@@ -43,6 +43,11 @@ export class SearchListComponent implements OnInit {
   launchNewSearch(searchParams: SearchParams) {
     this.dataSource.search(searchParams);
     this.store.updateSearchParams(searchParams);
-    this.router.navigate([], {queryParams: searchParamsToQueryParams(searchParams)});
+    this.router.navigate([], {
+      queryParams: {
+        ...searchParamsToQueryParams(searchParams),
+        theme: this.route.snapshot.queryParams['theme']
+      }
+    });
   }
 }

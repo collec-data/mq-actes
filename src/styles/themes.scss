@@ -1,0 +1,59 @@
+body {
+  --theme-color-bg-1: #EBEFFC;
+  --theme-color-bg-1-light: #{lighten(#EBF0FC, 2.5)};
+  --theme-color-bg-2: #BBBFE1;
+  --theme-color-primary: #5E78B5;
+  --theme-color-link: #132769;
+
+  // couleurs communes
+  --theme-color-text-secondary: #41475D;
+  --theme-color-bg-3: #F0F0F1;
+}
+
+[data-theme="vert-tours"] {
+  --theme-color-bg-1: #E9FAE3;
+  --theme-color-bg-1-light: #{lighten(#E9FAE3, 2.5)};
+  --theme-color-bg-2: #C6ED91;
+  --theme-color-primary: #6CA61E;
+  --theme-color-link: #185F11;
+}
+
+[data-theme="rouge-rennes"] {
+  --theme-color-bg-1: #FCF2F1;
+  --theme-color-bg-1-light: #{lighten(#FCF2F1, 2.5)};
+  --theme-color-bg-2: #F3CAC7;
+  --theme-color-primary: #D85249;
+  --theme-color-link: #AF2E26;
+}
+
+[data-theme="turquoise-ille-et-vilaine"] {
+  --theme-color-bg-1: #E5F7F9;
+  --theme-color-bg-1-light: #{lighten(#E5F7F9, 2.5)};
+  --theme-color-bg-2: #BBEBF1;
+  --theme-color-primary: #2296A6;
+  --theme-color-link: #155D67;
+}
+
+[data-theme="jaune-eurelien"] {
+  --theme-color-bg-1: #FFFAE7;
+  --theme-color-bg-1-light: #{lighten(#FFFAE7, 2.5)};
+  --theme-color-bg-2: #FFEB9A;
+  --theme-color-primary: #FFCD00;
+  --theme-color-link: #FF8D00;
+}
+
+[data-theme="orange-orleans"] {
+  --theme-color-bg-1: #FFECE5;
+  --theme-color-bg-1-light: #{lighten(#FFECE5, 2.5)};
+  --theme-color-bg-2: #F8AF96;
+  --theme-color-primary: #F05923;
+  --theme-color-link: #C92F0E;
+}
+
+[data-theme="gris-neutre"] {
+  --theme-color-bg-1: #F0F0F1;
+  --theme-color-bg-1-light: #{lighten(#F0F0F1, 2.5)};
+  --theme-color-bg-2: #C7C7C7;
+  --theme-color-primary: #767676;
+  --theme-color-link: #262626;
+}

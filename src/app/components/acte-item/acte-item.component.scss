@@ -1,11 +1,7 @@
-@use '../../../couleurs';
-
 $marge-gauche: 3em;
-$couleur-sous-titre: #41475D;
 
-//
 :host {
-  background-color: couleurs.$opendata-marqueblanche-fond-1;
+  background-color: var(--theme-color-bg-1);
   border-radius: .4em;
 }
 
@@ -17,7 +13,7 @@ $couleur-sous-titre: #41475D;
 
 .header .summary .sous-titre {
   font-weight: lighter;
-  color: $couleur-sous-titre;
+  color: var(--theme-color-text-secondary);
 }
 
 // Marge à gauche pour chaque item
@@ -33,7 +29,7 @@ $couleur-sous-titre: #41475D;
 // annexes
 .annexe {
   display: flex;
-  background-color: couleurs.$opendata-marqueblanche-fond-2;
+  background-color: var(--theme-color-bg-2);
   padding: .5em;
   border-radius: .4em;
   align-items: center;
