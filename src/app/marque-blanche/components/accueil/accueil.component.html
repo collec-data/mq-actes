@@ -16,6 +16,7 @@
     <app-pdf-viewer
       class="flex-grow-1 min-h-0"
       [pdfUrl]="doc.url"
+      [highlightedText]="(store.searchParams$ | async)?.query"
     ></app-pdf-viewer>
   </ng-container>
 </div>

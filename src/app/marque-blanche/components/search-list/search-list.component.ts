@@ -8,6 +8,7 @@ import { filter } from "rxjs/operators";
 import { SearchParams } from "../../../models/model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { queryParamsToSearchParams, searchParamsToQueryParams } from "../../../utils";
+import { Store } from "../../services/store";
 
 @Component({
   selector: 'app-search-list',
@@ -27,6 +28,7 @@ export class SearchListComponent implements OnInit {
 
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private store = inject(Store);
 
   initialSearch = queryParamsToSearchParams(this.route.snapshot.queryParams);
 
@@ -40,6 +42,7 @@ export class SearchListComponent implements OnInit {
 
   launchNewSearch(searchParams: SearchParams) {
     this.dataSource.search(searchParams);
+    this.store.updateSearchParams(searchParams);
     this.router.navigate([], {queryParams: searchParamsToQueryParams(searchParams)});
   }
 }
