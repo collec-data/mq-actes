@@ -11,7 +11,7 @@ import {
 
 export const getDateDebutPublicationsEnCours = () => {
   const now = new Date();
-  return new Date(now.getFullYear(), now.getMonth(), now.getDate() - 60);
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate() - 62);
 }
 
 export const queryParamsToSearchParams = (queryParams: Params): SearchParams => {
