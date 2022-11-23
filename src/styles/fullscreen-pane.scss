@@ -10,5 +10,17 @@ $breakpoint-xs-end: 599.9px;
     width: 100% !important;
     max-height: 100% !important;
     max-width: 100% !important;
+
+    /** Ajustement pour permettre d'avoir les boutons de la modale au bas de l'écran. */
+    .fullscreen-pane-dialog-container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      > .mat-dialog-content {
+        flex: 1;
+        max-height: unset;
+      }
+    }
   }
 }
