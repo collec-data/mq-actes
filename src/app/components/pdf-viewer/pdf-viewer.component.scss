@@ -1,8 +1,123 @@
+:host {
+  border: 1px solid rgba(0, 0, 0, .12);
+}
+
 ::ng-deep {
   ngx-extended-pdf-viewer {
+
+    .zoom {
+      flex: 1;
+    }
+
     .unverified-signature-warning {
       // On masque le message d'avertissement sur la signature.
       display: none;
+    }
+
+    // Remplacement des ombres des pages pour quelque chose de plus joli.
+    .page {
+      border-image: none !important;
+      border: none !important;
+      margin: 9px auto !important;
+      box-shadow: 0 0 .25rem rgba(144, 173, 217, 0.2);
+    }
+
+    #toolbarViewer, #toolbarSidebar {
+      // ngx-extended-pdf-viewer indique la hauteur des barres d'outils en pixels, elle ne s'agrandisse pas en fonction
+      // du contenu (car ngx-extended-pdf-viewer indique des 'position: absolute' et 'float' sur les éléments, et ils ne
+      // sont plus pris en compte dans le dimensionnement de leur parent) :(
+      //
+      // On augmente tout de même la taille, mais pas trop pour ne pas tout casser.
+      height: 2.2rem;
+    }
+
+    #toolbarViewer, #toolbarSidebar, #findbar {
+      * {
+        // ngx-extended-pdf-viewer passe box-sizing en content-box sur tous les éléments.
+        // On revert dans les barre d'outil car les boutons se retrouvent mal dimensionnés.
+        box-sizing: border-box;
+      }
+
+      button {
+        transition-property: background-color, border, color;
+        transition-duration: 100ms;
+        transition-timing-function: ease-in-out;
+
+        color: var(--theme-color-text-secondary);
+        height: 1.725rem !important;
+        width: 1.725rem !important;
+        border-radius: .15rem;
+        border-color: transparent;
+
+        svg {
+          float: unset !important; // ngx-extended-pdf-viewer, float en trop qui casse l'alignement de l'icône
+        }
+
+        &.toggled, &:focus {
+          background-color: var(--theme-color-bg-2);
+          color: var(--theme-color-link);
+        }
+
+        &:focus {
+          background-color: var(--theme-color-bg-1);
+          border-color: var(--theme-color-primary);
+        }
+
+        &:hover {
+          background-color: var(--theme-color-primary);
+          color: #FAFAFA;
+        }
+      }
+
+      select {
+        border-color: var(--theme-color-bg-2);
+        font-family: inherit;
+        font-size: .9rem;
+        padding: revert;
+
+        &:focus {
+          background-color: var(--theme-color-bg-1);
+          border-color: var(--theme-color-primary);
+        }
+      }
+    }
+
+    #findbar {
+      padding-top: .25rem;
+    }
+
+    #thumbnailView {
+      a:focus {
+        // ngx-extended-pdf-viewer, trait bleu dans le vide au clic sur une vignette pour sélectionner une page.
+        border: none;
+      }
+
+      .thumbnail.selected {
+        box-shadow: inset 0 0 10rem #00000030;
+      }
+    }
+
+    // Utilisation de flex pour l'alignement, l'alignement de ngx-extended-pdf-viewer à base de position en pixels n'est
+    // pas compatibles avec les modifications des tailles des boutons.
+    #toolbarViewerMiddle {
+      display: flex;
+      gap: .5rem;
+    }
+
+    #findbar, #findbarInputContainer {
+      display: flex;
+      gap: .25rem;
+
+      button {
+        margin: 0 .25rem !important;
+      }
+    }
+
+    // Utilisation de flex pour l'alignement, même raison.
+    pdf-zoom-dropdown {
+      padding-top: 0 !important;
+      display: flex;
+      align-items: center;
     }
   }
 }
