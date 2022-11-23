@@ -26,10 +26,15 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/mockServiceWorker.js",
               {
                 "glob": "**/*",
                 "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                "output": "/assets/"
+              },
+              "src/mockServiceWorker.js",
+              {
+                "glob": "**/*",
+                "input": "src/mocks/assets/",
                 "output": "/assets/"
               }
             ],
