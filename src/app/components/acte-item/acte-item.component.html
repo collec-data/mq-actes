@@ -27,7 +27,10 @@
     </span>
     </div>
 
-    <app-document-actions [document]="acte"></app-document-actions>
+    <app-document-actions
+      [document]="acte"
+      *ngIf="acte.content_type === 'application/pdf'"
+    ></app-document-actions>
   </div>
 
   <div
@@ -56,7 +59,10 @@
             info
           </mat-icon>
         </div>
-        <app-document-actions [document]="annexe" iconClass="small-icons"></app-document-actions>
+        <app-document-actions
+          [document]="annexe" iconClass="small-icons"
+          *ngIf="annexe.content_type === 'application/pdf'"
+        ></app-document-actions>
       </div>
     </div>
   </div>
