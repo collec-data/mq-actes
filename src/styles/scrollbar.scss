@@ -1,0 +1,35 @@
+/*
+ * Style des barres de défilement.
+ */
+
+$scrollbar-fg: var(--theme-color-bg-2);
+$scrollbar-bg: var(--theme-color-bg-3);
+
+.app-scrollbar {
+  // Styles spécifiques à webkit (Chrome, Edge, Safari, ...)
+  &::-webkit-scrollbar {
+    width: .6rem;
+    height: .6rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-fg;
+    border-radius: 1rem;
+
+    &:hover {
+      // On crée une variante de couleur en superposant une autre couleur partiellement transparente.
+      // Cela nous évite d'ajouter une nouvelle variable css.
+      box-shadow: inset 0 0 1rem 1rem #00000030
+    }
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: $scrollbar-bg;
+    border-radius: 1rem;
+  }
+
+  // Propriétés scrollbar-color et scrollbar-width pour Firefox
+  // Le style est moins flexible que Webkit (pas d'arrondi possible).
+  scrollbar-color: $scrollbar-fg $scrollbar-bg;
+  scrollbar-width: thin;
+}
