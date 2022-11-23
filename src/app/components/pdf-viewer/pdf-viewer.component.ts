@@ -26,7 +26,7 @@ export class PdfViewerComponent {
         caseSensitive: false,
         findPrevious: undefined,
         highlightAll: true,
-        phraseSearch: true,
+        phraseSearch: false, // true pour rechercher le texte exact, false pour rechercher les mots indépendamment
         query: this.highlightedText
       });
     }
