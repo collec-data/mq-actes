@@ -2,7 +2,7 @@ export const typesActes = {
   '1': "Délibérations",
   '2': "Actes réglementaires",
   '3': "Actes individuels",
-  '4': "Contrats,conventions et avenants",
+  '4': "Contrats, conventions et avenants",
   '5': "Documents budgétaires et financiers",
   '6': "Autres",
   '7': "Hors Préfecture",
@@ -14,10 +14,10 @@ export const classifications = {
   '3': "Domaine et patrimoine",
   '4': "Fonction publique",
   '5': "Institutions et vie politique",
-  '6': "Libertes publiques et pourvoirs de police",
+  '6': "Libertés publiques et pouvoirs de police",
   '7': "Finances locales",
-  '8': "Domaines de competences par themes",
-  '9': "Autres domaines de competences",
+  '8': "Domaines de compétences par thèmes",
+  '9': "Autres domaines de compétences",
 } as const;
 
 export const thematiques = {
