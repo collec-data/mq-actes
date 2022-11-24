@@ -37,7 +37,7 @@ const acteForTime = (date: Date, index: number): ActeBack => {
         ? []
         : [{
           hash: 'xxx-anx2',
-          id: `${date.getTime()}-anx1`,
+          id: `${date.getTime()}-anx2`,
           url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}&annexe=1`,
           resultat_recherche: false,
           content_type: 'application/pdf'

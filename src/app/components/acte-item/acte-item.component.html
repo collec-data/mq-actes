@@ -46,7 +46,11 @@
     <div class="annexes d-flex flex-column g-m" *ngIf="acte.annexes.length">
       <span class="font-weight-500">{{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</span>
 
-      <div class="annexe" *ngFor="let annexe of acte.annexes">
+      <div
+        *ngFor="let annexe of acte.annexes"
+        class="annexe"
+        [class.selected-doc]="showSelectedDoc && selectedDocId === annexe.id"
+      >
         <mat-icon class="flex-shrink-0 mr-s">description</mat-icon>
         <div class="flex-grow-1">
           Annexe {{(acte.annexes.length > 1) ? annexe.index_annexe + 1 : ''}}

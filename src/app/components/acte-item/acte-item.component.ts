@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, inject, Input, OnInit } from '@angular/core';
 import { Acte } from 'src/app/models/model';
 import { TypeActePipe } from "../../shared/type-acte.pipe";
 import { animate, state, style, transition, trigger } from "@angular/animations";
@@ -8,6 +8,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { CommonModule, DatePipe } from "@angular/common";
 import { PluralPipe } from "../../shared/plural.pipe";
 import { MatTooltipModule } from "@angular/material/tooltip";
+import { Store } from "../../marque-blanche/services/store";
 
 @Component({
   selector: 'app-acte-item',
@@ -52,12 +53,29 @@ import { MatTooltipModule } from "@angular/material/tooltip";
     ]),
   ]
 })
-export class ActeItemComponent {
+export class ActeItemComponent implements OnInit {
   @Input() acte?: Acte;
   @Input() collapsed = false;
   @Input() hideSiren = false;
 
+  private store = inject(Store);
+  selectedDocId?: string;
+  showSelectedDoc = false;
+
   @HostBinding('class.is-loading') get isLoading() {
     return this.acte == null;
+  }
+
+  @HostBinding('class.selected-doc') get isActeSelected() {
+    return this.showSelectedDoc && this.acte && this.acte.id === this.selectedDocId;
+  }
+
+  ngOnInit() {
+    this.store.selectedDocumentHighlighted$.subscribe((show) => {
+      return this.showSelectedDoc = show;
+    });
+    this.store.selectedDocument$.subscribe((doc) => {
+      return this.selectedDocId = doc?.id;
+    });
   }
 }
