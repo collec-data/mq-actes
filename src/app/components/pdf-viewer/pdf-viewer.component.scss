@@ -106,7 +106,8 @@
 
     #findbar, #findbarInputContainer {
       display: flex;
-      gap: .25rem;
+      gap: 0 .25rem;
+      flex-wrap: wrap;
 
       button {
         margin: 0 .25rem !important;
@@ -118,6 +119,19 @@
       padding-top: 0 !important;
       display: flex;
       align-items: center;
+    }
+
+    // couleur de focus et espacement pour les champs
+    input {
+      border: 1px solid var(--theme-color-primary) !important;
+
+      &[type="checkbox"] {
+        margin: .5rem .125rem .5rem 0 !important;
+
+        &:focus {
+          outline: 1px solid var(--theme-color-primary) !important;
+        }
+      }
     }
   }
 }
