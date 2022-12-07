@@ -27,11 +27,15 @@ build angular app:
       ./node_modules/.bin/ng build \
       --configuration=production \
       --aot \
-      --project=opendata-marqueblanche \
+      --output-path=dist/out/root
+
+    # build pour deployer sur le path /marqueblanche-refonte
+    - |
+      ./node_modules/.bin/ng build \
+      --configuration=production \
+      --aot \
       --base-href=/marqueblanche-refonte/ \
       --output-path=dist/out/marqueblanche-refonte
-    # Si le deploy path de l'app change, changer l'output-path
-    # --output-path=dist/out
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
