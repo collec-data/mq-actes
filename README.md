@@ -9,6 +9,7 @@ Le projet utilise les bibliothèques suivantes :
  - [Angular Material](https://material.angular.io/components) (MIT) : composants graphiques
  - [ngx-extended-pdf-viewer](https://www.npmjs.com/package/ngx-extended-pdf-viewer) (Apache-2.0) : visionneuse PDF (intégration Angular de [PDF.js](https://github.com/mozilla/pdf.js))
  - [ngx-infinite-scroll](https://www.npmjs.com/package/ngx-infinite-scroll) (MIT) : utilitaire pour la gestion du chargement des données au défilement
+ - [ngx-markdown](https://github.com/jfcere/ngx-markdown) (MIT) : Composant pour charger du contenu markdown. Utilisé pour la page à propos.
  - [Mock Service Worker](https://mswjs.io) (MIT) : pour simuler les réponses HTTP lorsque l'application est lancée en mode développement
 
 ## FAQ développeur

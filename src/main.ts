@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { routes } from "./app/app-routes";
 import { RouterModule } from "@angular/router";
 import { MatNativeDateModule } from "@angular/material/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from "@angular/common";
 import { MatPaginatorIntl } from "@angular/material/paginator";
 import { MatPaginatorIntlFr } from "./app/shared/mat-paginator-intl-fr";
+
+import { MarkdownModule } from 'ngx-markdown'
 
 registerLocaleData(localeFr);
 
@@ -31,7 +33,8 @@ prepare().then(() =>
         RouterModule.forRoot(routes),
         BrowserAnimationsModule,
         MatNativeDateModule,
-        HttpClientModule
+        HttpClientModule,
+        MarkdownModule.forRoot({ loader: HttpClient }),
       ]),
       {
         provide: API_ACTES_URL,
