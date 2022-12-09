@@ -5,8 +5,9 @@ import { actes } from './models/model.examples';
 import { delay } from 'rxjs/operators';
 import { HttpClient } from "@angular/common/http";
 import { getDateDebutPublicationsEnCours } from "./utils";
+import { EnvService } from './env.service';
 
-export const API_ACTES_URL = new InjectionToken<string>('API_ACTES_URL');
+export const API_ACTES_ENDPOINT = new InjectionToken<string>('API_ACTES_ENDPOINT');
 const NB_LIGNES = 10;
 
 @Injectable()
@@ -40,8 +41,11 @@ export class FakeSearchService extends SearchService {
 @Injectable()
 export class HttpSearchService extends SearchService {
 
+  private envService = inject(EnvService)
   private httpClient = inject(HttpClient);
-  private baseUrl = inject(API_ACTES_URL);
+  private endpoint_url = inject(API_ACTES_ENDPOINT)
+
+  private baseUrl = `${this.envService.backend_url}/${this.endpoint_url}`;
 
   override search(params: SearchParams): Observable<Page<Acte>> {
     // On ajuste les dates de début et fin si le filtre sur les publications en cours est présent.

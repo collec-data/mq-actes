@@ -2,6 +2,17 @@
 
 Projet généré avec [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
 
+## Paramétrage de l'application
+
+L'[./src/index.html](./src/index.html) charge le fichier [./src/env.js](./src/env.js). Ce dernier doit être généré:
+
+```
+export BACKEND_URL=http://localhost:4200
+export APROPOS_URL=https://raw.githubusercontent.com/megalis-bretagne/pages-publiques/main/apropos-mq-delibs.md
+
+envsubst < src/env.template.js > src/env.js
+```
+
 ## Dépendances
 
 Le projet utilise les bibliothèques suivantes :

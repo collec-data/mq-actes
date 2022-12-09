@@ -26,6 +26,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/env.template.js",
               {
                 "glob": "**/*",
                 "input": "node_modules/ngx-extended-pdf-viewer/assets/",
@@ -51,6 +52,7 @@
               "assets": [
                 "src/favicon.ico",
                 "src/assets",
+                "src/env.template.js",
                 {
                   "glob": "**/*",
                   "input": "node_modules/ngx-extended-pdf-viewer/assets/",

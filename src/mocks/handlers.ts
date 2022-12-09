@@ -72,7 +72,7 @@ export const handlers = [
     return req.passthrough();
   }),
 
-  rest.get('https://data-api-preprod.megalis.bretagne.bzh/mq_apis/actes/v1/search', (req, res, ctx) => {
+  rest.get(`http://localhost:4200/mq_apis/actes/v1/search`, (req, res, ctx) => {
     const query = req.url.searchParams.get('query');
 
     const classificationsArray = req.url.searchParams.get('classifications')?.split(',');

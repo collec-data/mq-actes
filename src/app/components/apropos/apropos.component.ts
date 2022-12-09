@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { MarkdownModule } from 'ngx-markdown'
-import { Component } from '@angular/core';
-import { MatDialogModule } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-apropos',
@@ -13,4 +13,12 @@ import { MatDialogModule } from '@angular/material/dialog';
   ],
   standalone: true,
 })
-export class AproposComponent { }
+export class AproposComponent {
+
+  public src_url?: string
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { src_url?: string }) {
+    this.src_url = data.src_url
+  }
+
+}

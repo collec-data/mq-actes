@@ -1,6 +1,6 @@
 import { enableProdMode, importProvidersFrom, LOCALE_ID } from '@angular/core';
 import { environment } from './environments/environment';
-import { API_ACTES_URL, HttpSearchService, SearchService } from "./app/search.service";
+import { API_ACTES_ENDPOINT, HttpSearchService, SearchService } from "./app/search.service";
 import { AppComponent } from "./app/app.component";
 import { bootstrapApplication } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -13,6 +13,8 @@ import { registerLocaleData } from "@angular/common";
 import { MatPaginatorIntl } from "@angular/material/paginator";
 import { MatPaginatorIntlFr } from "./app/shared/mat-paginator-intl-fr";
 import { MarkdownModule } from 'ngx-markdown'
+import { EnvServiceFactory } from './app/env.service.factory';
+import { EnvService } from './app/env.service';
 
 registerLocaleData(localeFr);
 
@@ -36,8 +38,8 @@ prepare().then(() =>
         MarkdownModule.forRoot({ loader: HttpClient }),
       ]),
       {
-        provide: API_ACTES_URL,
-        useValue: 'https://data-api-preprod.megalis.bretagne.bzh/mq_apis/actes/v1'
+        provide: API_ACTES_ENDPOINT,
+        useValue: 'mq_apis/actes/v1'
       },
       {
         provide: SearchService,
@@ -50,6 +52,10 @@ prepare().then(() =>
       {
         provide: MatPaginatorIntl,
         useClass: MatPaginatorIntlFr
+      },
+      {
+        provide: EnvService,
+        useFactory: EnvServiceFactory,
       }
     ]
   }))
