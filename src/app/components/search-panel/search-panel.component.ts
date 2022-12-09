@@ -15,6 +15,7 @@ import { SearchFiltersService } from "./search-filters.service";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { BehaviorSubject, map, Observable } from "rxjs";
 import { AutofocusDirective } from "../../shared/autofocus.directive";
+import { Apropos } from 'src/app/marque-blanche/services/apropos';
 
 @Component({
   selector: 'app-search-panel',
@@ -31,9 +32,11 @@ import { AutofocusDirective } from "../../shared/autofocus.directive";
     MatTooltipModule,
     AutofocusDirective
   ],
-  templateUrl: './search-panel.component.html'
+  styleUrls: ['./search-panel.component.scss'],
+  templateUrl: './search-panel.component.html',
 })
 export class SearchPanelComponent implements OnChanges, OnInit {
+  apropos = inject(Apropos)
   private searchParamsToFiltersService = inject(SearchFiltersService);
   private dialog = inject(MatDialog);
   private searchParamsSubject = new BehaviorSubject<SearchParams>({

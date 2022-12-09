@@ -12,7 +12,6 @@ import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from "@angular/common";
 import { MatPaginatorIntl } from "@angular/material/paginator";
 import { MatPaginatorIntlFr } from "./app/shared/mat-paginator-intl-fr";
-
 import { MarkdownModule } from 'ngx-markdown'
 
 registerLocaleData(localeFr);

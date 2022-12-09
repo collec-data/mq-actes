@@ -9,6 +9,7 @@ import { SearchParams } from "../../../models/model";
 import { ActivatedRoute, Router } from "@angular/router";
 import { queryParamsToSearchParams, searchParamsToQueryParams } from "../../../utils";
 import { Store } from "../../services/store";
+import { Apropos } from '../../services/apropos';
 
 @Component({
   selector: 'app-search-list',
@@ -16,7 +17,10 @@ import { Store } from "../../services/store";
   standalone: true,
   imports: [
     SearchPanelComponent,
-    PaginatedDocumentListComponent
+    PaginatedDocumentListComponent,
+  ],
+  providers: [
+    Apropos,
   ],
   host: {
     class: 'd-flex flex-column'

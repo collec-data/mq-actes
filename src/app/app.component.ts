@@ -5,6 +5,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { CommonModule } from "@angular/common";
 import { DebugComponent } from "./components/debug/debug.component";
 import { MatIconRegistry } from "@angular/material/icon";
+import { AproposComponent } from './components/apropos/apropos.component';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { MatIconRegistry } from "@angular/material/icon";
   standalone: true,
   imports: [
     CommonModule,
+    AproposComponent,
     DebugComponent,
     RouterModule,
   ],
