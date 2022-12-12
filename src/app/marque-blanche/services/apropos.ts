@@ -12,7 +12,11 @@ export class Apropos {
     ouvre_apropos() {
         this.dialog.open(
             AproposComponent, {
-                data: { src_url: this.env.apropos_url }
+                data: { 
+                    src_url: this.env.apropos_url ,
+                },
+                autoFocus: 'mat-dialog-content',
+                panelClass: 'fullscreen-pane-xs',
             }
         )
     }

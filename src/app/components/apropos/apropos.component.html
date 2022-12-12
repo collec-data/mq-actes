@@ -1,9 +1,23 @@
-<mat-dialog-content>
+<div class="fullscreen-pane-dialog-container">
 
-    <ng-container *ngIf="src_url">
-        <markdown
-            [src]="src_url">
-        </markdown>
-    </ng-container>
+  <div mat-dialog-title class="d-flex justify-content-flex-end">
+    <button
+      type="button"
+      mat-icon-button
+      mat-dialog-close
+      aria-label="Fermer"
+      matTooltip="Fermer"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 
-</mat-dialog-content>
+    <mat-dialog-content>
+
+        <ng-container *ngIf="src_url">
+            <markdown [src]="src_url">
+            </markdown>
+        </ng-container>
+
+    </mat-dialog-content>
+</div>
