@@ -130,23 +130,27 @@
       <h3>Type d'acte</h3>
 
       <div class="columns-sm">
-        <div class="type-acte-item" *ngFor="let check of typesActe | keyvalue">
-          <mat-checkbox class="checkbox-text-wrap" [checked]="updatedParams.types_actes?.has($any(check.key))"
-            (change)="toggleElement(updatedParams.types_actes, check.key)">
-            <span class="checkbox-text">
-              {{check.value}}
-        
-              <ng-container *ngIf="getTooltipPourTypeActe(check.key); let tooltip">
-                <mat-icon [inline]="true" 
-                          class="type-acte-tooltip flex-shrink-0 vertical-align-bottom" 
-                          [matTooltip]="tooltip">
-                  info
-                </mat-icon>
-              </ng-container>
-        
-            </span>
-          </mat-checkbox>
-        
+        <div class="type-acte-item" 
+          *ngFor="let check of typesActe | keyvalue">
+
+          <ng-container *ngIf="!getIsTypeActeCache(check.key)">
+            <mat-checkbox class="checkbox-text-wrap" [checked]="updatedParams.types_actes?.has($any(check.key))"
+              (change)="toggleElement(updatedParams.types_actes, check.key)">
+              <span class="checkbox-text">
+                {{check.value}}
+          
+                <ng-container *ngIf="getTooltipPourTypeActe(check.key); let tooltip">
+                  <mat-icon 
+                    [inline]="true" 
+                    class="type-acte-tooltip flex-shrink-0 vertical-align-bottom" 
+                    [matTooltip]="tooltip">
+                    info
+                  </mat-icon>
+                </ng-container>
+          
+              </span>
+            </mat-checkbox>
+          </ng-container>
         
         </div>
       </div>

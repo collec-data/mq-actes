@@ -22,6 +22,8 @@ export const typeActesTooltip = {
 } as const;
 export type TypeActesTooltipCode = keyof typeof typeActesTooltip;
 
+export const typeActesCaches = ['4']
+
 @Component({
   standalone: true,
   imports: [
@@ -107,5 +109,9 @@ export class AdvancedSearchParamsDialogComponent {
   getTooltipPourTypeActe(i: string) {
     let key = i as TypeActesTooltipCode
     return typeActesTooltip[key]
+  }
+
+  getIsTypeActeCache(i: string) {
+    return typeActesCaches.includes(i)
   }
 }
