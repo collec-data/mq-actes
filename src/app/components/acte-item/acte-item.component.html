@@ -41,7 +41,18 @@
       <span><span class="font-weight-500">Type de document&nbsp;:</span> {{acte | appTypeActe}}</span> <br>
       <span><span class="font-weight-500">Classification&nbsp;:</span> {{acte.classification_code}} {{acte.classification_libelle}}</span> <br>
       <span *ngIf="!hideSiren"><span class="font-weight-500">Siren&nbsp;:</span> {{acte.siren}}</span> <br>
+
+      <ng-container *ngIf="acte.blockchain_url">
+        <span> 
+          <mat-icon 
+            [inline]="true"
+            class="flex-shrink-0 vertical-align-bottom">
+            receipt_long
+          </mat-icon>
+          <a [href]="acte.blockchain_url">Lien vers la transaction</a> </span>
+      </ng-container>
     </div>
+
 
     <div class="annexes d-flex flex-column g-m" *ngIf="acte.annexes.length">
       <span class="font-weight-500">{{acte.annexes.length}} {{acte.annexes.length | appPlural:'annexe liée':'annexes liées'}} au document</span>
