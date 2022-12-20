@@ -16,7 +16,7 @@ import { MatButtonToggleChange, MatButtonToggleModule } from "@angular/material/
 export const typeActesTooltip = {
   '1': 'Acte comprenant la décision de l’assemblée délibérante, sans les débats.',
   '2': 'Décision administrative à portée générale et impersonnelle. Exemple : arrêté pris par un maire ou un président de conseil départemental ou régional.',
-  '3': "Décision concernant une ou plusieurs personnes. Exemple : octroi d'un permis de construire)",
+  '3': "Décision concernant une ou plusieurs personnes. Exemple : octroi d'un permis de construire",
   '5': "Actes liés aux budgets des collectivités",
   '6': "Tous les autres actes",
 } as const;
