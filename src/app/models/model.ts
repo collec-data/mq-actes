@@ -6,6 +6,9 @@ export const typesActes = {
   '5': "Documents budgétaires et financiers",
   '6': "Autres",
   '7': "Hors Préfecture",
+  '71': "Liste des délibérations",
+  '72': "Arrêtés temporaires",
+  '73': "Procés verbal de conseil",
 } as const;
 
 export const classifications = {

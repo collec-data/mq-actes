@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from "@angular/material/dialog";
-import { classifications, SearchParams, thematiques, typesActes } from "../../../models/model";
+import { classifications, SearchParams, thematiques } from "../../../models/model";
 import { FormsModule, NgForm, NgModel, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatDatepickerModule } from "@angular/material/datepicker";
@@ -12,17 +12,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { getDateDebutPublicationsEnCours } from "../../../utils";
 import { MatButtonToggleChange, MatButtonToggleModule } from "@angular/material/button-toggle";
-
-export const typeActesTooltip = {
-  '1': 'Acte comprenant la décision de l’assemblée délibérante, sans les débats.',
-  '2': 'Décision administrative à portée générale et impersonnelle. Exemple : arrêté pris par un maire ou un président de conseil départemental ou régional.',
-  '3': "Décision concernant une ou plusieurs personnes. Exemple : octroi d'un permis de construire",
-  '5': "Actes liés aux budgets des collectivités",
-  '6': "Tous les autres actes",
-} as const;
-export type TypeActesTooltipCode = keyof typeof typeActesTooltip;
-
-export const typeActesCaches = ['4']
+import { typeActeFilters } from './types-actes-filters';
 
 @Component({
   standalone: true,
@@ -47,7 +37,7 @@ export class AdvancedSearchParamsDialogComponent {
 
   updatedParams: SearchParams;
   readonly classifications = classifications;
-  readonly typesActe = typesActes;
+  readonly typesActeFilters = typeActeFilters
   readonly thematiques = Object.entries(thematiques);
 
   constructor(
@@ -104,14 +94,5 @@ export class AdvancedSearchParamsDialogComponent {
       // désélectionne la thématique si déjà sélectionnée
       ? undefined
       : changeEvent.value;
-  }
-
-  getTooltipPourTypeActe(i: string) {
-    let key = i as TypeActesTooltipCode
-    return typeActesTooltip[key]
-  }
-
-  getIsTypeActeCache(i: string) {
-    return typeActesCaches.includes(i)
   }
 }
