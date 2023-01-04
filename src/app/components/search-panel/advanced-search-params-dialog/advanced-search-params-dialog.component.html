@@ -111,22 +111,6 @@
     </div>
 
     <div class="sub-section">
-      <h3>Classification préfecture</h3>
-
-      <div class="columns-sm">
-        <div *ngFor="let check of classifications | keyvalue">
-          <mat-checkbox
-            class="checkbox-text-wrap"
-            [checked]="updatedParams.classifications?.has($any(check.key))"
-            (change)="toggleElement(updatedParams.classifications, check.key)"
-          >
-            {{check.value}}
-          </mat-checkbox>
-        </div>
-      </div>
-    </div>
-
-    <div class="sub-section">
       <h3>Type d'acte</h3>
 
       <div class="columns-sm">
@@ -152,6 +136,22 @@
             </mat-checkbox>
           </ng-container>
         
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-section">
+      <h3>Classification préfecture</h3>
+
+      <div class="columns-sm">
+        <div *ngFor="let check of classifications | keyvalue">
+          <mat-checkbox
+            class="checkbox-text-wrap"
+            [checked]="updatedParams.classifications?.has($any(check.key))"
+            (change)="toggleElement(updatedParams.classifications, check.key)"
+          >
+            {{check.value}}
+          </mat-checkbox>
         </div>
       </div>
     </div>

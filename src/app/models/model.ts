@@ -21,11 +21,6 @@ export const classifications = {
 } as const;
 
 export const thematiques = {
-  'sante': {
-    icon: 'medical_services',
-    libelle: "Santé",
-    keywords: "santé docteur infirmier hopital soins"
-  },
   'urbanisme': {
     icon: 'home_work',
     libelle: "Urbanisme",
@@ -35,7 +30,12 @@ export const thematiques = {
     icon: 'trending_up',
     libelle: "Economie",
     keywords: "economie financement budget dépense recette investissement"
-  }
+  },
+  'sante': {
+    icon: 'medical_services',
+    libelle: "Santé",
+    keywords: "santé docteur infirmier hopital soins"
+  },
 } as const;
 
 export type TypeActeCode = keyof typeof typesActes;
