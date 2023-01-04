@@ -57,7 +57,7 @@ export interface Document {
   resultat_recherche?: boolean;
   siren: string;
   type: TypeActeCode;
-  type_autre_detail?: string;
+  nature_autre_detail?: string;
   typologie: string;
   url: string;
 }
