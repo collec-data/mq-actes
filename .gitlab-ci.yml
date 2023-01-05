@@ -48,24 +48,24 @@ build angular app:
 docker image:
   extends: .build
   variables:
-    IMAGE_NAME: "megalis/opendata/opendata-marqueblanche-refonte"
+    IMAGE_NAME: "megalis/opendata/mq-actes"
 
 deploy dev:
   extends: .deployInteg
   variables:
-    STACK_NAME: "marqueblanche-refonte"
+    STACK_NAME: "mq-actes"
 
 deploy:
   extends: .deployPreProd
   variables:
-    STACK_NAME: "marqueblanche-refonte"
+    STACK_NAME: "mq-actes"
 
 deploy pre-prod-master:
   extends: .deployPreprodManual
   variables:
-    STACK_NAME: "marqueblanche-refonte"
+    STACK_NAME: "mq-actes"
 
 deploy prod:
   extends: .deployProd
   variables:
-    STACK_NAME: "marqueblanche-refonte"
+    STACK_NAME: "mq-actes"
