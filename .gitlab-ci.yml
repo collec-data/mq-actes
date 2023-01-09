@@ -14,6 +14,12 @@ stages:
   - build
   - deploy
 
+build mq-actes-staticfiles:
+  extends: .build
+  variables:
+    BUILD_CONTEXT: "mq-actes-staticfiles"
+    IMAGE_NAME: "csm/open-data/mq-actes-staticfiles"
+
 build angular app:
   before_script:
     - export http_proxy=http://pro01.sib.fr:3128
