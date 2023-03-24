@@ -1,4 +1,5 @@
-import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, Input } from '@angular/core';
+import { DirectiveOptions } from './directive-options.model';
 
 /**
  * Directive donnant le comportement attendu à l'attribut "autofocus" sur les éléments.
@@ -14,7 +15,12 @@ import { AfterViewInit, Directive, ElementRef, inject } from '@angular/core';
 export class AutofocusDirective implements AfterViewInit {
   private host = inject(ElementRef);
 
+  @Input('autofocus') options?: DirectiveOptions;
+
   ngAfterViewInit() {
+    if (this.options?.ignore)
+      return;
+
     setTimeout(() => {
       this.host.nativeElement.focus();
       this.host.nativeElement

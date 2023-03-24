@@ -75,6 +75,10 @@ export class SearchPanelComponent implements OnChanges, OnInit {
     }
   }
 
+  get is_in_iframe() {
+    return !(window.self === window.top);
+  }
+
   launchSearch() {
     let params = this.searchParams;
     // On émet une copie des paramètres de recherche pour qu'il soit impossible de les modifier à notre insu.

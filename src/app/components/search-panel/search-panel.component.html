@@ -10,7 +10,7 @@
         name="query"
         [(ngModel)]="searchParams.query"
         placeholder="Entrez les termes à rechercher"
-        autofocus
+        [autofocus]="{ ignore: is_in_iframe }"
       >
       <button
         *ngIf="searchParams.query"
