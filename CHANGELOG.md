@@ -6,6 +6,11 @@ Basé sur [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [unreleased]
 
+### Changed
+
+ - Changement de l'url de la forge
+ - Suppression de l'étape de generation d'env pour marqueblanche-refonte
+
 ## [1.0.3]
 
 ### Fixed

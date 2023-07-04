@@ -18,7 +18,7 @@ build mq-actes-staticfiles:
   extends: .build
   variables:
     BUILD_CONTEXT: "mq-actes-staticfiles"
-    IMAGE_NAME: "csm/open-data/mq-actes-staticfiles"
+    IMAGE_NAME: "megalis/opendata/mq-actes-staticfiles"
 
 build angular app:
   before_script:
@@ -34,14 +34,6 @@ build angular app:
       --configuration=production \
       --aot \
       --output-path=dist/out/root
-
-    # build pour deployer sur le path /marqueblanche-refonte
-    - |
-      ./node_modules/.bin/ng build \
-      --configuration=production \
-      --aot \
-      --base-href=/marqueblanche-refonte/ \
-      --output-path=dist/out/marqueblanche-refonte
   cache:
     key: ${CI_COMMIT_REF_SLUG}
     paths:
