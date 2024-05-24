@@ -6,7 +6,7 @@ import { bootstrapApplication } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { routes } from "./app/app-routes";
 import { RouterModule } from "@angular/router";
-import { MatNativeDateModule } from "@angular/material/core";
+import { MAT_DATE_LOCALE } from "@angular/material/core";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import localeFr from '@angular/common/locales/fr';
 import { registerLocaleData } from "@angular/common";
@@ -15,6 +15,8 @@ import { MatPaginatorIntlFr } from "./app/shared/mat-paginator-intl-fr";
 import { MarkdownModule } from 'ngx-markdown'
 import { EnvServiceFactory } from './app/env.service.factory';
 import { EnvService } from './app/env.service';
+import { MatDateFnsModule } from "@angular/material-date-fns-adapter";
+import { fr } from 'date-fns/locale'
 
 registerLocaleData(localeFr);
 
@@ -33,7 +35,7 @@ prepare().then(() =>
       importProvidersFrom([
         RouterModule.forRoot(routes),
         BrowserAnimationsModule,
-        MatNativeDateModule,
+        MatDateFnsModule,
         HttpClientModule,
         MarkdownModule.forRoot({ loader: HttpClient }),
       ]),
@@ -48,6 +50,10 @@ prepare().then(() =>
       {
         provide: LOCALE_ID,
         useValue: 'fr-FR'
+      },
+      {
+        provide: MAT_DATE_LOCALE,
+        useValue: fr,
       },
       {
         provide: MatPaginatorIntl,

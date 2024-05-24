@@ -8,10 +8,11 @@ import {
   TypeActeCode,
   typesActes
 } from "./models/model";
+import { addDays, parseISO, startOfDay } from "date-fns";
 
 export const getDateDebutPublicationsEnCours = () => {
   const now = new Date();
-  return new Date(now.getFullYear(), now.getMonth(), now.getDate() - 62);
+  return startOfDay(addDays(now, -62));
 }
 
 export const queryParamsToSearchParams = (queryParams: Params): SearchParams => {
@@ -43,7 +44,7 @@ export const queryParamsToSearchParams = (queryParams: Params): SearchParams => 
     if (!str) {
       return undefined;
     }
-    const date = new Date(str);
+    const date = parseISO(str);
     if (Number.isNaN(date.getTime())) {
       // La date est invalide.
       return undefined;

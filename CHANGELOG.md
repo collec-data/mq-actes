@@ -14,6 +14,7 @@ Basé sur [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Fixed
 
  - Correction du passage de dates de début et fin en paramètre dans l'URL : le filtre avec les 2 dates était supprimé
+ - Correction pour permettre la saisie dans les champs de dates au format français
 
 ## [1.0.3]
 

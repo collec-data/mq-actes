@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import { ActeBack, classifications, PageBack, typesActes } from "../app/models/model";
+import { addSeconds, formatISO } from "date-fns";
 
 const acteForTime = (date: Date, index: number): ActeBack => {
   const allTypesCodes = Object.keys(typesActes);
@@ -19,8 +20,8 @@ const acteForTime = (date: Date, index: number): ActeBack => {
     typologie: '99_DE',
     content_type: 'application/pdf',
     objet,
-    date_acte: new Date(date.getTime() - 10000).toISOString(),
-    date_publication: date.toISOString(),
+    date_acte: formatISO(addSeconds(date, -10)),
+    date_publication: formatISO(date),
     url: `${document.baseURI}assets/minimal.pdf?acte=${date.getTime()}`,
     type: Number(type),
     classification_code: classificationCode,
