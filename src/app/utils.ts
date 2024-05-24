@@ -66,7 +66,7 @@ export const queryParamsToSearchParams = (queryParams: Params): SearchParams => 
     // Si le filtre publication en cours est présent
     searchParams.publications_en_cours ||
     // ou si les dates sont incorrectes (date fin avant début)
-    (searchParams.date_debut && searchParams.date_fin && searchParams.date_fin > searchParams.date_debut)
+    (searchParams.date_debut && searchParams.date_fin && searchParams.date_fin < searchParams.date_debut)
   ) {
     // on supprime les dates
     delete searchParams.date_debut;

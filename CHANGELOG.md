@@ -11,6 +11,10 @@ Basé sur [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
  - Changement de l'url de la forge
  - Suppression de l'étape de generation d'env pour marqueblanche-refonte
 
+### Fixed
+
+ - Correction du passage de dates de début et fin en paramètre dans l'URL : le filtre avec les 2 dates était supprimé
+
 ## [1.0.3]
 
 ### Fixed
