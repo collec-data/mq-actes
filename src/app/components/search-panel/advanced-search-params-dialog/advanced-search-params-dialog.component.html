@@ -21,7 +21,7 @@
           class="checkbox-text-wrap"
           name="publications_en_cours"
           [(ngModel)]="updatedParams.publications_en_cours"
-          (ngModelChange)="updatePublicationEnCours($event, form, debut, fin)"
+          (ngModelChange)="updatePublicationEnCours($event, form, publicationDebut, publicationFin)"
         >
           Afficher les publications en cours (datant de moins de 62 jours)
         </mat-checkbox>
@@ -32,28 +32,28 @@
           <mat-label>Début</mat-label>
           <input
             matInput
-            [matDatepicker]="startPicker"
-            name="date_debut"
-            [(ngModel)]="updatedParams.date_debut"
+            [matDatepicker]="publicationStartPicker"
+            name="date_de_publication_debut"
+            [(ngModel)]="updatedParams.date_de_publication_debut"
             [disabled]="updatedParams.publications_en_cours"
-            #debut="ngModel"
+            #publicationDebut="ngModel"
           >
           <button
-            *ngIf="updatedParams.date_debut"
+            *ngIf="updatedParams.date_de_publication_debut"
             type="button"
             matSuffix
             mat-icon-button
             aria-label="Effacer"
             matTooltip="Effacer"
-            (click)="updatedParams.date_debut = undefined"
+            (click)="updatedParams.date_de_publication_debut = undefined"
             [disabled]="updatedParams.publications_en_cours"
             [matTooltipDisabled]="updatedParams.publications_en_cours"
           >
             <mat-icon>close</mat-icon>
           </button>
-          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-          <mat-datepicker #startPicker></mat-datepicker>
-          <mat-error *ngIf="debut.hasError('matStartDateInvalid')">Date invalide</mat-error>
+          <mat-datepicker-toggle matSuffix [for]="publicationStartPicker"></mat-datepicker-toggle>
+          <mat-datepicker #publicationStartPicker></mat-datepicker>
+          <mat-error *ngIf="publicationDebut.hasError('matStartDateInvalid')">Date invalide</mat-error>
         </mat-form-field>
 
         <div class="mb-m">et</div>
@@ -62,30 +62,30 @@
           <mat-label>Fin</mat-label>
           <input
             matInput
-            [matDatepicker]="endPicker"
-            [min]="updatedParams.date_debut"
-            name="date_fin"
-            [(ngModel)]="updatedParams.date_fin"
+            [matDatepicker]="publicationEndPicker"
+            [min]="updatedParams.date_de_publication_debut"
+            name="date_de_publication_fin"
+            [(ngModel)]="updatedParams.date_de_publication_fin"
             [disabled]="updatedParams.publications_en_cours"
-            #fin="ngModel"
+            #publicationFin="ngModel"
           >
           <button
-            *ngIf="updatedParams.date_fin"
+            *ngIf="updatedParams.date_de_publication_fin"
             type="button"
             matSuffix
             mat-icon-button
             aria-label="Effacer"
             matTooltip="Effacer"
-            (click)="updatedParams.date_fin = undefined"
+            (click)="updatedParams.date_de_publication_fin = undefined"
             [disabled]="updatedParams.publications_en_cours"
             [matTooltipDisabled]="updatedParams.publications_en_cours"
           >
             <mat-icon>close</mat-icon>
           </button>
-          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-          <mat-datepicker #endPicker></mat-datepicker>
-          <mat-error *ngIf="fin.hasError('matEndDateInvalid')">Date invalide</mat-error>
-          <mat-error *ngIf="fin.hasError('matDatepickerMin')">La date de fin doit se trouver après le début
+          <mat-datepicker-toggle matSuffix [for]="publicationEndPicker"></mat-datepicker-toggle>
+          <mat-datepicker #publicationEndPicker></mat-datepicker>
+          <mat-error *ngIf="publicationFin.hasError('matEndDateInvalid')">Date invalide</mat-error>
+          <mat-error *ngIf="publicationFin.hasError('matDatepickerMin')">La date de fin doit se trouver après le début
           </mat-error>
         </mat-form-field>
       </div>
@@ -114,24 +114,24 @@
       <h3>Type d'acte</h3>
 
       <div class="columns-sm">
-        
-        <div class="type-acte-item" 
+
+        <div class="type-acte-item"
           *ngFor="let filter of typesActeFilters">
 
           <mat-checkbox class="checkbox-text-wrap" [checked]="updatedParams.types_actes?.has($any(filter.code))"
             (change)="toggleElement(updatedParams.types_actes, filter.code)">
             <span class="checkbox-text">
               {{filter.libelle}}
-          
+
               <ng-container *ngIf="filter.tooltip; let tooltip">
                 <mat-icon [inline]="true" class="type-acte-tooltip flex-shrink-0 vertical-align-bottom" [matTooltip]="tooltip">
                   info
                 </mat-icon>
               </ng-container>
-          
+
             </span>
           </mat-checkbox>
-        
+
         </div>
       </div>
     </div>

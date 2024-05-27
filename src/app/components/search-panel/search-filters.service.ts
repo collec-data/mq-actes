@@ -33,20 +33,20 @@ export class SearchFiltersService {
       });
     }
 
-    if (params.date_debut) {
+    if (params.date_de_publication_debut) {
       filters.push({
-        label: `après le ${this.datePipe.transform(params.date_debut, 'shortDate')}`,
+        label: `après le ${this.datePipe.transform(params.date_de_publication_debut, 'shortDate')}`,
         data: {
-          prop: 'date_debut'
+          prop: 'date_de_publication_debut'
         }
       });
     }
 
-    if (params.date_fin) {
+    if (params.date_de_publication_fin) {
       filters.push({
-        label: `avant le ${this.datePipe.transform(params.date_fin, 'shortDate')}`,
+        label: `avant le ${this.datePipe.transform(params.date_de_publication_fin, 'shortDate')}`,
         data: {
-          prop: 'date_fin'
+          prop: 'date_de_publication_fin'
         }
       });
     }

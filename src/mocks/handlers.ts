@@ -81,10 +81,10 @@ export const handlers = [
     const taillePageNb = Number.parseInt(req.url.searchParams.get('lignes') ?? '10', 0);
     const debutNb = req.url.searchParams.get('page_suivante') ? Number.parseInt(req.url.searchParams.get('page_suivante') ?? '0', 0) : 0;
 
-    const dateDebut = req.url.searchParams.get('date_debut');
+    const dateDebut = req.url.searchParams.get('date_de_publication_debut');
     const dateDebutTime = dateDebut && new Date(dateDebut).getTime();
 
-    const dateFin = req.url.searchParams.get('date_fin');
+    const dateFin = req.url.searchParams.get('date_de_publication_fin');
     const dateFinTime = dateFin && new Date(dateFin).getTime();
 
 
