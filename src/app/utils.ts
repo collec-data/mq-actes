@@ -59,6 +59,8 @@ export const queryParamsToSearchParams = (queryParams: Params): SearchParams => 
     thematique: getThematique(queryParams['thematique']),
     classifications: getSet(queryParams['classifications'], getClassification),
     types_actes: getSet(queryParams['types_actes'], getTypeActe),
+    date_debut: getDate(queryParams['date_debut']),
+    date_fin: getDate(queryParams['date_fin']),
     date_de_publication_debut: getDate(queryParams['date_de_publication_debut']),
     date_de_publication_fin: getDate(queryParams['date_de_publication_fin']),
   };
@@ -74,6 +76,15 @@ export const queryParamsToSearchParams = (queryParams: Params): SearchParams => 
     delete searchParams.date_de_publication_fin;
   }
 
+  if (
+    // si les dates de décision sont incorrectes (date fin avant début)
+    (searchParams.date_debut && searchParams.date_fin && searchParams.date_fin < searchParams.date_debut)
+  ) {
+    // on supprime les dates
+    delete searchParams.date_debut;
+    delete searchParams.date_fin;
+  }
+
   return searchParams;
 }
 
@@ -85,6 +96,8 @@ export const searchParamsToQueryParams = (searchParams: SearchParams): Params =>
     thematique: searchParams.thematique,
     classifications: searchParams.classifications && [...searchParams.classifications].join(',') || undefined,
     types_actes: searchParams.types_actes && [...searchParams.types_actes].join(',') || undefined,
+    date_debut: searchParams.date_debut?.toISOString(),
+    date_fin: searchParams.date_fin?.toISOString(),
     date_de_publication_debut: searchParams.date_de_publication_debut?.toISOString(),
     date_de_publication_fin: searchParams.date_de_publication_fin?.toISOString(),
   };

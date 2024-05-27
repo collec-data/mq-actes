@@ -14,6 +14,67 @@
 
   <mat-dialog-content>
     <div class="sub-section">
+      <h3>Date de décision</h3>
+
+      <div class="d-flex flex-wrap g-column-m align-items-center date-bar">
+        <mat-form-field appearance="fill">
+          <mat-label>Début</mat-label>
+          <input
+            matInput
+            [matDatepicker]="startPicker"
+            name="date_debut"
+            [(ngModel)]="updatedParams.date_debut"
+            #debut="ngModel"
+          >
+          <button
+            *ngIf="updatedParams.date_debut"
+            type="button"
+            matSuffix
+            mat-icon-button
+            aria-label="Effacer"
+            matTooltip="Effacer"
+            (click)="updatedParams.date_debut = undefined"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+          <mat-error *ngIf="debut.hasError('matStartDateInvalid')">Date invalide</mat-error>
+        </mat-form-field>
+
+        <div class="mb-m">et</div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Fin</mat-label>
+          <input
+            matInput
+            [matDatepicker]="endPicker"
+            [min]="updatedParams.date_debut"
+            name="date_fin"
+            [(ngModel)]="updatedParams.date_fin"
+            #fin="ngModel"
+          >
+          <button
+            *ngIf="updatedParams.date_fin"
+            type="button"
+            matSuffix
+            mat-icon-button
+            aria-label="Effacer"
+            matTooltip="Effacer"
+            (click)="updatedParams.date_fin = undefined"
+          >
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+          <mat-error *ngIf="fin.hasError('matEndDateInvalid')">Date invalide</mat-error>
+          <mat-error *ngIf="fin.hasError('matDatepickerMin')">La date de fin doit se trouver après le début
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="sub-section">
       <h3>Date de publication</h3>
 
       <div class="mb-m">

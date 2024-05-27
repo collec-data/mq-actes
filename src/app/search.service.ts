@@ -63,6 +63,8 @@ export class HttpSearchService extends SearchService {
       params: {
         query,
         ...params.siren && {siren: params.siren},
+        ...params.date_debut && {date_debut: params.date_debut.toISOString()},
+        ...params.date_fin && {date_fin: params.date_fin.toISOString()},
         ...date_de_publication_debut && {date_de_publication_debut: date_de_publication_debut.toISOString()},
         ...date_de_publication_fin && {date_de_publication_fin: date_de_publication_fin.toISOString()},
         ...params.classifications?.size && {classifications: [...params.classifications].join(',')},
