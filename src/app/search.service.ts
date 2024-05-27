@@ -49,8 +49,8 @@ export class HttpSearchService extends SearchService {
 
   override search(params: SearchParams): Observable<Page<Acte>> {
     // On ajuste les dates de début et fin si le filtre sur les publications en cours est présent.
-    const {date_debut, date_fin} = params.publications_en_cours
-      ? {date_debut: getDateDebutPublicationsEnCours(), date_fin: undefined}
+    const {date_de_publication_debut, date_de_publication_fin} = params.publications_en_cours
+      ? {date_de_publication_debut: getDateDebutPublicationsEnCours(), date_de_publication_fin: undefined}
       : params;
 
     let query = params.query;
@@ -63,8 +63,10 @@ export class HttpSearchService extends SearchService {
       params: {
         query,
         ...params.siren && {siren: params.siren},
-        ...date_debut && {date_debut: date_debut.toISOString()},
-        ...date_fin && {date_fin: date_fin.toISOString()},
+        ...params.date_debut && {date_debut: params.date_debut.toISOString()},
+        ...params.date_fin && {date_fin: params.date_fin.toISOString()},
+        ...date_de_publication_debut && {date_de_publication_debut: date_de_publication_debut.toISOString()},
+        ...date_de_publication_fin && {date_de_publication_fin: date_de_publication_fin.toISOString()},
         ...params.classifications?.size && {classifications: [...params.classifications].join(',')},
         ...params.types_actes?.size && {types_actes: [...params.types_actes].join(',')},
         ...params.page_suivante && {page_suivante: params.page_suivante},

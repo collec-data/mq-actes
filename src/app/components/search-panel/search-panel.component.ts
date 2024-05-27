@@ -87,7 +87,9 @@ export class SearchPanelComponent implements OnChanges, OnInit {
       classifications: params.classifications ? new Set(params.classifications) : undefined,
       types_actes: params.types_actes ? new Set(params.types_actes) : undefined,
       date_debut: params.date_debut ? new Date(params.date_debut) : undefined,
-      date_fin: params.date_fin ? new Date(params.date_fin) : undefined
+      date_fin: params.date_fin ? new Date(params.date_fin) : undefined,
+      date_de_publication_debut: params.date_de_publication_debut ? new Date(params.date_de_publication_debut) : undefined,
+      date_de_publication_fin: params.date_de_publication_fin ? new Date(params.date_de_publication_fin) : undefined,
     });
   }
 
@@ -125,8 +127,8 @@ export class SearchPanelComponent implements OnChanges, OnInit {
       : {
         ...this.searchParams,
         publications_en_cours: true,
-        date_debut: undefined,
-        date_fin: undefined
+        date_de_publication_debut: undefined,
+        date_de_publication_fin: undefined
       };
   }
 }

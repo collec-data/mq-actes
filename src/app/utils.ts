@@ -61,12 +61,23 @@ export const queryParamsToSearchParams = (queryParams: Params): SearchParams => 
     types_actes: getSet(queryParams['types_actes'], getTypeActe),
     date_debut: getDate(queryParams['date_debut']),
     date_fin: getDate(queryParams['date_fin']),
+    date_de_publication_debut: getDate(queryParams['date_de_publication_debut']),
+    date_de_publication_fin: getDate(queryParams['date_de_publication_fin']),
   };
 
   if (
     // Si le filtre publication en cours est présent
     searchParams.publications_en_cours ||
     // ou si les dates sont incorrectes (date fin avant début)
+    (searchParams.date_de_publication_debut && searchParams.date_de_publication_fin && searchParams.date_de_publication_fin < searchParams.date_de_publication_debut)
+  ) {
+    // on supprime les dates
+    delete searchParams.date_de_publication_debut;
+    delete searchParams.date_de_publication_fin;
+  }
+
+  if (
+    // si les dates de décision sont incorrectes (date fin avant début)
     (searchParams.date_debut && searchParams.date_fin && searchParams.date_fin < searchParams.date_debut)
   ) {
     // on supprime les dates
@@ -87,5 +98,7 @@ export const searchParamsToQueryParams = (searchParams: SearchParams): Params =>
     types_actes: searchParams.types_actes && [...searchParams.types_actes].join(',') || undefined,
     date_debut: searchParams.date_debut?.toISOString(),
     date_fin: searchParams.date_fin?.toISOString(),
+    date_de_publication_debut: searchParams.date_de_publication_debut?.toISOString(),
+    date_de_publication_fin: searchParams.date_de_publication_fin?.toISOString(),
   };
 }

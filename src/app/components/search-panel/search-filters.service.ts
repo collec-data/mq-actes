@@ -35,7 +35,7 @@ export class SearchFiltersService {
 
     if (params.date_debut) {
       filters.push({
-        label: `après le ${this.datePipe.transform(params.date_debut, 'shortDate')}`,
+        label: `décision après le ${this.datePipe.transform(params.date_debut, 'shortDate')}`,
         data: {
           prop: 'date_debut'
         }
@@ -44,9 +44,27 @@ export class SearchFiltersService {
 
     if (params.date_fin) {
       filters.push({
-        label: `avant le ${this.datePipe.transform(params.date_fin, 'shortDate')}`,
+        label: `décision avant le ${this.datePipe.transform(params.date_fin, 'shortDate')}`,
         data: {
           prop: 'date_fin'
+        }
+      });
+    }
+
+    if (params.date_de_publication_debut) {
+      filters.push({
+        label: `publié après le ${this.datePipe.transform(params.date_de_publication_debut, 'shortDate')}`,
+        data: {
+          prop: 'date_de_publication_debut'
+        }
+      });
+    }
+
+    if (params.date_de_publication_fin) {
+      filters.push({
+        label: `publié avant le ${this.datePipe.transform(params.date_de_publication_fin, 'shortDate')}`,
+        data: {
+          prop: 'date_de_publication_fin'
         }
       });
     }

@@ -51,7 +51,7 @@ export class AdvancedSearchParamsDialogComponent {
       types_actes: new Set([...initialParams.types_actes ?? []]),
     };
     if (this.updatedParams.publications_en_cours) {
-      this.updatedParams.date_debut = getDateDebutPublicationsEnCours();
+      this.updatedParams.date_de_publication_debut = getDateDebutPublicationsEnCours();
     }
   }
 
@@ -61,7 +61,7 @@ export class AdvancedSearchParamsDialogComponent {
       const finalParams = this.updatedParams.publications_en_cours
         ? {
           ...this.updatedParams,
-          date_debut: undefined
+          date_de_publication_debut: undefined
         }
         : this.updatedParams;
 

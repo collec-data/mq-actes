@@ -82,9 +82,11 @@ export interface Page<T> {
 export interface SearchParams {
   siren?: string;
   query: string;
-  publications_en_cours: boolean,
   date_debut?: Date;
   date_fin?: Date;
+  publications_en_cours: boolean,
+  date_de_publication_debut?: Date;
+  date_de_publication_fin?: Date;
   classifications?: Set<ClassificationCode>;
   types_actes?: Set<TypeActeCode>;
   thematique?: ThematiqueCode;

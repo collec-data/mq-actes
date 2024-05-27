@@ -87,13 +87,21 @@ export const handlers = [
     const dateFin = req.url.searchParams.get('date_fin');
     const dateFinTime = dateFin && new Date(dateFin).getTime();
 
+    const datePublicationDebut = req.url.searchParams.get('date_de_publication_debut');
+    const datePublicationDebutTime = datePublicationDebut && new Date(datePublicationDebut).getTime();
+
+    const datePublicationFin = req.url.searchParams.get('date_de_publication_fin');
+    const datePublicationFinTime = datePublicationFin && new Date(datePublicationFin).getTime();
+
 
     const filteredActes = actes.filter(a =>
       (!query || a.objet.toLocaleLowerCase().includes(query.toLocaleLowerCase())) &&
       (!classificationsArray || classificationsArray.some((x: string) => x.startsWith(a.classification_code))) &&
       (!typesActesArray || typesActesArray.includes(`${a.type}`)) &&
-      (!dateDebutTime || new Date(a.date_publication).getTime() >= dateDebutTime) &&
-      (!dateFinTime || new Date(a.date_publication).getTime() <= dateFinTime)
+      (!dateDebutTime || new Date(a.date_acte).getTime() >= dateDebutTime) &&
+      (!dateFinTime || new Date(a.date_acte).getTime() <= dateFinTime) &&
+      (!datePublicationDebutTime || new Date(a.date_publication).getTime() >= datePublicationDebutTime) &&
+      (!datePublicationFinTime || new Date(a.date_publication).getTime() <= datePublicationFinTime)
     );
 
     return res(
