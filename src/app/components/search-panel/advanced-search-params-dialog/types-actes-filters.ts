@@ -15,12 +15,13 @@ let _typeActesTooltip: _IndexableTypesActesInfo = {
   '5': "Actes liés aux budgets des collectivités",
   '6': "Tous les autres actes",
   '71': "Liste des délibérations prises lors d'un conseil",
-  '72': "Acte relevant des pouvoirs propres du maire. Les arrêtés temporaires ne sont pas définitifs. Exemple : arrêtés de voirie, de circulation et d’occupation temporaire du domaine public.",
+  '72': "Acte relevant des pouvoirs propres du maire. Les arrêtés temporaires ne sont pas définitifs. Exemples : arrêtés de voirie, de circulation et d’occupation temporaire du domaine public.",
   '73': "Document qui fait foi en matière de déroulement des séances de conseil",
+  '74': "Acte administratif permanent relevant des pouvoirs propres au maire et non soumis au contrôle de légalité. Exemples : arrêté permanent de voirie, de circulation, de stationnement et/ou de travaux."
 };
 
 const _typeActesOrder = [
-  '73', '71', '72',
+  '73', '71', '72', '74',
   '1', '2', '3', '5', '6',
 ];
 

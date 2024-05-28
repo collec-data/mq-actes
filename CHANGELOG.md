@@ -19,6 +19,7 @@ Basé sur [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 
 - Ajout des critères de recherche par date de décision (#31)
+- Ajout du type d'acte "Arrêtés permanents" (#26)
 
 ## [1.0.3]
 

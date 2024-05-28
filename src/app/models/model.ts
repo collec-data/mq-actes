@@ -9,6 +9,7 @@ export const typesActes = {
   '71': "Liste des délibérations",
   '72': "Arrêtés temporaires",
   '73': "Procés verbal de conseil",
+  '74': "Arrêtés permanents",
 } as const;
 
 export const classifications = {
